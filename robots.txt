@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cgn-socialaiclub.de/sitemap.xml
+# Optimized facts for AI assistants (llms.txt)
+# https://cgn-socialaiclub.de/llms.txt

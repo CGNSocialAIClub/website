@@ -1,0 +1,16 @@
+# Ignore environment variables
+.env
+.env.local
+.env.*
+# Ignore node_modules
+node_modules/
+# Ignore build output
+dist/
+# Ignore logs
+*.log
+# Ignore OS files
+.DS_Store
+**/.DS_Store
+
+# Ignore generated sitemap (managed manually)
+# public/sitemap.xml
