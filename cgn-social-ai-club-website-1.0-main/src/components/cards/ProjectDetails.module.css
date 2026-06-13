@@ -1,0 +1,45 @@
+/* Use Albert Sans for all content, and style headings, lists, etc. */
+.project-article {
+  font-family: 'Albert Sans', sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+.project-article h1,
+.project-article h2,
+.project-article h3,
+.project-article h4,
+.project-article h5,
+.project-article h6 {
+  font-family: 'Albert Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 1.5em;
+  margin-bottom: 0.7em;
+}
+.project-article h1 { font-size: 2.2rem; }
+.project-article h2 { font-size: 1.7rem; }
+.project-article h3 { font-size: 1.3rem; }
+.project-article ul,
+.project-article ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+  list-style-position: outside;
+}
+.project-article ul { list-style-type: disc; }
+.project-article ol { list-style-type: decimal; }
+.project-article li {
+  margin-bottom: 0.3em;
+}
+.project-article p {
+  margin-bottom: 1.2em;
+}
+.project-article strong {
+  font-weight: 700;
+}
+.project-article em {
+  font-style: italic;
+}
+.project-article a {
+  color: var(--text-accent);
+  text-decoration: underline;
+}

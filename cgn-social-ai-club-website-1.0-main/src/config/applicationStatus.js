@@ -1,0 +1,3 @@
+export const APPLICATIONS_OPEN = false;
+export const APPLICATION_BANNER_HEIGHT = 48;
+export const APPLICATION_DEADLINE = '2026-05-03T23:59:00+02:00';

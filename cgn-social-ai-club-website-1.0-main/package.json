@@ -1,0 +1,51 @@
+{
+  "name": "tum-social-ai-website-2.0",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
+    "generate:route-html": "node scripts/generate-route-html.mjs",
+    "prebuild": "npm run generate:sitemap",
+    "build": "vite build",
+    "postbuild": "npm run generate:route-html",
+    "preview": "vite preview",
+    "deploy": "npm run build && npx wrangler deploy --assets=./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/albert-sans": "^5.2.8",
+    "@fontsource/league-spartan": "^5.2.8",
+    "@remotion/paths": "^4.0.435",
+    "@remotion/player": "^4.0.435",
+    "body-parser": "^2.2.2",
+    "clsx": "^2.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "framer-motion": "^12.29.2",
+    "lucide-react": "^0.563.0",
+    "motion-dom": "^12.29.2",
+    "node-fetch": "^3.3.2",
+    "ogl": "^1.0.11",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.13.0",
+    "remotion": "^4.0.435",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
+  }
+}

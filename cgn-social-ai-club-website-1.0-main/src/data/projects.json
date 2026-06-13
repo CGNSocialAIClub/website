@@ -1,0 +1,106 @@
+[
+    {
+        "id": "3",
+        "title": "Smarter Well Siting with AI Groundwater Detection",
+        "description": "We are building an AI based approach that uses satellite, environmental, and geospatial data to help identify more promising locations for well drilling. The goal is to support NGOs with better decision making before costly fieldwork begins and to improve water access where every better choice can have real impact.",
+        "content": "## A better starting point for water access\n\nAccess to clean water still shapes daily life for billions of people. In many regions, finding a good drilling location remains expensive, slow, and uncertain. That makes every better decision valuable. Our Groundwater Detection project started from a simple question: could AI help NGOs make stronger decisions about where to drill before costly fieldwork begins? The answer we are exploring is yes, but in a careful and practical way.\n\n## Turning data into field-ready maps\n\nWe are developing an AI driven approach that uses environmental and geospatial data to identify more promising areas for well drilling. Instead of trying to predict one exact point with false precision, the system is designed to generate a probability based map that highlights where groundwater is more likely to be found. Even narrowing the search area can make a real difference for organizations working in remote regions, where failed wells cost time, money, and missed opportunities for communities that need reliable water access.\n\nOne of the most exciting parts of the project is the range of data that can feed into it. We are working with satellite imagery, environmental layers, and geospatial context to build a richer picture of groundwater potential. That includes signals such as vegetation, rainfall, soil composition, elevation, and surface water history. Rather than relying on a single image, the model can learn from a stacked set of features that capture different aspects of the landscape. The challenge is not just to process data, but to combine multiple sources into a model that produces outputs NGOs could actually use in the field.\n\n## Early results, practical value\n\nThe project has already produced a strong technical direction. In our current work, we are exploring how machine learning can rank locations by groundwater potential and turn large geographic areas into structured, decision ready maps. In one pilot setup, the model evaluated grid cells across a target region and assigned each area a probability score, creating a much clearer starting point for field decisions. We also tested multiple model architectures and validated performance through geographic cross validation, which gave us a strong baseline for further development.\n\nWhat makes the project especially compelling is that it does not need perfect certainty to be useful. The value comes from improving the odds. If a model can help an NGO start in a higher probability area, that already reduces wasted effort and improves where time and resources go first. In contexts where people may walk long distances for water, even a moderate improvement in siting can have an outsized effect. A system like this would not replace field expertise or drilling surveys. It would help teams begin from a better position.\n\n## Where the work is heading\n\nThis project is still ongoing, and that is part of what makes it exciting. We are in the phase where the technical foundations are becoming clearer and the next steps are about deepening the model, improving data quality, and moving from a promising research direction toward practical field value. Right now, the work is focused on strengthening the model architecture, improving how we use training data, and shaping the project around the kind of real world partner collaboration it needs for the next stage.\n\nFor us, this project captures a lot of what applied AI for social impact should look like. It tackles a real world problem with massive relevance, uses technically ambitious methods, and stays grounded in what would actually help partners make better decisions. Groundwater detection is a hard problem, which is exactly why it is worth working on.",
+        "tags": [
+            "Computer Vision",
+            "Africa",
+            "Water"
+        ],
+        "image": "/cms/projects/ground-water-detection-project-image.png",
+        "isLogo": false,
+        "hasArticle": true,
+        "status": "Active",
+        "authorId": "inéssuárez",
+        "date": "February 2026"
+    },
+    {
+        "id": "2",
+        "title": "Foundation Matching for Social Projects with AI",
+        "description": "We are building an AI supported system with Kulturator to help social and cultural projects find relevant foundations more effectively. By combining structured data, hybrid search, and language based retrieval, the platform aims to make funding access faster, smarter, and easier to navigate.",
+        "content": "## Access to funding as a practical bottleneck\n\nGood projects often fail to move forward for a simple reason: funding is hard to find. For many volunteers, nonprofits, and small initiatives, the problem is not a lack of purpose. It is the difficulty of figuring out which foundations are actually a fit, where to find reliable information, and how to navigate formal application requirements. Kulturator works in exactly that space. Their platform helps social and cultural projects identify relevant funding opportunities and make the search for support more accessible.\n\nFinding foundation funding is more complex than it looks from the outside. Rules are often unclear, project fit is hard to judge, and information is scattered across many websites with very different structures. That creates friction at every step. A project team may have a strong idea and real social value, but still lose time trying to understand which foundation supports which type of work and how to approach the process correctly. Kulturator had already built a strong base for solving that problem. Our role was to help make that search process faster, smarter, and easier to use.\n\n## Building Gute Dinge KI\n\nTogether with Kulturator, we worked on Gute Dinge KI, an AI supported system designed to find relevant foundations for a given project more effectively. The idea is simple: instead of forcing users to manually search through foundation profiles and websites, the system helps surface better matches through a combination of structured data, search, and language based retrieval.\n\nAt the core of the setup is a pipeline that connects several layers: a database provided by Kulturator, foundation portraits, scraped website content, and a hybrid search system that combines keywords with RAG. On top of that sits the frontend experience, where users can interact with the system and explore potential funding matches more directly. What makes the project strong is that it does not start from a blank page. Kulturator already has access to a filtered funding landscape with thousands of relevant foundations and more than EUR 1.5 billion in funding volume on the platform. The value of the AI layer is not to replace that work. It is to make it more usable.\n\n## From search to real leverage\n\nThe material points to a German landscape with more than 25,000 foundations and more than 30 million volunteers, while Kulturator's own filtered set focuses on around 8,000 foundations. The goal for 2026 is to support 40 funded projects through 3,000 algorithm matched partner foundations. Even at that scale, better matching can save a huge amount of manual effort and make funding access more realistic for smaller initiatives.\n\nThis project is a good example of what applied AI can look like when it is tied to a concrete workflow. The interesting part is not just the model or the search layer on its own. It is the combination of data structure, retrieval logic, and user experience. To be useful, the system has to do more than return results. It has to help users feel that the suggestions are relevant enough to act on. That is why the next steps are not only technical. They also include improving the user experience, refining the matching algorithm, adding mobile optimization, exploring voice integration, and continuing to expand the database.\n\nFor us, this project reflects a kind of AI for social impact work that is easy to underestimate but highly valuable in practice. Many social organizations do not need abstract intelligence. They need better access to the right opportunities, less friction in high effort processes, and tools that make complex information easier to use.",
+        "tags": [
+            "Database",
+            "Matching",
+            "Funding"
+        ],
+        "image": "/cms/projects/funding-matching-project-image.png",
+        "isLogo": false,
+        "hasArticle": true,
+        "status": "Active",
+        "partner": "Kulturator Foundation",
+        "authorId": "tobiaszierl",
+        "date": "February 2026"
+    },
+    {
+        "id": "4",
+        "title": "AI Powered Invoice Management for Nonprofits",
+        "description": "Together with Entreculturas, we built an AI supported workflow that reviews partner invoices for grant compliance, flags likely issues early, and helps nonprofit teams handle repetitive financial checks faster and with less manual effort.",
+        "content": "## Administrative work with real mission impact\n\nEntreculturas is a Spanish NGO working for social justice through education. Its programs focus on access to quality, inclusive education and support for vulnerable communities, including people affected by poverty, exclusion, displacement, and crisis contexts. That work depends not only on strong educational programs, but also on the administrative systems behind them. When grant requirements are strict and resources are limited, even routine back office processes can shape how much time an organization can spend on its actual mission.\n\nThat was exactly the case in our collaboration with Entreculturas. The team receives a high volume of partner invoices that need to comply with detailed, project specific requirements. These requirements can vary from one grant to another, which makes invoice validation difficult to standardize. In practice, errors such as missing fields, incorrect formats, or mismatched references were common. Staff had to check invoices manually, identify issues, and then go back to partners to request corrections. The result was a slow and admin heavy process that consumed time and attention across the workflow.\n\n## The workflow we built\n\nAt the beginning of the project, we examined both the invoices and the requirement documents and spoke with the NGO to understand how validation actually happens in day to day operations. That shaped our direction. Instead of designing something separate from the existing workflow, we focused on a solution that could plug into the tools the team already uses and support staff where friction was highest.\n\nThe solution we built is an automated n8n workflow that starts as soon as a new invoice is uploaded to Google Drive. First, the system extracts the key invoice fields. Then it checks that information against a set of compliance rules and produces a short, structured report showing which rules pass, which fail, and why. If issues are detected, the system alerts staff by email so they can quickly review the findings and request corrections where needed. Reviews no longer begin with a blank page. Staff receive an initial assessment that highlights the most likely problem areas and makes follow up faster and more targeted.\n\n## From MVP to a transferable model\n\nA big part of the technical challenge came from the messiness of the real material. Requirements were sometimes ambiguous, some invoice faults were difficult to interpret, and the relevant documents were in Spanish, which made debugging slower and more detail sensitive. We addressed that by working closely with real examples, keeping outputs highly structured, and using regular feedback loops with Entreculturas to correct misunderstandings early. At this stage, the system is an MVP, but it already establishes a better process foundation. Each new invoice can now trigger an automated pre screening step that produces structured findings, which means staff do not have to start every review from scratch.\n\nFor our team, the project was a strong lesson in building practical automation for a real operational setting. We learned a lot about n8n, structured workflow design, and the importance of keeping systems easy to debug when requirements are still evolving. What makes this project especially relevant is how transferable the underlying pattern is. Many NGOs deal with repetitive administrative checks that are necessary, time consuming, and difficult to fully standardize. A workflow that integrates directly into existing tools, flags likely issues early, and keeps humans in control can reduce that burden without creating a parallel system people have to learn from scratch.",
+        "tags": [
+            "AI Automation",
+            "Compliance",
+            "Financial Operations"
+        ],
+        "image": "/cms/all-partner-logos/entreculturas-coloured.svg",
+        "isLogo": true,
+        "hasArticle": true,
+        "status": "Active",
+        "partner": "Entreculturas",
+        "authorId": "juliankraus",
+        "date": "April 2026"
+    },
+    {
+        "id": "1",
+        "title": "Gender Bias Research in LLMs",
+        "description": "We are starting a project to test how gender cues affect responses from major large language models. Using a small set of controlled prompts, we will compare outputs and document early patterns.",
+        "content": "## Project Overview\n\nWe are at the start of a project that examines **gender bias** in major commercial LLMs. Our focus is on building a simple, reliable evaluation setup and collecting initial results.\n\nWe will use controlled prompt templates to compare responses across models in a few focused scenarios:\n\n*   **Professional Scenarios**: Assumptions about competence or role fit.\n*   **Creative Writing**: Character tropes and stereotypes.\n*   **Sentiment Analysis**: Differences in tone based on gendered subjects.\n\nWe are preparing the prompt set and evaluation criteria. Early findings will be shared as soon as the first testing round is complete.",
+        "tags": [
+            "LLMs",
+            "Gender Bias",
+            "Evaluation"
+        ],
+        "image": "/cms/all-partner-logos/Un-women-for-all-women-and-girls-coloured.png",
+        "isLogo": true,
+        "status": "Active",
+        "partner": "UN Women",
+        "authorId": "kjellhanken",
+        "date": "February 2026"
+    },
+    {
+        "id": "5",
+        "title": "Multilingual AI Chatbot for Better Access to Social Support",
+        "description": "Together with Initiativgruppe, we are building a secure multilingual chatbot that helps people find the right support services more easily. Using a structured LangGraph RAG pipeline, the system delivers grounded answers based on the organization's own website content.",
+        "content": "## Access to support starts with access to information\n\nFor more than 50 years, Initiativgruppe e.V. has worked to create equal educational and professional opportunities for people with migration backgrounds in Munich. Their work spans language courses, homework support, vocational training, and social housing. In practice, that means supporting children, young people, and adults at very different stages of life, often in situations where access to the right information can make a real difference.\n\nWhen we started working with Initiativgruppe, one challenge stood out quickly: much of this support was digitally hard to access. Their website contained a wide range of important information, but the structure had grown over time and had become difficult to navigate. On top of that, much of the content was only available in German. For the people Initiativgruppe aims to serve, this created a real barrier. Finding the right program, contact point, or next step often required additional personal support from staff.\n\n## The chatbot as a usable layer\n\nThat had consequences on both sides. Users struggled to find relevant information independently. Staff, in turn, had to spend time answering basic orientation questions that a well functioning digital interface should already handle. Our shared goal was not to rebuild the website from scratch. It was to create a more intuitive layer on top of the existing information landscape.\n\nThe solution we built was a secure multilingual chatbot that answers questions based on the content of Initiativgruppe’s website. In simple terms, the system takes a user query, checks it for malicious instructions, reformulates it for retrieval, searches a vector database for relevant content, compresses the most useful context, and then generates a clear answer while also showing the source pages behind it. That source visibility mattered to us. In a setting like this, trust and traceability are just as important as usability.\n\n## Grounded answers in a sensitive context\n\nOn the technical side, we deliberately chose a RAG based architecture so that answers stay grounded in the organization’s actual documents rather than drifting into generic responses. We also moved beyond a basic retrieval chain and built a more structured LangGraph pipeline. That gave us tighter control over the different steps in the process, including prompt injection protection, strict language handling, context compression, and rate limiting. The project required close coordination between domain knowledge and technical implementation, and that combination is what made the system workable in a multilingual social impact setting.\n\nBeyond the product itself, the project taught us a lot. We gained hands on experience with LangGraph, RAG architectures, and requirements engineering. More importantly, it showed what applied AI for social impact can look like when it starts with a concrete operational problem and makes an existing support structure meaningfully easier to access.",
+        "tags": [
+            "Social Integration",
+            "Chatbot",
+            "LangGraph RAG"
+        ],
+        "image": "/cms/all-partner-logos/initiative-gruppe-logo.png",
+        "isLogo": true,
+        "hasArticle": true,
+        "status": "Active",
+        "partner": "IG Initiative Group",
+        "authorId": "zulfiyausmonova",
+        "date": "April 2026"
+    },
+    {
+        "id": "6",
+        "title": "Your Project can be Next",
+        "description": "Are you a nonprofit with a challenge we can help solve? Contact us.",
+        "content": "## Partner With Us\n\nAt TUM Social AI, we are always looking for new challenges. If you are a nonprofit organization, a social enterprise, or a researcher working on high-impact problems, we want to hear from you.\n\n*   **Technical Expertise**: Teams of skilled students in AI, Machine Learning, and Web Development.\n*   **Innovative Solutions**: Fresh perspectives on your operational or technical challenges.\n*   **Pro Bono Work**: We are driven by impact, not profit.\n\n[Contact us](/contact) today to start a conversation about how we can collaborate.",
+        "tags": [
+            "Your Nonprofit",
+            "Contact Us",
+            "Collaborate"
+        ],
+        "image": "/cms/projects/yourprojectnext-stickfigure.png",
+        "isLogo": true,
+        "status": "Upcoming",
+        "authorId": "jaronschurer",
+        "date": "February 2026"
+    }
+]
