@@ -17,8 +17,8 @@ function escapeHtml(value) {
 }
 
 function applyRouteMeta(template, routePath, routeMeta) {
-    const title = routeMeta?.title || 'TUM Social AI Club';
-    const fullTitle = title === 'TUM Social AI Club' ? title : `TUM Social AI Club | ${title}`;
+    const title = routeMeta?.title || 'CGN Social AI Club';
+    const fullTitle = title === 'CGN Social AI Club' ? title : `CGN Social AI Club | ${title}`;
     const description = routeMeta?.description || '';
     const robots = routeMeta?.noIndex ? 'noindex, nofollow' : 'index, follow';
     const canonicalUrl = `${SITE_URL}${routePath}`;

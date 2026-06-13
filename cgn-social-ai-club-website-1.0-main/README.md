@@ -1,6 +1,6 @@
-# TUM Social AI Club Website 2.0
+# CGN Social AI Club Website 2.0
 
-This is the official website for the TUM Social AI Club. The site showcases our mission, projects, partners, team, and how to get involved.
+This is the official website for the CGN Social AI Club. The site showcases our mission, projects, partners, team, and how to get involved.
 
 ## 🚀 Features
 - Modern React + Vite + Tailwind CSS stack
@@ -147,5 +147,5 @@ MIT
 
 ---
 
-Made with ❤️ by the TUM Social AI Club
+Made with ❤️ by the CGN Social AI Club
 *

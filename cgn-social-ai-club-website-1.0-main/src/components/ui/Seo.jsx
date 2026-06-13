@@ -20,7 +20,7 @@ export default function Seo({
     const effectiveDescription = description || routeSeo?.description;
     const effectiveNoIndex = typeof noIndex === 'boolean' ? noIndex : Boolean(routeSeo?.noIndex);
     const canonicalUrl = url || canonicalFromPath(normalizedPath);
-    const fullTitle = effectiveTitle ? `TUM Social AI Club | ${effectiveTitle}` : 'TUM Social AI Club';
+    const fullTitle = effectiveTitle ? `CGN Social AI Club | ${effectiveTitle}` : 'CGN Social AI Club';
 
     useEffect(() => {
         const upsertMeta = (attr, key, value) => {
@@ -74,7 +74,7 @@ export default function Seo({
             upsertMeta('name', 'robots', 'index, follow');
         }
         upsertMeta('property', 'og:type', 'website');
-        upsertMeta('property', 'og:site_name', 'TUM Social AI Club');
+        upsertMeta('property', 'og:site_name', 'CGN Social AI Club');
         upsertMeta('property', 'og:locale', locale === 'de' ? 'de_DE' : 'en_US');
         upsertMeta('property', 'og:title', fullTitle);
         upsertMeta('property', 'og:description', effectiveDescription);

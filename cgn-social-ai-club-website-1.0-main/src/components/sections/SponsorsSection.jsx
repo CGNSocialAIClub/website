@@ -26,12 +26,6 @@ export default function SponsorsSection({ hideCTA = false }) {
 
         // Supporter Tier
         {
-            name: 'TUM',
-            tier: 'supporter',
-            logo: '/cms/strategic-partner-logos/supporter/technical-university-of-munich-tum-logo-vector.svg',
-            logoDark: '/cms/strategic-partner-logos/supporter/technical-university-of-munich-tum-logo-vector.svg'
-        },
-        {
             name: 'OpenAI',
             tier: 'supporter',
             logo: '/cms/strategic-partner-logos/supporter/openai-logo.svg',
@@ -42,12 +36,6 @@ export default function SponsorsSection({ hideCTA = false }) {
             tier: 'supporter',
             logo: '/cms/strategic-partner-logos/supporter/aws-coloured.svg',
             logoDark: '/cms/strategic-partner-logos/supporter/aws-coloured-white.svg'
-        },
-        {
-            name: 'TUM Venture Labs',
-            tier: 'supporter',
-            logo: '/cms/strategic-partner-logos/supporter/tum-venturelabs.png',
-            logoDark: '/cms/strategic-partner-logos/supporter/tum-venturelabs.png'
         },
         {
             name: 'AI Strategy Institute',

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="transparent" rx="24" />
+  <circle cx="90" cy="90" r="68" fill="#ffffff" stroke="#0a2d57" stroke-width="8" />
+  <text x="90" y="98" font-family="Inter, sans-serif" font-size="38" font-weight="700" fill="#0a2d57" text-anchor="middle">CGN</text>
+</svg>

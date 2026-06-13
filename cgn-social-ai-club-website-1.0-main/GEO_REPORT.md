@@ -1,4 +1,4 @@
-# GEO Report. TUM Social AI Club
+# GEO Report. CGN Social AI Club
 
 Date: 2026-02-18
 
@@ -15,23 +15,23 @@ Date: 2026-02-18
 
 | URL | Current Title | Current H1 | Meta Robots | Canonical |
 | --- | --- | --- | --- | --- |
-| `/` | `Germanys First AI for Good Student Club in Munich | TUM Social AI Club` | `TUM Social AI Club: AI for social good projects with nonprofits` | `index, follow` | yes |
-| `/community` | `Student AI Community at TUM Munich | TUM Social AI Club` | `Get to Know Our Departments` | `index, follow` | yes |
-| `/social-partners` | `AI Projects for Nonprofits and NGOs | TUM Social AI Club` | `Let's Build AI Solutions for Your Mission` | `index, follow` | yes |
-| `/sponsors` | `Partner with TUM Social AI Club | TUM Social AI Club` | `Empower Tomorrow's AI Leaders` | `index, follow` | yes |
-| `/contact` | `Contact TUM Social AI Club Munich | TUM Social AI Club` | `Let's Connect` | `index, follow` | yes |
-| `/application` | `Join TUM Social AI Club | TUM Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | `index, follow` | yes |
-| `/privacy` | `Privacy Policy | TUM Social AI Club` | `Datenschutzerklärung` | `index, follow` | yes |
-| `/imprint` | `Imprint and Legal Notice | TUM Social AI Club` | `Impressum` | `index, follow` | yes |
-| `*` not found | `Page Not Found | TUM Social AI Club` | `Lost in AI?` | `noindex, nofollow` | yes |
+| `/` | `Germanys First AI for Good Student Club in Cologne | CGN Social AI Club` | `CGN Social AI Club: AI for social good projects with nonprofits` | `index, follow` | yes |
+| `/community` | `Student AI Community at CGN Cologne | CGN Social AI Club` | `Get to Know Our Departments` | `index, follow` | yes |
+| `/social-partners` | `AI Projects for Nonprofits and NGOs | CGN Social AI Club` | `Let's Build AI Solutions for Your Mission` | `index, follow` | yes |
+| `/sponsors` | `Partner with CGN Social AI Club | CGN Social AI Club` | `Empower Tomorrow's AI Leaders` | `index, follow` | yes |
+| `/contact` | `Contact CGN Social AI Club Cologne | CGN Social AI Club` | `Let's Connect` | `index, follow` | yes |
+| `/application` | `Join CGN Social AI Club | CGN Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | `index, follow` | yes |
+| `/privacy` | `Privacy Policy | CGN Social AI Club` | `Datenschutzerklärung` | `index, follow` | yes |
+| `/imprint` | `Imprint and Legal Notice | CGN Social AI Club` | `Impressum` | `index, follow` | yes |
+| `*` not found | `Page Not Found | CGN Social AI Club` | `Lost in AI?` | `noindex, nofollow` | yes |
 
 ### 1.3 Echte Selbstbeschreibung aus Website und Repo
 Mission und Positionierung aus Originalinhalten:
 - Student initiative focused on AI for good.
 - Practical AI and ML projects with nonprofits and social organizations.
 - Social and environmental impact focus.
-- Community and student development focus at TUM.
-- Germany context with Munich origin and reach beyond local scope.
+- Community and student development focus at CGN.
+- Germany context with Cologne origin and reach beyond local scope.
 
 Angebote und Aktivitäten aus bestehenden Inhalten:
 - Semester projects with nonprofit partners.
@@ -47,12 +47,12 @@ Tatsächlich verwendete Kernbegriffe:
 - social impact
 - environmental impact
 - student initiative
-- TUM. Munich. Germany
+- CGN. Cologne. Germany
 
 Externe Profile und offizielle Kontaktpunkte:
-- LinkedIn: `https://www.linkedin.com/company/tumsocialaiclub`
-- Website: `https://tum-socialaiclub.de`
-- Contact: `contact@tum-socialaiclub.de`
+- LinkedIn: `https://www.linkedin.com/company/cgnsocialaiclub`
+- Website: `https://cgn-socialaiclub.de`
+- Contact: `contact@cgn-socialaiclub.de`
 
 ### 1.4 Mehrsprachigkeit
 - Keine getrennten Sprachversionen oder locale Routen.
@@ -67,7 +67,7 @@ Externe Profile und offizielle Kontaktpunkte:
 - Lösung: `llms.txt` plus `ai.txt` Hinweis ergänzen.
 - Wo im Code: `public/llms.txt`, `public/ai.txt`
 - Risiko: sehr gering
-- Wie testen: `curl https://tum-socialaiclub.de/llms.txt` und `curl https://tum-socialaiclub.de/ai.txt`
+- Wie testen: `curl https://cgn-socialaiclub.de/llms.txt` und `curl https://cgn-socialaiclub.de/ai.txt`
 
 2. Problem: Entity Kontext war vorhanden aber zu knapp für generative Zitierbarkeit.
 - Lösung: Organization JSON LD um affiliation context, location, areaServed, topical focus erweitern.
@@ -77,7 +77,7 @@ Externe Profile und offizielle Kontaktpunkte:
 
 ### P1
 1. Problem: Title und Description waren teilweise generisch und nicht konsistent GEO orientiert.
-- Lösung: Route spezifische Patterns mit TUM. Munich. AI for good. nonprofit and impact Kontext.
+- Lösung: Route spezifische Patterns mit CGN. Cologne. AI for good. nonprofit and impact Kontext.
 - Wo im Code: `src/App.jsx`, `src/pages/*.jsx`
 - Risiko: gering
 - Wie testen: per route in `<head>` prüfen und via URL Inspection snippets prüfen
@@ -110,23 +110,23 @@ Externe Profile und offizielle Kontaktpunkte:
 ## 3. Vorschläge zuerst
 
 ### 3.1 Empfohlenes Title und Description Pattern
-- Pattern: `[Page Intent with Entity Context] | TUM Social AI Club`
+- Pattern: `[Page Intent with Entity Context] | CGN Social AI Club`
 - Description pattern: `Who we are + what we do + where + why relevant`
 
 Empfohlene Route Patterns:
-- `/`: Germanys First AI for Good Student Club in Munich
-- `/community`: Student AI Community at TUM Munich
+- `/`: Germanys First AI for Good Student Club in Cologne
+- `/community`: Student AI Community at CGN Cologne
 - `/social-partners`: AI Projects for Nonprofits and NGOs
-- `/sponsors`: Partner with TUM Social AI Club
-- `/contact`: Contact TUM Social AI Club Munich
-- `/application`: Join TUM Social AI Club
+- `/sponsors`: Partner with CGN Social AI Club
+- `/contact`: Contact CGN Social AI Club Cologne
+- `/application`: Join CGN Social AI Club
 
 ### 3.2 Empfohlenes Organization JSON LD
 - Type: `NonprofitOrganization`
 - Name plus alternateName
 - URL. logo. email
-- Affiliation context: Technical University of Munich
-- Founding location signal: Munich, Germany
+- Affiliation context: Technical University of Cologne
+- Founding location signal: Cologne, Germany
 - areaServed: Germany
 - sameAs: LinkedIn
 - knowsAbout: AI for good and impact topics
@@ -147,7 +147,7 @@ Empfohlene Route Patterns:
 ### 3.5 Empfohlene Redirect und Canonical Regeln
 - 301 `http -> https`
 - 301 `www -> apex`
-- canonical host always `https://tum-socialaiclub.de`
+- canonical host always `https://cgn-socialaiclub.de`
 - trailing slash normalization by canonical tags already present
 
 ## 4. Umsetzung. Nur technische unsichtbare Maßnahmen
@@ -197,7 +197,7 @@ Empfohlene Route Patterns:
 
 ### 5.2 JSON LD und Snippet Tests
 1. Rich Results Test
-- Test `https://tum-socialaiclub.de/`
+- Test `https://cgn-socialaiclub.de/`
 - Validate Organization and WebSite schema
 
 2. Schema validation
@@ -205,18 +205,18 @@ Empfohlene Route Patterns:
 - Confirm no schema errors
 
 3. Search Console
-- Property for `https://tum-socialaiclub.de`
-- Submit sitemap `https://tum-socialaiclub.de/sitemap.xml`
+- Property for `https://cgn-socialaiclub.de`
+- Submit sitemap `https://cgn-socialaiclub.de/sitemap.xml`
 - URL Inspection and Request indexing for key routes
 
 ### 5.3 Key URLs zum Testen
-- `https://tum-socialaiclub.de/`
-- `https://tum-socialaiclub.de/community`
-- `https://tum-socialaiclub.de/social-partners`
-- `https://tum-socialaiclub.de/sponsors`
-- `https://tum-socialaiclub.de/contact`
-- `https://tum-socialaiclub.de/application`
-- `https://tum-socialaiclub.de/privacy`
-- `https://tum-socialaiclub.de/imprint`
-- `https://tum-socialaiclub.de/llms.txt`
-- `https://tum-socialaiclub.de/ai.txt`
+- `https://cgn-socialaiclub.de/`
+- `https://cgn-socialaiclub.de/community`
+- `https://cgn-socialaiclub.de/social-partners`
+- `https://cgn-socialaiclub.de/sponsors`
+- `https://cgn-socialaiclub.de/contact`
+- `https://cgn-socialaiclub.de/application`
+- `https://cgn-socialaiclub.de/privacy`
+- `https://cgn-socialaiclub.de/imprint`
+- `https://cgn-socialaiclub.de/llms.txt`
+- `https://cgn-socialaiclub.de/ai.txt`

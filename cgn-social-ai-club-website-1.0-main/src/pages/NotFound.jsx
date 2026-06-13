@@ -14,7 +14,7 @@ export default function NotFound() {
             <Seo
                 title={t.pages.notFound.title}
                 description={t.pages.notFound.subtitle}
-                url="https://tum-socialaiclub.de/404"
+                url="https://cgn-socialaiclub.de/404"
                 noIndex
             />
             <Container>

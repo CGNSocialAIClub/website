@@ -18,15 +18,15 @@ function App() {
     const organizationSchema = {
         '@context': 'https://schema.org',
         '@type': 'NonprofitOrganization',
-        name: 'TUM Social AI Club e.V.',
-        alternateName: 'TUM Social AI Club',
+        name: 'CGN Social AI Club e.V.',
+        alternateName: 'CGN Social AI Club',
         url: SITE_URL,
-        logo: `${SITE_URL}/assets/logos/LOGO_V6-ICON+TUM-SOCIAL-CLUB_stacked-dark-text.svg`,
-        email: 'contact@tum-socialaiclub.de',
+        logo: `${SITE_URL}/assets/logos/CGN-Social-AI-Club-stacked-dark-text.svg`,
+        email: 'contact@cgn-socialaiclub.de',
         description: t.home.heroDescription,
         foundingLocation: {
             '@type': 'Place',
-            name: 'Munich, Germany',
+            name: 'Cologne, Germany',
         },
         areaServed: [
             {
@@ -35,9 +35,9 @@ function App() {
             },
         ],
         affiliation: {
-            '@type': 'CollegeOrUniversity',
-            name: 'Technical University of Munich',
-            sameAs: 'https://www.tum.de',
+            '@type': 'Organization',
+            name: 'CGN Social AI Club',
+            sameAs: SITE_URL,
         },
         knowsAbout: [
             'Artificial Intelligence',
@@ -49,18 +49,18 @@ function App() {
             'Student Community',
         ],
         sameAs: [
-            'https://www.linkedin.com/company/tumsocialaiclub',
+            'https://www.linkedin.com/company/cgnsocialaiclub',
         ],
     };
     const websiteSchema = {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'TUM Social AI Club',
+        name: 'CGN Social AI Club',
         url: SITE_URL,
         inLanguage: locale,
         publisher: {
             '@type': 'NonprofitOrganization',
-            name: 'TUM Social AI Club e.V.',
+            name: 'CGN Social AI Club e.V.',
             url: SITE_URL,
         },
     };

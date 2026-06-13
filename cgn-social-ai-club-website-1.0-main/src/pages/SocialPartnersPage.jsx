@@ -16,7 +16,7 @@ const socialPartners = [
         name: 'Initiative Gruppe',
         logo: '/cms/all-partner-logos/initiative-gruppe-coloured.svg',
         logoFallback: '/cms/all-partner-logos/initiative-gruppe-logo.png',
-        description: 'Supporting integration and education for migrants and refugees in Munich through innovative AI-powered tools.',
+        description: 'Supporting integration and education for migrants and refugees in Cologne through innovative AI-powered tools.',
     },
     {
         name: 'Entreculturas',

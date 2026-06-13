@@ -1,4 +1,4 @@
-# TUM Social AI Website Instructions
+# CGN Social AI Website Instructions
 
 ## Scope
 

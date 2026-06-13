@@ -56,7 +56,7 @@ export default function Footer() {
 
                             <div className="flex items-center gap-4 mt-2">
                                 <a
-                                    href="https://www.linkedin.com/company/tumsocialaiclub"
+                                    href="https://www.linkedin.com/company/cgnsocialaiclub"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex h-10 w-10 items-center justify-center rounded-full bg-[#007ebb] text-white hover:opacity-90 transition-opacity"
@@ -69,7 +69,7 @@ export default function Footer() {
                                     />
                                 </a>
                                 <a
-                                    href="mailto:contact@tum-socialaiclub.de"
+                                    href="mailto:contact@cgn-socialaiclub.de"
                                     className="bg-[var(--bg-accent)] text-[var(--text-inverse)] p-2.5 rounded-full hover:opacity-90 transition-opacity"
                                     aria-label="Email"
                                 >
@@ -129,7 +129,7 @@ export default function Footer() {
                     {/* Copyright */}
                     <div className="mt-8 pt-6 border-t border-[var(--border-default)] flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
                         <p className="text-[var(--text-secondary)] text-sm text-left">
-                            © {currentYear} TUM Social AI Club e.V.
+                            © {currentYear} CGN Social AI Club e.V.
                         </p>
                         <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-4">
                             <LanguageToggle />

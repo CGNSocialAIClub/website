@@ -22,14 +22,14 @@ export const translations = {
             privacy: 'Privacy Policy',
             imprint: 'Imprint',
             notFound: '404',
-            tagline: "Germany's first AI-for-Good student initiative.\nBorn in Munich.\nGlobal impact.",
+            tagline: "Germany's first AI-for-Good student initiative.\nBorn in Cologne.\nGlobal impact.",
         },
         home: {
             heroDescription: "Germany's first AI-for-Good student initiative.\nWe apply AI where it matters most.",
             heroPrimary: 'Become a Member',
             heroSecondary: 'Explore Projects',
             partnersLabel: 'PARTNERS',
-            teamPhotoAlt: 'Members of the TUM Social AI Club',
+            teamPhotoAlt: 'Members of the CGN Social AI Club',
             teamPhotoFallback: 'Club photo coming soon',
             aboutBadge: 'ABOUT THE CLUB',
             aboutTitle: 'Mission & Vision',
@@ -89,7 +89,7 @@ export const translations = {
             contact: {
                 badge: 'CONTACT',
                 title: 'Get in touch',
-                subtitle: 'Questions about the TUM Social AI Club? Send us a message at contact@tum-socialaiclub.de or use the contact form below.',
+                subtitle: 'Questions about the CGN Social AI Club? Send us a message at contact@cgn-socialaiclub.de or use the contact form below.',
             },
             socialPartners: {
                 badge: 'NONPROFIT PARTNERS',
@@ -287,7 +287,7 @@ export const translations = {
             sponsors: [
                 [
                     'Access to High-Potential Talent',
-                    'Connect with ambitious AI builders and future leaders at TUM who combine technical depth with initiative and execution strength.',
+                    'Connect with ambitious AI builders and future leaders at CGN who combine technical depth with initiative and execution strength.',
                 ],
                 [
                     'Visible Commitment',
@@ -311,7 +311,7 @@ export const translations = {
                 ['04', 'Document and Hand Over', 'At the end, we share the current state, key learnings, documentation, and next steps so your organisation can build on the results responsibly.'],
             ],
             partners: {
-                'Initiative Gruppe': 'Supports integration and education for migrants and refugees in Munich through AI-enabled tools.',
+                'Initiative Gruppe': 'Supports integration and education for migrants and refugees in Cologne through AI-enabled tools.',
                 Entreculturas: 'Uses AI to strengthen access to education and intercultural dialogue across communities.',
                 Kulturator: 'Applies data-driven methods to promote cultural participation and preserve heritage.',
                 'UN Women': 'Develops AI-enabled tools to support initiatives for gender equality worldwide.',
@@ -357,16 +357,16 @@ export const translations = {
             privacy: 'Datenschutz',
             imprint: 'Impressum',
             notFound: '404',
-            tagline: 'Deutschlands erste studentische AI-for-Good Initiative.\nIn München geboren.\nGlobale Wirkung.',
+            tagline: 'Deutschlands erste studentische AI-for-Good Initiative.\nIn Köln geboren.\nGlobale Wirkung.',
         },
         home: {
-            heroSrOnly: 'TUM Social AI Club: KI durch Workshops und Nonprofit-Projekte praktisch lernen',
+            heroSrOnly: 'CGN Social AI Club: KI durch Workshops und Nonprofit-Projekte praktisch lernen',
             heroDescription:
                 'Deutschlands erste studentische AI-for-Good Initiative.\nWir setzen KI dort ein, wo sie am meisten bewirkt.',
             heroPrimary: 'Mitglied werden',
             heroSecondary: 'Projekte ansehen',
             partnersLabel: 'PARTNER',
-            teamPhotoAlt: 'Mitglieder des TUM Social AI Club',
+            teamPhotoAlt: 'Mitglieder des CGN Social AI Club',
             teamPhotoFallback: 'Clubfoto folgt in Kürze',
             aboutBadge: 'ÜBER DEN CLUB',
             aboutTitle: 'Mission & Vision',
@@ -426,7 +426,7 @@ export const translations = {
             contact: {
                 badge: 'KONTAKT',
                 title: 'Schreib uns',
-                subtitle: 'Du möchtest mit dem TUM Social AI Club in Kontakt treten? Schreib uns an contact@tum-socialaiclub.de oder nutze das Kontaktformular.',
+                subtitle: 'Du möchtest mit dem CGN Social AI Club in Kontakt treten? Schreib uns an contact@cgn-socialaiclub.de oder nutze das Kontaktformular.',
             },
             socialPartners: {
                 badge: 'GEMEINNÜTZIGE PARTNER',
@@ -619,7 +619,7 @@ export const translations = {
             sponsors: [
                 [
                     'Zugang zu starken Talenten',
-                    'Vernetze dich mit ambitionierten KI-Talenten und zukünftigen Führungskräften an der TUM, die technische Tiefe mit Umsetzungsstärke verbinden.',
+                    'Vernetze dich mit ambitionierten KI-Talenten und zukünftigen Führungskräften an CGN, die technische Tiefe mit Umsetzungsstärke verbinden.',
                 ],
                 [
                     'Sichtbares gesellschaftliches Engagement',
@@ -643,7 +643,7 @@ export const translations = {
                 ['04', 'Übergeben und befähigen', 'Zum Abschluss teilen wir den eine einsetzbare Lösung, zentrale Erkenntnisse, Dokumentation und Einweisungen, für die nachhaltige Nutzung in eure Organisation'],
             ],
             partners: {
-                'Initiative Gruppe': 'Unterstützt Integration und Bildung für Migrant:innen und Geflüchtete in München mit KI-gestützten Werkzeugen.',
+                'Initiative Gruppe': 'Unterstützt Integration und Bildung für Migrant:innen und Geflüchtete in Köln mit KI-gestützten Werkzeugen.',
                 Entreculturas: 'Setzt KI ein, um Bildungszugang und interkulturellen Dialog in verschiedenen Gemeinschaften zu stärken.',
                 Kulturator: 'Nutzt datenbasierte Methoden, um kulturelle Teilhabe zu fördern und Kulturerbe zu erhalten.',
                 'UN Women': 'Entwickelt KI-gestützte Tools zur Unterstützung von Initiativen für Geschlechtergerechtigkeit weltweit.',

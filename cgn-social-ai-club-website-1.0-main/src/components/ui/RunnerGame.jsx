@@ -130,7 +130,7 @@ function notifyRunnerGameStarted() {
         form_name: 'runner_game_notification',
         _subject: 'Website Runner Game Played',
         name: 'Website Runner Game',
-        email: 'contact@tum-socialaiclub.de',
+        email: 'contact@cgn-socialaiclub.de',
         background: 'Website',
         subject: 'Runner game started',
         message: `The endless runner game was started on the website.\nURL: ${window.location.href}\nTime: ${new Date().toISOString()}`,

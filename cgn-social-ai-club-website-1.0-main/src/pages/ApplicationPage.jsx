@@ -305,7 +305,7 @@ export default function ApplicationPage() {
                     </p>
                     {applicationsOpen && (
                         <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
-                            <Button className="z-10 apply-now-pulse" href="https://application.tum-socialaiclub.de" target="_blank" rel="noopener noreferrer">
+                            <Button className="z-10 apply-now-pulse" href="https://application.cgn-socialaiclub.de" target="_blank" rel="noopener noreferrer">
                                 {t.pages.application.startApplication}
                             </Button>
                         </div>
@@ -319,7 +319,7 @@ export default function ApplicationPage() {
                     heading={t.pages.application.ctaHeading}
                     text={t.pages.application.ctaText}
                     buttons={[
-                        { label: t.pages.application.startApplication, href: 'https://application.tum-socialaiclub.de', variant: 'primary', target: '_blank' },
+                        { label: t.pages.application.startApplication, href: 'https://application.cgn-socialaiclub.de', variant: 'primary', target: '_blank' },
                         { label: t.pages.application.ctaSecondary, href: '/team', variant: 'tertiary' }
                     ]}
                 />

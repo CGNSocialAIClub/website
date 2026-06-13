@@ -9,16 +9,16 @@ export default function Imprint() {
 
     return (
         <Container className="py-20">
-            <Seo title={isGerman ? 'Impressum' : 'Legal Notice'} description={isGerman ? 'Rechtliche Angaben zum TUM Social AI Club e.V.' : 'Legal information for TUM Social AI Club e.V.'} />
+            <Seo title={isGerman ? 'Impressum' : 'Legal Notice'} description={isGerman ? 'Rechtliche Angaben zum CGN Social AI Club e.V.' : 'Legal information for CGN Social AI Club e.V.'} />
             <h1 className="text-4xl font-bold mb-8 font-heading text-[var(--text-primary)]">{isGerman ? 'Impressum' : 'Legal Notice'}</h1>
             <div className="prose prose-blue dark:prose-invert max-w-none text-[var(--text-secondary)]">
                 <section className="mb-8">
                     <h2 className="text-2xl font-semibold mb-4 text-[var(--text-primary)]">{isGerman ? 'Angaben gemäß § 5 TMG' : 'Information pursuant to Section 5 TMG'}</h2>
                     <p>
-                        TUM Social AI Club e.V.<br />
+                        CGN Social AI Club e.V.<br />
                         c/o Studentische Vertretung<br />
                         Arcisstraße 21<br />
-                        80333 München<br />
+                        50667 Köln<br />
                         Deutschland
                     </p>
                 </section>
@@ -35,8 +35,8 @@ export default function Imprint() {
                 <section className="mb-8">
                     <h2 className="text-2xl font-semibold mb-4 text-[var(--text-primary)]">{isGerman ? 'Kontakt' : 'Contact'}</h2>
                     <p>
-                        E-Mail: <a href="mailto:contact@tum-socialaiclub.de" className="font-semibold text-[var(--text-primary)]">contact@tum-socialaiclub.de</a><br />
-                        Webseite: <a href="https://tum-socialaiclub.de" className="font-semibold text-[var(--text-primary)]">www.tum-socialaiclub.de</a>
+                        E-Mail: <a href="mailto:contact@cgn-socialaiclub.de" className="font-semibold text-[var(--text-primary)]">contact@cgn-socialaiclub.de</a><br />
+                        Webseite: <a href="https://cgn-socialaiclub.de" className="font-semibold text-[var(--text-primary)]">www.cgn-socialaiclub.de</a>
                     </p>
                 </section>
 
@@ -45,7 +45,7 @@ export default function Imprint() {
                     <p>
                         {isGerman ? 'Eintragung im Vereinsregister.' : 'Registered in the association register.'}<br />
                         {isGerman ? 'Registernummer' : 'Registration number'}: VR 211270<br />
-                        {isGerman ? 'Registergericht' : 'Register court'}: Amtsgericht München
+                        {isGerman ? 'Registergericht' : 'Register court'}: Amtsgericht Köln
                     </p>
                 </section>
 
@@ -60,7 +60,7 @@ export default function Imprint() {
                         Jaron Schurer<br />
                         c/o Studentische Vertretung<br />
                         Arcisstraße 21<br />
-                        80333 München<br />
+                        50667 Köln<br />
                         Deutschland
                     </p>
                 </section>

@@ -26,42 +26,42 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
     // Choose image based on props and theme
     const src = navbarText
         ? (isDark
-            ? "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-white_text.svg"
-            : "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-dark_text.svg"
+            ? "/assets/logos/CGN-Social-AI-Club-single-line-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-single-line-dark-text.svg"
         )
         : heroDesktopSingleLine
         ? (isDark
-            ? "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-white_text.svg"
-            : "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-dark_text.svg"
+            ? "/assets/logos/CGN-Social-AI-Club-single-line-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-single-line-dark-text.svg"
         )
         : navbarSingleLine
         ? (isDark
-            ? "/assets/logos/LOGO_V6-ICON+TUM_SOCIAL_CLUB-single_line-white_text.svg"
-            : "/assets/logos/LOGO_V6-ICON+TUM_SOCIAL_CLUB-single_line-dark_text.svg"
+            ? "/assets/logos/CGN-Social-AI-Icon-No-Background-White-Text.svg"
+            : "/assets/logos/CGN-Social-AI-Icon-No-Background-Dark-Text.svg"
         )
         : v6Full
         ? (isDark
-            ? "/assets/logos/LOGO-V6-ICON+TUM-SOCIAL-CLUB-white-text.svg"
-            : "/assets/logos/LOGO-V6-ICON+TUM-SOCIAL-CLUB-dark-text.svg"
+            ? "/assets/logos/CGN-Social-AI-Club-full-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-full-dark-text.svg"
         )
         : heroMobile
         ? (isDark
-            ? "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-white_text.svg"
-            : "/assets/logos/LOGO_V6-TUM_SOCIAL_CLUB-single_line-dark_text.svg"
+            ? "/assets/logos/CGN-Social-AI-Club-single-line-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-single-line-dark-text.svg"
         )
         : stacked
         ? (isDark
-            ? "/assets/logos/LOGO_V6-ICON+TUM-SOCIAL-CLUB_stacked-white-text.svg"
-            : "/assets/logos/LOGO_V6-ICON+TUM-SOCIAL-CLUB_stacked-dark-text.svg"
+            ? "/assets/logos/CGN-Social-AI-Club-stacked-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-stacked-dark-text.svg"
         )
         : iconOnly
             ? (isDark
-                ? "/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-White-Text.svg"
-                : "/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-Darkblue-Text.svg"
+                ? "/assets/logos/CGN-Social-AI-Icon-No-Background-White-Text.svg"
+                : "/assets/logos/CGN-Social-AI-Icon-No-Background-Dark-Text.svg"
             )
             : (isDark
-                ? "/assets/logos/LOGO-v5-SOCIAL-AI_ICON+TUM+TEXT_No-Background-White-Text.svg"
-                : "/assets/logos/LOGO-v5-SOCIAL-AI_ICON+TUM+TEXT_No-Background-Darkblue-Text.svg"
+                ? "/assets/logos/CGN-Social-AI-Club-full-white-text.svg"
+                : "/assets/logos/CGN-Social-AI-Club-full-dark-text.svg"
             );
 
     const imgClassName = fullWidth ? "w-full h-auto" : "h-full w-auto";
@@ -70,7 +70,7 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
         <div className={`relative ${className}`}>
             <img
                 src={src}
-                alt="TUM Social AI Club Logo"
+                alt="CGN Social AI Club Logo"
                 className={imgClassName}
                 loading="lazy"
             />

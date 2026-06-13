@@ -1,4 +1,4 @@
-# SEO Report. TUM Social AI Club Website
+# SEO Report. CGN Social AI Club Website
 
 Date: 2026-02-18
 
@@ -15,15 +15,15 @@ Date: 2026-02-18
 
 | URL path | Current title | Current H1 | Indexability |
 | --- | --- | --- | --- |
-| `/` | `Home | TUM Social AI Club` | `TUM Social AI Club: AI for social good projects with nonprofits` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/` |
-| `/community` | `Our Community | TUM Social AI Club` | `Get to Know Our Departments` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/community` |
-| `/social-partners` | `Nonprofits & Project Partners | TUM Social AI Club` | `Let's Build AI Solutions for Your Mission` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/social-partners` |
-| `/sponsors` | `Partners | TUM Social AI Club` | `Empower Tomorrow's AI Leaders` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/sponsors` |
-| `/contact` | `Contact | TUM Social AI Club` | `Let's Connect` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/contact` |
-| `/application` | `Application | TUM Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/application` |
-| `/privacy` | `Privacy Policy | TUM Social AI Club` | `Datenschutzerklärung` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/privacy` |
-| `/imprint` | `Imprint | TUM Social AI Club` | `Impressum` | Indexable. `robots=index,follow`. Canonical `https://tum-socialaiclub.de/imprint` |
-| `*` not found route | `Page Not Found | TUM Social AI Club` | `Lost in AI?` | Non indexable. `robots=noindex,nofollow`. Canonical `https://tum-socialaiclub.de/<unknown-path>` |
+| `/` | `Home | CGN Social AI Club` | `CGN Social AI Club: AI for social good projects with nonprofits` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/` |
+| `/community` | `Our Community | CGN Social AI Club` | `Get to Know Our Departments` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/community` |
+| `/social-partners` | `Nonprofits & Project Partners | CGN Social AI Club` | `Let's Build AI Solutions for Your Mission` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/social-partners` |
+| `/sponsors` | `Partners | CGN Social AI Club` | `Empower Tomorrow's AI Leaders` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/sponsors` |
+| `/contact` | `Contact | CGN Social AI Club` | `Let's Connect` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/contact` |
+| `/application` | `Application | CGN Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/application` |
+| `/privacy` | `Privacy Policy | CGN Social AI Club` | `Datenschutzerklärung` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/privacy` |
+| `/imprint` | `Imprint | CGN Social AI Club` | `Impressum` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/imprint` |
+| `*` not found route | `Page Not Found | CGN Social AI Club` | `Lost in AI?` | Non indexable. `robots=noindex,nofollow`. Canonical `https://cgn-socialaiclub.de/<unknown-path>` |
 
 ### Existing SEO infrastructure
 - `robots.txt`: missing before. now present at `public/robots.txt`.
@@ -134,17 +134,17 @@ Date: 2026-02-18
 - Bundle size warning from Vite.
 
 ### Manual steps. Google Search Console
-1. Add and verify property `https://tum-socialaiclub.de`.
-2. Submit sitemap `https://tum-socialaiclub.de/sitemap.xml`.
+1. Add and verify property `https://cgn-socialaiclub.de`.
+2. Submit sitemap `https://cgn-socialaiclub.de/sitemap.xml`.
 3. Run URL Inspection and Request Indexing for core URLs.
 4. Monitor Coverage and Enhancements for Breadcrumb and Rich Result processing.
 
 ### URLs to test in Search Console
-- `https://tum-socialaiclub.de/`
-- `https://tum-socialaiclub.de/community`
-- `https://tum-socialaiclub.de/social-partners`
-- `https://tum-socialaiclub.de/sponsors`
-- `https://tum-socialaiclub.de/contact`
-- `https://tum-socialaiclub.de/application`
-- `https://tum-socialaiclub.de/privacy`
-- `https://tum-socialaiclub.de/imprint`
+- `https://cgn-socialaiclub.de/`
+- `https://cgn-socialaiclub.de/community`
+- `https://cgn-socialaiclub.de/social-partners`
+- `https://cgn-socialaiclub.de/sponsors`
+- `https://cgn-socialaiclub.de/contact`
+- `https://cgn-socialaiclub.de/application`
+- `https://cgn-socialaiclub.de/privacy`
+- `https://cgn-socialaiclub.de/imprint`
