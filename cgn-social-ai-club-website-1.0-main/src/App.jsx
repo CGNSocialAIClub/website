@@ -5,6 +5,7 @@ import ProjectsSection from './components/sections/ProjectsSection';
 import SponsorsSectionFull from './components/sections/SponsorsSectionFull';
 // import PartnerMarquee from './components/ui/PartnerMarquee'; // Deaktiviert bis Partner vorhanden
 import ContactSection from './components/sections/ContactSection';
+import NetworkSection from './components/sections/NetworkSection';
 import SocialsSection from './components/sections/SocialsSection';
 import CTASection from './components/sections/CTASection';
 import Aurora from './components/Aurora';
@@ -95,6 +96,7 @@ function App() {
             <AboutSection />
             <ProjectsSection />
             <SponsorsSectionFull />
+            <NetworkSection />
             <SocialsSection />
             <CTASection />
         </div>
