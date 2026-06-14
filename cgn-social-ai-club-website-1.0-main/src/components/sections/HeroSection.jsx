@@ -9,7 +9,7 @@ const HeroSection = () => {
 
     return (
         <Container className="flex flex-col items-center">
-            <div className="max-w-4xl w-full text-center space-y-4 mt-20 md:mt-32 mb-4 px-0">
+            <div className="max-w-4xl w-full text-center space-y-2 mt-12 md:mt-20 mb-4 px-0">
                 <h1 className="sr-only">Germany's first AI for Good Student Initiative | CGN Social AI Club</h1>
                 <div id="hero-logo" className="flex justify-center w-full px-2 md:px-4">
                     <Logo heroDesktopSingleLine fullWidth className="w-full max-w-3xl md:max-w-4xl mx-auto" />
