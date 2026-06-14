@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 const LOCALES = [
-    { value: 'de', label: 'Deutsch', flagSrc: '/flags/germany.svg', flagAlt: 'German flag' },
-    { value: 'en', label: 'English', flagSrc: '/flags/uk.svg', flagAlt: 'United Kingdom flag' },
+    { value: 'de', label: 'Deutsch', flagSrc: assetUrl('/flags/germany.svg'), flagAlt: 'German flag' },
+    { value: 'en', label: 'English', flagSrc: assetUrl('/flags/uk.svg'), flagAlt: 'United Kingdom flag' },
 ];
 
 export default function LanguageToggle({ className = '' }) {
