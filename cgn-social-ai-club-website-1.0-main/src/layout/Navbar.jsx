@@ -429,7 +429,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                                 >
                                     {isHomePage ? (
                                         <motion.div
-                                            className="relative overflow-hidden h-[32px] min-h-[32px]"
+                                            className="relative overflow-hidden h-[22px] min-h-[22px]"
                                             initial={false}
                                             style={{ width: textLogoWidth }}
                                             animate={{
@@ -439,12 +439,12 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                                             transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                                         >
                                             <div className="absolute inset-0 flex items-center">
-                                                <Logo navbarText className="h-[32px]" />
+                                                <Logo navbarText className="h-[22px]" />
                                             </div>
                                         </motion.div>
                                     ) : (
-                                        <div className="h-[32px] min-h-[32px] flex items-center">
-                                            <Logo navbarText className="h-[32px]" />
+                                        <div className="h-[22px] min-h-[22px] flex items-center">
+                                            <Logo navbarText className="h-[22px]" />
                                         </div>
                                     )}
                                 </Link>
@@ -464,7 +464,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                         <span ref={mobileIconRef} className="w-0 shrink-0" />
                         {isHomePage ? (
                             <motion.div
-                                className="relative overflow-hidden h-[32px] min-h-[32px]"
+                                className="relative overflow-hidden h-[22px] min-h-[22px]"
                                 initial={false}
                                 style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
                                 animate={{
@@ -474,22 +474,22 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                                 transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
                             >
                                 <div className="absolute inset-0 flex items-center">
-                                    <Logo navbarText className="h-[32px]" />
+                                    <Logo navbarText className="h-[22px]" />
                                 </div>
                             </motion.div>
                         ) : (
                             <div
-                                className="h-[32px] min-h-[32px] flex items-center overflow-hidden"
+                                className="h-[22px] min-h-[22px] flex items-center overflow-hidden"
                                 style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
                             >
-                                <Logo navbarText className="h-[32px]" />
+                                <Logo navbarText className="h-[22px]" />
                             </div>
                         )}
                     </Link>
 
                     <div className="absolute pointer-events-none opacity-0 -z-10">
-                        <div ref={textLogoMeasureRef} className="inline-flex items-center h-[32px]">
-                            <Logo navbarText className="h-[32px]" />
+                        <div ref={textLogoMeasureRef} className="inline-flex items-center h-[22px]">
+                            <Logo navbarText className="h-[22px]" />
                         </div>
                         <div ref={desktopToggleMeasureRef} className="inline-flex items-center">
                             <LanguageToggle />
