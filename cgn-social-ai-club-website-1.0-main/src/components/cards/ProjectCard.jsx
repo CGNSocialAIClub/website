@@ -1,5 +1,6 @@
 import TiltedCard from '../ui/TiltedCard';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function ProjectCard({ project, onClick }) {
     const { t } = useLocale();
@@ -30,7 +31,7 @@ export default function ProjectCard({ project, onClick }) {
                     <div className={`h-48 w-full relative overflow-hidden rounded-xl border border-[var(--border-subtle)] ${project.isLogo ? 'bg-white' : 'bg-[var(--bg-surface-subtle)]'}`}>
                         {project.image ? (
                             <img
-                                src={project.image}
+                                src={assetUrl(project.image)}
                                 alt={project.title}
                                 className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${project.isLogo
                                     ? 'object-contain p-10'

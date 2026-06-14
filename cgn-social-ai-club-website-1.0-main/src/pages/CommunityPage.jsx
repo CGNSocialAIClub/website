@@ -147,7 +147,7 @@ function CommunitySection({ configuration, members, showCommunityLabels, selecte
             <div ref={containerRef} className="w-full">
                 {/* Management Board */}
                 {boardMembers.length > 0 && (
-                    <div className={`mx-auto grid w-full max-w-[472px] grid-cols-2 justify-center gap-4 sm:gap-6 md:gap-8 xl:max-w-[976px] xl:grid-cols-4 ${boardMembers.some(m => m.id === selectedMemberId) ? 'items-start' : 'items-stretch'}`}>
+                    <div className={`mx-auto grid w-full max-w-[724px] grid-cols-2 justify-center gap-4 sm:gap-6 md:gap-8 md:grid-cols-3 ${boardMembers.some(m => m.id === selectedMemberId) ? 'items-start' : 'items-stretch'}`}>
                         {boardMembers.map((member, idx) => {
                             const rowIndex = Math.floor(idx / numCols);
                             return (

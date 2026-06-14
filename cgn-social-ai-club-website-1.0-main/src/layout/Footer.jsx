@@ -5,6 +5,7 @@ import Logo from '../components/ui/Logo';
 import LanguageToggle from '../components/ui/LanguageToggle';
 import ThemeToggle from '../components/ui/ThemeToggle';
 import { useLocale } from '../i18n/LocaleContext';
+import { assetUrl } from '../utils/assetUrl';
 
 
 export default function Footer() {
@@ -63,7 +64,7 @@ export default function Footer() {
                                     aria-label="LinkedIn"
                                 >
                                     <img
-                                        src="/assets/socials-logos/LinkedIn-app-icon.png"
+                                        src={assetUrl("/assets/socials-logos/LinkedIn-app-icon.png")}
                                         alt="LinkedIn"
                                         className="h-6 w-6 object-contain"
                                     />

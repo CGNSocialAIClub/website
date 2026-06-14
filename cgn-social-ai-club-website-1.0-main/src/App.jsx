@@ -3,7 +3,7 @@ import TeamPhotoSection from './components/sections/TeamPhotoSection';
 import AboutSection from './components/sections/AboutSection';
 import ProjectsSection from './components/sections/ProjectsSection';
 import SponsorsSectionFull from './components/sections/SponsorsSectionFull';
-import PartnerMarquee from './components/ui/PartnerMarquee';
+// import PartnerMarquee from './components/ui/PartnerMarquee'; // Deaktiviert bis Partner vorhanden
 import ContactSection from './components/sections/ContactSection';
 import SocialsSection from './components/sections/SocialsSection';
 import CTASection from './components/sections/CTASection';
@@ -85,9 +85,11 @@ function App() {
                     <HeroSection />
                 </div>
             </div>
+            {/* Partner-Marquee — wieder aktivieren wenn Partner vorhanden:
             <div className="w-full mb-2" id="partners">
                 <PartnerMarquee />
             </div>
+            */}
             <TeamPhotoSection />
             <AboutSection />
             <ProjectsSection />

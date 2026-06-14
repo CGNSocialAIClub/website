@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import SectionLabel from './SectionLabel';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
+// Logos hier eintragen wenn Partner vorhanden sind.
+// Datei ablegen in: public/cms/all-partner-logos/<dateiname>
+// Format: { src: assetUrl('/cms/all-partner-logos/<dateiname>'), alt: 'Name', heightClass: 'h-12' }
 const logos = [
-    { src: '/cms/all-partner-logos/initiative-gruppe-blue.svg', alt: 'Initiative Gruppe', heightClass: 'h-14' },
-    { src: '/cms/all-partner-logos/entreculturas-blue.svg', alt: 'Entreculturas', heightClass: 'h-10' },
-    { src: '/cms/all-partner-logos/openai-blue.svg', alt: 'OpenAI', heightClass: 'h-12' },
-    { src: '/cms/all-partner-logos/kulturator-blue.svg', alt: 'Kulturator' },
-    { src: '/cms/all-partner-logos/knowunity-blue.svg', alt: 'Knowunity', heightClass: 'h-12' },
-    { src: '/cms/all-partner-logos/aws-blue.svg', alt: 'AWS', heightClass: 'h-14' },
-    { src: '/cms/all-partner-logos/un-women-blue.svg', alt: 'UN Women', heightClass: 'h-12' },
+    { src: assetUrl('/cms/all-partner-logos/initiative-gruppe-blue.svg'), alt: 'Initiative Gruppe', heightClass: 'h-14' },
+    { src: assetUrl('/cms/all-partner-logos/entreculturas-blue.svg'), alt: 'Entreculturas', heightClass: 'h-10' },
+    { src: assetUrl('/cms/all-partner-logos/openai-blue.svg'), alt: 'OpenAI', heightClass: 'h-12' },
+    { src: assetUrl('/cms/all-partner-logos/kulturator-blue.svg'), alt: 'Kulturator' },
+    { src: assetUrl('/cms/all-partner-logos/knowunity-blue.svg'), alt: 'Knowunity', heightClass: 'h-12' },
+    { src: assetUrl('/cms/all-partner-logos/aws-blue.svg'), alt: 'AWS', heightClass: 'h-14' },
+    { src: assetUrl('/cms/all-partner-logos/un-women-blue.svg'), alt: 'UN Women', heightClass: 'h-12' },
 ];
 
 export default function PartnerMarquee() {

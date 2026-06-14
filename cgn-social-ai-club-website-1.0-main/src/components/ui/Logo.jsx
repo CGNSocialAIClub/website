@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function Logo({ className = "h-8", iconOnly = false, stacked = false, v6Full = false, heroMobile = false, navbarSingleLine = false, heroDesktopSingleLine = false, navbarText = false, fullWidth = false }) {
     const [isDark, setIsDark] = useState(false);
@@ -24,7 +25,7 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
     }, []);
 
     // Choose image based on props and theme
-    const src = navbarText
+    const src = assetUrl(navbarText
         ? (isDark
             ? "/assets/logos/CGN-Social-AI-Club-single-line-white-text.svg"
             : "/assets/logos/CGN-Social-AI-Club-single-line-dark-text.svg"
@@ -62,7 +63,7 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
             : (isDark
                 ? "/assets/logos/CGN-Social-AI-Club-full-white-text.svg"
                 : "/assets/logos/CGN-Social-AI-Club-full-dark-text.svg"
-            );
+            ));
 
     const imgClassName = fullWidth ? "w-full h-auto" : "h-full w-auto";
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '../ui/Container';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 const TeamPhotoSection = () => {
     const { t } = useLocale();
@@ -10,7 +11,7 @@ const TeamPhotoSection = () => {
             <Container className="mb-10">
                 <div className="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden rounded-[1.5rem]">
                     <img
-                        src="/cms/team/team-kickoff.jpg"
+                        src={assetUrl("/cms/team/team-kickoff.jpg")}
                         alt={t.home.teamPhotoAlt}
                         className="w-full h-full object-cover"
                         onError={(e) => {

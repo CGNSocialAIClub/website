@@ -8,6 +8,7 @@ import styles from './ProjectDetails.module.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion as m } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function ProjectDetails({ project, author, onClose }) {
   const { t } = useLocale();
@@ -93,7 +94,7 @@ export default function ProjectDetails({ project, author, onClose }) {
             <div className="px-8 pt-8">
               <div className={`w-full h-52 md:h-64 overflow-hidden rounded-xl ${project.isLogo ? 'bg-white' : 'bg-[var(--bg-surface-subtle)]'}`}>
                 <img
-                  src={project.image}
+                  src={assetUrl(project.image)}
                   alt={project.title}
                   className={`w-full h-full ${project.isLogo ? 'object-contain p-10' : 'object-cover'}`}
                   loading="lazy"
@@ -117,7 +118,7 @@ export default function ProjectDetails({ project, author, onClose }) {
             <div className="flex items-center gap-3">
               {author?.image && (
                 <img
-                  src={author.image}
+                  src={assetUrl(author.image)}
                   alt={author.name}
                   className="w-12 h-12 rounded-full object-cover border-2 border-[var(--border-default)]"
                   style={{ objectPosition: (author.offsetX !== undefined || author.offsetY !== undefined) ? `${((author.offsetX ?? 0) + 100) / 2}% ${((author.offsetY ?? 0) + 100) / 2}%` : 'center' }}

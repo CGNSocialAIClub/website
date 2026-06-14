@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PartnerCard from '../cards/PartnerCard';
 import Button from '../ui/Button';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function SponsorsSection({ hideCTA = false }) {
     const { t } = useLocale();
@@ -20,28 +21,28 @@ export default function SponsorsSection({ hideCTA = false }) {
         {
             name: 'Knowunity',
             tier: 'silver',
-            logo: '/cms/strategic-partner-logos/silver/Knowunity-logo-black.svg',
-            logoDark: '/cms/strategic-partner-logos/silver/Knowunity-logo-white.svg'
+            logo: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-black.svg'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-white.svg')
         },
 
         // Supporter Tier
         {
             name: 'OpenAI',
             tier: 'supporter',
-            logo: '/cms/strategic-partner-logos/supporter/openai-logo.svg',
-            logoDark: '/cms/strategic-partner-logos/supporter/openai-logo.svg'
+            logo: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg')
         },
         {
             name: 'AWS',
             tier: 'supporter',
-            logo: '/cms/strategic-partner-logos/supporter/aws-coloured.svg',
-            logoDark: '/cms/strategic-partner-logos/supporter/aws-coloured-white.svg'
+            logo: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured.svg'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured-white.svg')
         },
         {
             name: 'AI Strategy Institute',
             tier: 'supporter',
-            logo: '/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp',
-            logoDark: '/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp'
+            logo: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp')
         },
         // {
         //     name: 'Tech To The Rescue',

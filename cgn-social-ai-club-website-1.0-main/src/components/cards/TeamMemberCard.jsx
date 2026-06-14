@@ -1,6 +1,7 @@
 import { Linkedin, Mail, Github, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function TeamMemberCard({ member, showDepartment = true, isSelected = false, onSelect, onSocialClick }) {
     const { t } = useLocale();
@@ -70,7 +71,7 @@ export default function TeamMemberCard({ member, showDepartment = true, isSelect
                 {member.image ? (
                     <>
                         <img
-                            src={member.image}
+                            src={assetUrl(member.image)}
                             alt={member.name}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             style={{

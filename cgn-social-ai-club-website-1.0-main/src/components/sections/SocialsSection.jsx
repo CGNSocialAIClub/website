@@ -2,6 +2,7 @@ import Container from '../ui/Container';
 import SectionLabel from '../ui/SectionLabel';
 import SocialCard from '../cards/SocialCard';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 export default function SocialsSection() {
     const { t } = useLocale();
@@ -23,7 +24,7 @@ export default function SocialsSection() {
                         href="https://www.linkedin.com/company/cgnsocialaiclub"
                         icon={
                             <img
-                                src="/assets/socials-logos/LinkedIn-app-icon.png"
+                                src={assetUrl("/assets/socials-logos/LinkedIn-app-icon.png")}
                                 alt="LinkedIn"
                                 className="w-12 h-12 object-contain rounded-[12px]"
                                 loading="lazy"
