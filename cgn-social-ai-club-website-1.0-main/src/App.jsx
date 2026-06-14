@@ -90,6 +90,7 @@ function App() {
                 <PartnerMarquee />
             </div>
             */}
+            <div className="w-full h-[180px] md:h-[206px]" aria-hidden="true" />
             <TeamPhotoSection />
             <AboutSection />
             <ProjectsSection />
