@@ -21,7 +21,7 @@ export default function SocialsSection() {
                     <SocialCard
                         name="LinkedIn"
                         description={t.home.socialsLinkedinDescription}
-                        href="https://www.linkedin.com/company/cgnsocialaiclub"
+                        href="https://www.linkedin.com/company/cgn-socialaiclub/"
                         icon={
                             <img
                                 src={assetUrl("/assets/socials-logos/LinkedIn-app-icon.png")}

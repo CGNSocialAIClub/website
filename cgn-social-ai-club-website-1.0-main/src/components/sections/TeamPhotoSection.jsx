@@ -11,7 +11,7 @@ const TeamPhotoSection = () => {
             <Container className="mb-10">
                 <div className="relative w-full aspect-[4/3] md:aspect-[21/9] overflow-hidden rounded-[1.5rem]">
                     <img
-                        src={assetUrl("/cms/team/team-kickoff.jpg")}
+                        src={assetUrl("/cms/team/founding_pic.jpg")}
                         alt={t.home.teamPhotoAlt}
                         className="w-full h-full object-cover"
                         onError={(e) => {
