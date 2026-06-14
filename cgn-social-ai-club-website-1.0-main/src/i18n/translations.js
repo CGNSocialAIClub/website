@@ -46,6 +46,7 @@ export const translations = {
             socialsBadge: 'SOCIALS',
             socialsTitle: 'Stay updated',
             socialsLinkedinDescription: 'Follow our updates on projects, events, and collaborations.',
+            socialsInstagramDescription: 'Behind-the-scenes content, event highlights, and community moments.',
         },
         cta: {
             general: {
@@ -383,6 +384,7 @@ export const translations = {
             socialsBadge: 'SOCIALS',
             socialsTitle: 'Bleib auf dem Laufenden',
             socialsLinkedinDescription: 'Auf LinkedIn findest du Updates zu Projekten, Events und Kooperationen.',
+            socialsInstagramDescription: 'Behind-the-Scenes, Event-Highlights und Einblicke in unsere Community.',
         },
         cta: {
             general: {

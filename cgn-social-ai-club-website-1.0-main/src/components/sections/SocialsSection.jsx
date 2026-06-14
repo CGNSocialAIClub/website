@@ -17,7 +17,7 @@ export default function SocialsSection() {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 gap-6 w-full max-w-5xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl">
                     <SocialCard
                         name="LinkedIn"
                         description={t.home.socialsLinkedinDescription}
@@ -26,6 +26,19 @@ export default function SocialsSection() {
                             <img
                                 src={assetUrl("/assets/socials-logos/LinkedIn-app-icon.png")}
                                 alt="LinkedIn"
+                                className="w-12 h-12 object-contain rounded-[12px]"
+                                loading="lazy"
+                            />
+                        }
+                    />
+                    <SocialCard
+                        name="Instagram"
+                        description={t.home.socialsInstagramDescription}
+                        href="https://www.instagram.com/cgnsocialclub/"
+                        icon={
+                            <img
+                                src={assetUrl("/assets/socials-logos/instagram-app-icon.png")}
+                                alt="Instagram"
                                 className="w-12 h-12 object-contain rounded-[12px]"
                                 loading="lazy"
                             />
