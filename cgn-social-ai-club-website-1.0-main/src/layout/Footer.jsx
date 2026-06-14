@@ -43,7 +43,7 @@ export default function Footer() {
                         {/* Brand Column */}
                         <div className="flex flex-col gap-4 max-w-sm">
                             <div className="flex items-center gap-2">
-                                <Logo className="h-10 md:h-11" v6Full />
+                                <Logo className="h-14 md:h-16" v6Full />
                             </div>
 
                             <p className="text-[var(--text-secondary)] leading-relaxed">

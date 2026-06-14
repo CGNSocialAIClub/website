@@ -314,8 +314,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
             // between hamburger and the right navbar edge.
             const rightEdgeSpacing = Math.max(0, navRect.right - rightRect.right);
             const availableLeftGroupWidth = rightRect.left - leftRect.left - rightEdgeSpacing;
-            const logoGap = 8; // Matches ml-2 between icon and text logo.
-            const cap = Math.max(0, availableLeftGroupWidth - iconRect.width - logoGap);
+            const cap = Math.max(0, availableLeftGroupWidth);
 
             setMobileTextWidthCap(cap);
         };
@@ -429,30 +428,24 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                                     }}
                                 >
                                     {isHomePage ? (
-                                        <>
-                                            <Logo iconOnly className="h-[22px]" />
-                                            <motion.div
-                                                className="relative ml-2 overflow-hidden h-[22px] min-h-[22px]"
-                                                initial={false}
-                                                style={{ width: textLogoWidth }}
-                                                animate={{
-                                                    opacity: logoTextVisible ? 1 : 0,
-                                                    clipPath: logoTextVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
-                                                }}
-                                                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                                            >
-                                                <div className="absolute inset-0 flex items-center">
-                                                    <Logo navbarText className="h-[22px]" />
-                                                </div>
-                                            </motion.div>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Logo iconOnly className="h-[22px]" />
-                                            <div className="ml-2 h-[22px] min-h-[22px] flex items-center">
+                                        <motion.div
+                                            className="relative overflow-hidden h-[22px] min-h-[22px]"
+                                            initial={false}
+                                            style={{ width: textLogoWidth }}
+                                            animate={{
+                                                opacity: logoTextVisible ? 1 : 0,
+                                                clipPath: logoTextVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
+                                            }}
+                                            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+                                        >
+                                            <div className="absolute inset-0 flex items-center">
                                                 <Logo navbarText className="h-[22px]" />
                                             </div>
-                                        </>
+                                        </motion.div>
+                                    ) : (
+                                        <div className="h-[22px] min-h-[22px] flex items-center">
+                                            <Logo navbarText className="h-[22px]" />
+                                        </div>
                                     )}
                                 </Link>
                             </motion.div>
@@ -468,12 +461,10 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                             navigateWithPreScroll('/');
                         }}
                     >
-                        <span ref={mobileIconRef} className="shrink-0 flex items-center">
-                            <Logo iconOnly className="h-[22px]" />
-                        </span>
+                        <span ref={mobileIconRef} className="w-0 shrink-0" />
                         {isHomePage ? (
                             <motion.div
-                                className="relative ml-2 overflow-hidden h-[22px] min-h-[22px]"
+                                className="relative overflow-hidden h-[22px] min-h-[22px]"
                                 initial={false}
                                 style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
                                 animate={{
@@ -488,7 +479,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
                             </motion.div>
                         ) : (
                             <div
-                                className="ml-2 h-[22px] min-h-[22px] flex items-center overflow-hidden"
+                                className="h-[22px] min-h-[22px] flex items-center overflow-hidden"
                                 style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
                             >
                                 <Logo navbarText className="h-[22px]" />

@@ -34,7 +34,7 @@ export default function SocialsSection() {
                     <SocialCard
                         name="Instagram"
                         description={t.home.socialsInstagramDescription}
-                        href="https://www.instagram.com/cgnsocialclub/"
+                        href="https://www.instagram.com/cgnsocialaiclub"
                         icon={
                             <img
                                 src={assetUrl("/assets/socials-logos/instagram-app-icon.png")}
