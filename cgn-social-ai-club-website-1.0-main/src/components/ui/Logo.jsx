@@ -32,8 +32,8 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
         )
         : heroDesktopSingleLine
         ? (isDark
-            ? "/assets/logos/CGN-Social-AI-Club-hero-white-text.png"
-            : "/assets/logos/CGN-Social-AI-Club-hero-dark-text.png"
+            ? "/assets/logos/CGN-Social-AI-Club-hero-white-text.svg"
+            : "/assets/logos/CGN-Social-AI-Club-hero-dark-text.svg"
         )
         : navbarSingleLine
         ? (isDark
