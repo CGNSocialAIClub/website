@@ -35,10 +35,10 @@ export const translations = {
             aboutTitle: 'Mission & Vision',
             missionTitle: 'Mission',
             missionText:
-                'We collaborate with nonprofits and mission-driven organisations to shape practical AI projects that create real value together. In semester-long projects, student teams analyse, develop, test, and implement concrete tools while applying what they have learned. In this way, our members strengthen their technical skills, product thinking, and interdisciplinary collaboration while contributing to the common good.',
+                'We bring together students, nonprofits, and partners to develop and apply AI for social impact. As Colognes first student-led AI for Good initiative, we create hands-on projects, promote responsible AI, and build a strong network for student-driven AI innovation together with our partners.',
             visionTitle: 'Vision',
             visionText:
-                'We want a generation of students who combine technical excellence with social responsibility. Our long-term goal is to help establish similar communities in other cities and contribute to an ecosystem that develops responsible technology with meaningful impact.',
+                'We aim to establish Cologne as a hub for student-led AI for Good and inspire a generation of students who combine technological excellence with social responsibility. Together with our partners at TUM, we are building a growing network that uses AI to create lasting social impact.',
             featuredProjectsBadge: 'FEATURED PROJECTS',
             featuredProjectsTitle: 'Selected Work',
             sponsorsBadge: 'SPONSORS',
@@ -378,10 +378,10 @@ export const translations = {
             aboutTitle: 'Mission & Vision',
             missionTitle: 'Mission',
             missionText:
-                'Wir kooperieren mit Non‑profits und gesellschaftlich engagierten Organisationen, um gemeinsam praxisnahe KI‑Projekte zu gestalten, die echten Nutzen stiften. In semesterbegleitenden Projekten analysieren, entwickeln, testen und implementieren studentische Teams konkrete Werkzeuge und wenden ihr Wissen an. So erweitern unsere Mitglieder ihr technisches Know‑how, ihr Produktverständnis und die interdisziplinäre Zusammenarbeit und leisten gleichzeitig einen Beitrag zum Gemeinwohl.',
+                'Wir bringen Studierende, Non-Profit-Organisationen und Partner zusammen, um KI mit gesellschaftlichem Mehrwert zu entwickeln und einzusetzen. Als erste studentische AI-for-Good-Initiative in Köln schaffen wir praxisnahe Projekte, fördern Verantwortung im Umgang mit KI und bauen gemeinsam mit unseren Partnern ein starkes Netzwerk für studentische KI-Innovationen mit sozialer Wirkung auf.',
             visionTitle: 'Vision',
             visionText:
-                'Wir wollen eine Generation von Studierenden fördern, die technologische Exzellenz mit gesellschaftlicher Verantwortung verbindet. Langfristig möchten wir ähnliche Communities in weiteren Städten stärken und zu einem Ökosystem beitragen, das verantwortungsvolle Technologie mit messbarem Nutzen hervorbringt.',
+                'Wir wollen Köln als Standort für studentisches AI for Good etablieren und eine Generation von Studierenden fördern, die technologische Exzellenz mit gesellschaftlicher Verantwortung verbindet. Gemeinsam mit unserem Partnerverein an der TUM bauen wir ein wachsendes Netzwerk auf, das KI nachhaltig für das Gemeinwohl einsetzt.',
             featuredProjectsBadge: 'AUSGEWÄHLTE PROJEKTE',
             featuredProjectsTitle: 'Einblicke in unsere Arbeit',
             sponsorsBadge: 'SPONSOREN',
