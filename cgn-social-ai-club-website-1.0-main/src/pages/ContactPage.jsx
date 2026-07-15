@@ -20,14 +20,14 @@ export default function ContactPage() {
                       title={t.pages.contact.title}
                       subtitle={
                         <span>
-                            {t.pages.contact.subtitle.split('contact@cgn-socialaiclub.de')[0]}
-                            <a 
-                                href="mailto:contact@cgn-socialaiclub.de" 
+                            {t.pages.contact.subtitle.split('cgn.socialaiclub@gmail.com')[0]}
+                            <a
+                                href="mailto:cgn.socialaiclub@gmail.com"
                                 className="text-[var(--text-secondary)] hover:underline transition-colors font-medium"
                             >
-                                contact@cgn-socialaiclub.de
+                                cgn.socialaiclub@gmail.com
                             </a>
-                            {t.pages.contact.subtitle.split('contact@cgn-socialaiclub.de')[1]}
+                            {t.pages.contact.subtitle.split('cgn.socialaiclub@gmail.com')[1]}
                         </span>
                       }
                       className=""

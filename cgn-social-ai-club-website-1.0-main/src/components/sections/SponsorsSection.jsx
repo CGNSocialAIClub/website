@@ -13,37 +13,38 @@ export default function SponsorsSection({ hideCTA = false }) {
     const [supporterCols, setSupporterCols] = useState(1);
 
     // Current strategic partner data
+    // Deaktiviert bis echte Partner bestätigt sind — Karten ausblenden, Struktur für später behalten.
     const partners = [
         // Gold Tier
         // { name: 'Gold Partner Name', tier: 'gold', logo: '/cms/strategic-partner-logos/gold/logo.svg' },
 
         // Supporter Tier
-        {
-            name: 'Knowunity',
-            tier: 'silver',
-            logo: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-black.svg'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-white.svg')
-        },
+        // {
+        //     name: 'Knowunity',
+        //     tier: 'silver',
+        //     logo: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-black.svg'),
+        //     logoDark: assetUrl('/cms/strategic-partner-logos/silver/Knowunity-logo-white.svg')
+        // },
 
         // Supporter Tier
-        {
-            name: 'OpenAI',
-            tier: 'supporter',
-            logo: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg')
-        },
-        {
-            name: 'AWS',
-            tier: 'supporter',
-            logo: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured.svg'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured-white.svg')
-        },
-        {
-            name: 'AI Strategy Institute',
-            tier: 'supporter',
-            logo: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp')
-        },
+        // {
+        //     name: 'OpenAI',
+        //     tier: 'supporter',
+        //     logo: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg'),
+        //     logoDark: assetUrl('/cms/strategic-partner-logos/supporter/openai-logo.svg')
+        // },
+        // {
+        //     name: 'AWS',
+        //     tier: 'supporter',
+        //     logo: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured.svg'),
+        //     logoDark: assetUrl('/cms/strategic-partner-logos/supporter/aws-coloured-white.svg')
+        // },
+        // {
+        //     name: 'AI Strategy Institute',
+        //     tier: 'supporter',
+        //     logo: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp'),
+        //     logoDark: assetUrl('/cms/strategic-partner-logos/supporter/AI_Logo_Standard_RGB_black.webp')
+        // },
         // {
         //     name: 'Tech To The Rescue',
         //     tier: 'supporter',

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 // Sponsor tier config (fancy metallic backgrounds)
 const sponsorTierConfig = {
     gold: {
-        bg: '/assets/sponsor-backgrounds/GoldSponsor-Background.jpeg',
+        bg: assetUrl('/assets/sponsor-backgrounds/GoldSponsor-Background.jpeg'),
         label: {
             en: 'Gold Partner',
             de: 'Gold Partner',
@@ -13,7 +14,7 @@ const sponsorTierConfig = {
         borderColor: 'border-[#FFD700]/30',
     },
     silver: {
-        bg: '/assets/sponsor-backgrounds/SilverSponsor-Background.jpeg',
+        bg: assetUrl('/assets/sponsor-backgrounds/SilverSponsor-Background.jpeg'),
         label: {
             en: 'Silver Partner',
             de: 'Silver Partner',
@@ -22,7 +23,7 @@ const sponsorTierConfig = {
         borderColor: 'border-[#C0C0C0]/30',
     },
     bronze: {
-        bg: '/assets/sponsor-backgrounds/BronzeSponsor-Background.jpeg',
+        bg: assetUrl('/assets/sponsor-backgrounds/BronzeSponsor-Background.jpeg'),
         label: {
             en: 'Bronze Partner',
             de: 'Bronze Partner',

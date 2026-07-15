@@ -89,23 +89,6 @@
     })();
   </script>
 
-  <script>
-    function initApollo() {
-      var cacheBust = Math.random().toString(36).substring(7);
-      var script = document.createElement("script");
-
-      script.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + cacheBust;
-      script.async = true;
-      script.defer = true;
-      script.onload = function () {
-        window.trackingFunctions.onLoad({ appId: "6985af350409fe000db2f1d7" });
-      };
-
-      document.head.appendChild(script);
-    }
-
-    initApollo();
-  </script>
 
 </head>
 

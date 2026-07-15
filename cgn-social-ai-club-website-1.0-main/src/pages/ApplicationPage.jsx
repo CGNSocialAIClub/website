@@ -1,3 +1,5 @@
+
+
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Container from '../components/ui/Container';
@@ -7,24 +9,21 @@ import DepartmentCard from '../components/cards/DepartmentCard';
 
 import Button from '../components/ui/Button';
 import CTASection from '../components/sections/CTASection';
-import SocialsSection from '../components/sections/SocialsSection';
 import { Rocket, Target, Brain, Lightbulb, Users, GraduationCap, X } from 'lucide-react';
 import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
-import { APPLICATIONS_OPEN } from '../config/applicationStatus';
 import { SITE_POPUP } from '../config/features';
 import SectionLabel from '../components/ui/SectionLabel';
+import { assetUrl } from '../utils/assetUrl';
+
+const APPLICATION_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe-w-BjsELMrcPbdA2b4Maa8d3h6Tw-wngtP4pgIONB1FN6Cw/viewform?usp=dialog';
 
 export default function ApplicationPage() {
     const { t } = useLocale();
-    // Hidden toggle for application status
-    const applicationsOpen = APPLICATIONS_OPEN;
     const [showSitePopup, setShowSitePopup] = useState(false);
     const stepRefs = useRef([]);
     const connectorRefs = useRef([]);
-    const statusTitle = applicationsOpen
-        ? t.pages.application.statusTitleOpen
-        : t.pages.application.statusTitleClosed;
+    const statusTitle = t.pages.application.statusTitle;
     const statusTitleWords = statusTitle.split(' ');
     const statusTitleWithPreferredBreak = statusTitleWords.length <= 1
         ? statusTitle
@@ -38,7 +37,7 @@ export default function ApplicationPage() {
         );
 
     useEffect(() => {
-        if (!applicationsOpen || !SITE_POPUP.enabled) return;
+        if (!SITE_POPUP.enabled) return;
         if (localStorage.getItem(SITE_POPUP.storageKey) === 'true') return;
 
         const popupTimer = window.setTimeout(() => {
@@ -46,7 +45,7 @@ export default function ApplicationPage() {
         }, SITE_POPUP.delayMs);
 
         return () => window.clearTimeout(popupTimer);
-    }, [applicationsOpen]);
+    }, []);
 
     const dismissSitePopup = () => {
         localStorage.setItem(SITE_POPUP.storageKey, 'true');
@@ -119,19 +118,17 @@ export default function ApplicationPage() {
 
     return (
         <div className="flex flex-col items-center pt-0 pb-12">
-            <Seo title={t.pages.application.title} description={applicationsOpen ? t.pages.application.subtitleOpen : t.pages.application.statusSubtitleClosed} />
+            <Seo title={t.pages.application.title} description={t.pages.application.subtitle} />
             <Container>
                 <HeadingSection
                     as="h2"
                     badge={t.pages.application.journeyBadge}
                     title={t.pages.application.journeyTitle}
-                    subtitle={applicationsOpen
-                        ? t.pages.application.subtitleOpen
-                        : t.pages.application.subtitleClosed}
+                    subtitle={t.pages.application.subtitle}
                     className=""
                 />
 
-                {applicationsOpen && <div className="journey-connector mx-auto -my-5 md:-my-7" />}
+                <div className="journey-connector mx-auto -my-5 md:-my-7" />
 
                 {/* Timeline Layout - sequential border glow */}
                 <div className="relative max-w-4xl mx-auto flex flex-col gap-0">
@@ -250,12 +247,12 @@ export default function ApplicationPage() {
                     <div className="flex flex-col gap-4 md:gap-6">
                         {(() => {
                             const departments = [
-                                { name: 'Engineering', logo: '/assets/logos/V6_ICON+DEPARTMENT-ENGINEERING.png', logoDark: '/assets/logos/V6_ICON+DEPARTMENT-ENGINEERING-light.png' },
-                                { name: 'Social Partnerships', logo: '/assets/logos/V6_ICON+DEPARTMENT-SOCIAL-PARTNERSHIPS.png', logoDark: '/assets/logos/V6_ICON+DEPARTMENT-SOCIAL-PARTNERSHIPS-light.png' },
-                                { name: 'Strategic Partnerships', logo: '/assets/logos/V6_ICON+DEPARTMENT-STRATEGIC-PARTNERSHIPS.png', logoDark: '/assets/logos/V6_ICON+DEPARTMENT-STRATEGIC-PARTNERSHIPS-light.png' },
-                                { name: 'Community', logo: '/assets/logos/V6_ICON+DEPARTMENT-COMMUNITY.png', logoDark: '/assets/logos/V6_ICON+DEPARTMENT-COMMUNITY-light.png' },
-                                { name: 'Marketing', logo: '/assets/logos/V6-ICON+DEPARTMENT-MARKETING.png', logoDark: '/assets/logos/V6-ICON+DEPARTMENT-MARKETING-light.png' },
-                                { name: 'Finance Legal Admin', logo: '/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL.png', logoDark: '/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL-light.png' },
+                                { name: 'Engineering', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-ENGINEERING.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-ENGINEERING-light.png') },
+                                { name: 'Social Partnerships', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-SOCIAL-PARTNERSHIPS.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-SOCIAL-PARTNERSHIPS-light.png') },
+                                { name: 'Strategic Partnerships', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-STRATEGIC-PARTNERSHIPS.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-STRATEGIC-PARTNERSHIPS-light.png') },
+                                { name: 'Community', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-COMMUNITY.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-COMMUNITY-light.png') },
+                                { name: 'Marketing', logo: assetUrl('/assets/logos/V6-ICON+DEPARTMENT-MARKETING.png'), logoDark: assetUrl('/assets/logos/V6-ICON+DEPARTMENT-MARKETING-light.png') },
+                                { name: 'Finance Legal Admin', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL-light.png') },
                             ];
 
                             const engineering = departments.find((dept) => dept.name === 'Engineering');
@@ -299,33 +296,25 @@ export default function ApplicationPage() {
                         {statusTitleWithPreferredBreak}
                     </h1>
                     <p className="mt-6 max-w-2xl text-xl leading-relaxed text-[var(--text-secondary)] md:text-2xl">
-                        {applicationsOpen
-                            ? t.pages.application.statusSubtitleOpen
-                            : t.pages.application.statusSubtitleClosed}
+                        {t.pages.application.statusSubtitle}
                     </p>
-                    {applicationsOpen && (
-                        <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
-                            <Button className="z-10 apply-now-pulse" href="https://application.cgn-socialaiclub.de" target="_blank" rel="noopener noreferrer">
-                                {t.pages.application.startApplication}
-                            </Button>
-                        </div>
-                    )}
+                    <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
+                        <Button className="z-10 apply-now-pulse" href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
+                            {t.pages.application.startApplication}
+                        </Button>
+                    </div>
                 </div>
             </Container>
 
-            {applicationsOpen ? (
-                <CTASection
-                    variant={undefined}
-                    heading={t.pages.application.ctaHeading}
-                    text={t.pages.application.ctaText}
-                    buttons={[
-                        { label: t.pages.application.startApplication, href: 'https://application.cgn-socialaiclub.de', variant: 'primary', target: '_blank' },
-                        { label: t.pages.application.ctaSecondary, href: '/team', variant: 'tertiary' }
-                    ]}
-                />
-            ) : (
-                <SocialsSection />
-            )}
+            <CTASection
+                variant={undefined}
+                heading={t.pages.application.ctaHeading}
+                text={t.pages.application.ctaText}
+                buttons={[
+                    { label: t.pages.application.startApplication, href: APPLICATION_FORM_URL, variant: 'primary', target: '_blank' },
+                    { label: t.pages.application.ctaSecondary, href: '/contact', variant: 'tertiary' }
+                ]}
+            />
 
             {showSitePopup && SITE_POPUP.enabled && typeof document !== 'undefined' && createPortal(
                 <aside

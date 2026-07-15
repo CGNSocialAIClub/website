@@ -8,9 +8,8 @@ import NavbarItem from '../components/ui/NavbarItem';
 import LanguageToggle from '../components/ui/LanguageToggle';
 import ThemeToggle from '../components/ui/ThemeToggle';
 import { useLocale } from '../i18n/LocaleContext';
-import { APPLICATIONS_OPEN, APPLICATION_BANNER_HEIGHT } from '../config/applicationStatus';
 
-export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
+export default function Navbar() {
     const { t } = useLocale();
     const navigate = useNavigate();
     const location = useLocation();
@@ -149,7 +148,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
             window.removeEventListener('scroll', updateNavbarState);
             window.removeEventListener('resize', updateNavbarState);
         };
-    }, [isHomePage, isBannerVisible]);
+    }, [isHomePage]);
 
     useEffect(() => {
         const cameFromSubpage = prevPathRef.current !== '/' && location.pathname === '/';
@@ -380,8 +379,7 @@ export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN }) {
 
     return (
         <nav
-            className="fixed left-0 right-0 z-50 flex flex-col items-center transition-all duration-300 pt-4 px-4 pointer-events-none"
-            style={{ top: APPLICATIONS_OPEN && isBannerVisible ? `${APPLICATION_BANNER_HEIGHT}px` : '0px' }}
+            className="fixed left-0 right-0 top-0 z-50 flex flex-col items-center transition-all duration-300 pt-4 px-4 pointer-events-none"
         >
             {/* Main Navbar Pill */}
             <motion.div

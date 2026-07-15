@@ -95,7 +95,7 @@ export const translations = {
             contact: {
                 badge: 'CONTACT',
                 title: 'Get in touch',
-                subtitle: 'Questions about the CGN Social AI Club? Send us a message at contact@cgn-socialaiclub.de or use the contact form below.',
+                subtitle: 'Questions about the CGN Social AI Club? Send us a message at cgn.socialaiclub@gmail.com or use the contact form below.',
             },
             socialPartners: {
                 badge: 'NONPROFIT PARTNERS',
@@ -125,28 +125,12 @@ export const translations = {
             application: {
                 badge: 'APPLICATION',
                 title: 'Application',
-                statusTitleOpen: 'Applications are now open',
-                statusTitleClosed: 'Applications are currently closed',
-                statusSubtitleOpen: 'Join the Summer 2026 batch and start building with us this semester. The deadline is Sunday, May 3, 2026 at 23:59.',
-                statusSubtitleClosed: 'Applications are currently closed. The next application phase will open in October 2026.',
-                startApplication: 'Start Application',
+                statusTitle: 'Applications are open',
+                statusSubtitle: 'We review applications on a rolling basis. Fill out our application form or reach out via our contact page, and we will get back to you.',
+                startApplication: 'Fill Out Application',
                 journeyBadge: 'MEMBER JOURNEY',
                 journeyTitle: 'Member Journey',
-                heroTitleOpen: 'Applications Are Open',
-                heroTitleClosed: 'Applications Are Currently Closed',
-                subtitleOpen: 'See how you can grow and contribute as a member.',
-                subtitleClosed:
-                    'Explore how the member journey works and how you can grow, contribute, and take ownership in the club.',
-                bannerText: 'Applications are open',
-                bannerCountdownPrefix: 'Deadline in',
-                bannerCountdownExpired: 'Deadline reached',
-                bannerCountdownUnits: {
-                    days: 'days',
-                    hours: 'hours',
-                    minutes: 'minutes',
-                },
-                bannerCta: 'Click to apply',
-                bannerAriaLabel: 'Applications are open. Go to the application page.',
+                subtitle: 'See how you can grow and contribute as a member.',
                 steps: {
                     introTitle: 'Onboarding & Orientation',
                     introText: 'Start with onboarding, meet the team, and get a clear view of how you can learn, contribute, and take ownership.',
@@ -167,7 +151,7 @@ export const translations = {
                 ctaHeading: 'Ready to learn by doing?',
                 ctaText:
                     'If you want to apply AI responsibly, grow through real projects, and take ownership in a committed team, we look forward to your application.',
-                ctaSecondary: 'Meet Our Team',
+                ctaSecondary: 'Contact Us',
             },
             community: {
                 departmentsBadge: 'DEPARTMENTS',
@@ -438,7 +422,7 @@ export const translations = {
             contact: {
                 badge: 'KONTAKT',
                 title: 'Schreib uns',
-                subtitle: 'Du möchtest mit dem CGN Social AI Club in Kontakt treten? Schreib uns an contact@cgn-socialaiclub.de oder nutze das Kontaktformular.',
+                subtitle: 'Du möchtest mit dem CGN Social AI Club in Kontakt treten? Schreib uns an cgn.socialaiclub@gmail.com oder nutze das Kontaktformular.',
             },
             socialPartners: {
                 badge: 'GEMEINNÜTZIGE PARTNER',
@@ -468,28 +452,12 @@ export const translations = {
             application: {
                 badge: 'BEWERBUNG',
                 title: 'Bewerbung',
-                statusTitleOpen: 'Bewerbungen jetzt möglich',
-                statusTitleClosed: 'Bewerbungen sind aktuell geschlossen',
-                statusSubtitleOpen: 'Bewirb dich für den Summer 2026 Batch und werde noch dieses Semester Teil des Clubs. Die Deadline ist Sonntag, der 03.05.2026 um 23:59 Uhr.',
-                statusSubtitleClosed: 'Die Bewerbungsphase ist aktuell geschlossen. Die nächste Bewerbungsphase öffnet im Oktober 2026.',
-                startApplication: 'Bewerbung starten',
+                statusTitle: 'Bewerbungen sind offen',
+                statusSubtitle: 'Wir prüfen Bewerbungen laufend. Fülle unser Bewerbungsformular aus oder melde dich über unser Kontaktformular – wir melden uns zeitnah bei dir.',
+                startApplication: 'Bewerbung ausfüllen',
                 journeyBadge: 'MEMBER JOURNEY',
                 journeyTitle: 'Member Journey',
-                heroTitleOpen: 'Bewerbungen sind offen',
-                heroTitleClosed: 'Bewerbungen sind aktuell geschlossen',
-                subtitleOpen: 'Sieh dir an, wie du dich als Mitglied einbringen und weiterentwickeln kannst.',
-                subtitleClosed:
-                    'Sieh dir an, wie die Member Journey im Club aufgebaut ist und wie du dich fachlich und organisatorisch einbringen kannst.',
-                bannerText: 'Bewerbungen sind geöffnet',
-                bannerCountdownPrefix: 'Deadline in',
-                bannerCountdownExpired: 'Deadline erreicht',
-                bannerCountdownUnits: {
-                    days: 'Tage',
-                    hours: 'Stunden',
-                    minutes: 'Minuten',
-                },
-                bannerCta: 'Zur Bewerbung',
-                bannerAriaLabel: 'Bewerbungen sind geöffnet. Zur Bewerbungsseite wechseln.',
+                subtitle: 'Sieh dir an, wie du dich als Mitglied einbringen und weiterentwickeln kannst.',
                 steps: {
                     introTitle: 'Batch Introduction',
                     introText: 'Du startest mit dem Onboarding, lernst das Team kennen und bekommst einen klaren Überblick über deine Möglichkeiten im Club.',
@@ -512,7 +480,7 @@ export const translations = {
                 },
                 ctaHeading: 'Bereit für deine Bewerbung?',
                 ctaText: 'Wenn du anspruchsvolle KI-Projekte umsetzen und Verantwortung in einem ambitionierten Team übernehmen willst, freuen wir uns auf deine Bewerbung.',
-                ctaSecondary: 'Unser Team kennenlernen',
+                ctaSecondary: 'Kontakt aufnehmen',
             },
             community: {
                 departmentsBadge: 'DEPARTMENTS',
@@ -524,7 +492,7 @@ export const translations = {
                 limitPromptTitle: 'Du möchtest mehr über unsere Mitglieder sehen?',
                 limitPromptDescription: 'Kurze Frage: Bist du Student:in oder Recruiter:in?',
                 limitStudentTitle: 'Student:in? Dann bist du hier genau richtig.',
-                limitStudentDescription: 'Bewirb dich und lerne das Team persönlich kennen. Die nächste Runde startet im April 2026.',
+                limitStudentDescription: 'Bewirb dich und lerne das Team persönlich kennen. Bewerbungen sind laufend offen.',
                 limitRecruiterTitle: 'Recruiter:in? Auf der Suche nach starken Profilen?',
                 limitRecruiterDescription: 'Werdet Partner und vernetzt euch über Events und gemeinsame Formate direkt mit unserer Community.',
                 limitStudentButton: 'Student:in',

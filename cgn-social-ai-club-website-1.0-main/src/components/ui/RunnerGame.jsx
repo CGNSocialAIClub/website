@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale } from '../../i18n/LocaleContext';
+import { assetUrl } from '../../utils/assetUrl';
 
 const CONFIG = {
     gravity: 2200,
@@ -84,7 +85,7 @@ function createMapLevels() {
 
 const MAP_LEVELS = createMapLevels();
 const RUNNER_NOTIFICATION_STORAGE_KEY = 'runner-game-contact-notified';
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xanzpnye';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjgngrre';
 
 function createGroundDotPatternDataUri(isDarkMode) {
     const baseColor = isDarkMode ? '255,255,255' : '10,45,87';
@@ -130,7 +131,7 @@ function notifyRunnerGameStarted() {
         form_name: 'runner_game_notification',
         _subject: 'Website Runner Game Played',
         name: 'Website Runner Game',
-        email: 'contact@cgn-socialaiclub.de',
+        email: 'cgn.socialaiclub@gmail.com',
         background: 'Website',
         subject: 'Runner game started',
         message: `The endless runner game was started on the website.\nURL: ${window.location.href}\nTime: ${new Date().toISOString()}`,
@@ -829,8 +830,8 @@ export default function RunnerGame() {
                     <img
                         src={
                             isDarkMode
-                                ? '/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-White-Text.svg'
-                                : '/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-Darkblue-Text.svg'
+                                ? assetUrl('/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-White-Text.svg')
+                                : assetUrl('/assets/logos/LOGO-v5-SOCIAL-AI_ICON-No-Background-Darkblue-Text.svg')
                         }
                         alt="Player"
                         className="w-full h-full object-contain"

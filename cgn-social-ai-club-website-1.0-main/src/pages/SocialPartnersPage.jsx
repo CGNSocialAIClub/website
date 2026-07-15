@@ -10,29 +10,31 @@ import SectionLabel from '../components/ui/SectionLabel';
 import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
 import { getProjects } from '../utils/cms';
+import { assetUrl } from '../utils/assetUrl';
 
+// Deaktiviert bis wir echte Projekte mit Nonprofits abgeschlossen haben — wieder aktivieren wenn vorhanden.
 const socialPartners = [
-    {
-        name: 'Initiative Gruppe',
-        logo: '/cms/all-partner-logos/initiative-gruppe-coloured.svg',
-        logoFallback: '/cms/all-partner-logos/initiative-gruppe-logo.png',
-        description: 'Supporting integration and education for migrants and refugees in Cologne through innovative AI-powered tools.',
-    },
-    {
-        name: 'Entreculturas',
-        logo: '/cms/all-partner-logos/entreculturas-coloured.svg',
-        description: 'Leveraging AI to advance educational access and intercultural dialogue across communities worldwide.',
-    },
-    {
-        name: 'Kulturator',
-        logo: '/cms/all-partner-logos/kulturator-coloured.svg',
-        description: 'Applying data-driven solutions to promote cultural engagement and preserve heritage.',
-    },
-    {
-        name: 'UN Women',
-        logo: '/cms/all-partner-logos/Un-women-for-all-women-and-girls-coloured.png',
-        description: 'Building AI tools that empower gender equality initiatives and support women and girls globally.',
-    },
+    // {
+    //     name: 'Initiative Gruppe',
+    //     logo: assetUrl('/cms/all-partner-logos/initiative-gruppe-coloured.svg'),
+    //     logoFallback: assetUrl('/cms/all-partner-logos/initiative-gruppe-logo.png'),
+    //     description: 'Supporting integration and education for migrants and refugees in Cologne through innovative AI-powered tools.',
+    // },
+    // {
+    //     name: 'Entreculturas',
+    //     logo: assetUrl('/cms/all-partner-logos/entreculturas-coloured.svg'),
+    //     description: 'Leveraging AI to advance educational access and intercultural dialogue across communities worldwide.',
+    // },
+    // {
+    //     name: 'Kulturator',
+    //     logo: assetUrl('/cms/all-partner-logos/kulturator-coloured.svg'),
+    //     description: 'Applying data-driven solutions to promote cultural engagement and preserve heritage.',
+    // },
+    // {
+    //     name: 'UN Women',
+    //     logo: assetUrl('/cms/all-partner-logos/Un-women-for-all-women-and-girls-coloured.png'),
+    //     description: 'Building AI tools that empower gender equality initiatives and support women and girls globally.',
+    // },
 ];
 
 const howWeWork = [
@@ -153,30 +155,32 @@ export default function SocialPartnersPage() {
             </section>
 
             {/* Partner Logos */}
-            <section className="w-full">
-                <Container className="mb-24">
-                    <HeadingSection
-                        as="h2"
-                        badge={t.pages.socialPartners.partnerBadge}
-                        title={t.pages.socialPartners.partnerTitle}
-                        className="mb-12"
-                        hideBadge={false}
-                    />
-                    <div className="flex flex-wrap justify-center items-center gap-8 px-4">
-                        {localizedPartners.map((partner, i) => (
-                            <div key={i} className="w-full max-w-sm">
-                                <PartnerCard
-                                    variant="social"
-                                    name={partner.name}
-                                    logo={partner.logo}
-                                    logoFallback={partner.logoFallback}
-                                    description={partner.description}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </section>
+            {localizedPartners.length > 0 && (
+                <section className="w-full">
+                    <Container className="mb-24">
+                        <HeadingSection
+                            as="h2"
+                            badge={t.pages.socialPartners.partnerBadge}
+                            title={t.pages.socialPartners.partnerTitle}
+                            className="mb-12"
+                            hideBadge={false}
+                        />
+                        <div className="flex flex-wrap justify-center items-center gap-8 px-4">
+                            {localizedPartners.map((partner, i) => (
+                                <div key={i} className="w-full max-w-sm">
+                                    <PartnerCard
+                                        variant="social"
+                                        name={partner.name}
+                                        logo={partner.logo}
+                                        logoFallback={partner.logoFallback}
+                                        description={partner.description}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </Container>
+                </section>
+            )}
 
             {featuredProjects.length > 0 && (
                 <section className="w-full">

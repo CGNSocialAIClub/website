@@ -23,7 +23,7 @@ function App() {
         alternateName: 'CGN Social AI Club',
         url: SITE_URL,
         logo: `${SITE_URL}/assets/logos/CGN-Social-AI-Club-stacked-dark-text.svg`,
-        email: 'contact@cgn-socialaiclub.de',
+        email: 'cgn.socialaiclub@gmail.com',
         description: t.home.heroDescription,
         foundingLocation: {
             '@type': 'Place',
