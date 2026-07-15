@@ -11,7 +11,8 @@
     "build": "vite build",
     "postbuild": "npm run generate:route-html",
     "preview": "vite preview",
-    "deploy:gh": "npm run build && npx gh-pages -d dist"
+    "cf:dev": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "keywords": [],
   "author": "",
@@ -44,9 +45,9 @@
     "@tailwindcss/vite": "^4.1.18",
     "@vitejs/plugin-react": "^5.1.2",
     "autoprefixer": "^10.4.24",
-    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "wrangler": "^4.111.0"
   }
 }

@@ -4,8 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/website/', // Project page
-  // base: '/',  // User/org page
+  base: '/', // Cloudflare Workers serves the site from the domain root
   plugins: [
     react(),
     tailwindcss(),

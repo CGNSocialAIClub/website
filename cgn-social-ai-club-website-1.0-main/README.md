@@ -24,6 +24,25 @@ This is the official website for the CGN Social AI Club. The site showcases our 
    npm run build
    ```
 
+## ☁️ Deployment (Cloudflare Workers)
+
+The site is hosted as a Cloudflare Workers static-assets project (`wrangler.jsonc`). Recommended setup: in the Cloudflare dashboard, go to **Workers & Pages → Create → Connect to Git**, pick this repo, and set:
+
+- **Build command:** `npm run build`
+- **Deploy command:** `npx wrangler deploy`
+
+Cloudflare then builds and deploys automatically on every push to `main`, no GitHub Actions needed. Add the production domain under the Worker's **Settings → Domains & Routes**.
+
+For a manual deploy from your machine (requires `wrangler login` once):
+```sh
+npm run deploy
+```
+
+To preview the built site against the real Workers runtime locally:
+```sh
+npm run build && npm run cf:dev
+```
+
 ## 🛠️ Project Structure
 - `src/pages/` — Main site pages
 - `src/components/` — UI and section components

@@ -6,6 +6,8 @@
 node_modules/
 # Ignore build output
 dist/
+# Ignore local Wrangler dev cache
+.wrangler/
 # Ignore logs
 *.log
 # Ignore OS files
