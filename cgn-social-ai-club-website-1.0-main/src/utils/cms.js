@@ -4,11 +4,11 @@ import team from '../data/team.json';
 const localizedProjects = {
     de: {
         '1': {
-            title: 'Gender-Bias-Forschung in LLMs',
-            description: 'Wir starten ein Projekt, das untersucht, wie geschlechtliche Hinweise Antworten großer Sprachmodelle beeinflussen. Mit kontrollierten Prompts vergleichen wir Outputs und dokumentieren erste Muster.',
-            content: '## Projektüberblick\n\nWir stehen am Anfang eines Projekts, das **Gender Bias** in großen kommerziellen LLMs untersucht. Unser Fokus liegt auf einem einfachen, belastbaren Evaluations-Setup und der Sammlung erster Ergebnisse.\n\nWir nutzen kontrollierte Prompt-Templates, um Antworten verschiedener Modelle in einigen fokussierten Szenarien zu vergleichen:\n\n*   **Berufliche Szenarien**: Annahmen über Kompetenz oder Rollenpassung.\n*   **Kreatives Schreiben**: Charaktertropen und Stereotype.\n*   **Sentimentanalyse**: Unterschiede im Ton bei geschlechtlich markierten Subjekten.\n\nAktuell bereiten wir das Prompt-Set und die Evaluationskriterien vor. Erste Ergebnisse teilen wir, sobald die erste Testphase abgeschlossen ist.',
-            tags: ['LLMs', 'Gender Bias', 'Evaluation'],
-            status: 'Aktiv',
+            title: 'Dein Projekt kann das nächste sein',
+            description: 'Du bist ein Nonprofit mit einer Herausforderung, bei der wir helfen können? Kontaktiere uns.',
+            content: '## Arbeite mit uns zusammen\n\nBei CGN Social AI sind wir immer auf der Suche nach neuen Herausforderungen. Wenn du eine Nonprofit-Organisation, ein Social Enterprise oder Forschende:r bist und an einem Problem mit hoher Wirkung arbeitest, möchten wir von dir hören.\n\n*   **Technische Expertise**: Teams aus engagierten Studierenden in KI, Machine Learning und Webentwicklung.\n*   **Innovative Lösungen**: Frische Perspektiven auf operative oder technische Herausforderungen.\n*   **Pro-bono-Arbeit**: Uns treibt Wirkung, nicht Profit.\n\n[Nimm noch heute Kontakt mit uns auf](/contact), um ein Gespräch darüber zu beginnen, wie wir zusammenarbeiten können.',
+            tags: ['Dein Nonprofit', 'Kontakt', 'Zusammenarbeit'],
+            status: 'Demnächst',
             date: 'Februar 2026',
         },
         '2': {
@@ -42,14 +42,6 @@ const localizedProjects = {
             tags: ['Soziale Integration', 'Chatbot', 'Website'],
             status: 'Aktiv',
             date: 'April 2026',
-        },
-        '6': {
-            title: 'Dein Projekt kann das nächste sein',
-            description: 'Du bist ein Nonprofit mit einer Herausforderung, bei der wir helfen können? Kontaktiere uns.',
-            content: '## Arbeite mit uns zusammen\n\nBei CGN Social AI sind wir immer auf der Suche nach neuen Herausforderungen. Wenn du eine Nonprofit-Organisation, ein Social Enterprise oder Forschende:r bist und an einem Problem mit hoher Wirkung arbeitest, möchten wir von dir hören.\n\n*   **Technische Expertise**: Teams aus engagierten Studierenden in KI, Machine Learning und Webentwicklung.\n*   **Innovative Lösungen**: Frische Perspektiven auf operative oder technische Herausforderungen.\n*   **Pro-bono-Arbeit**: Uns treibt Wirkung, nicht Profit.\n\n[Nimm noch heute Kontakt mit uns auf](/contact), um ein Gespräch darüber zu beginnen, wie wir zusammenarbeiten können.',
-            tags: ['Dein Nonprofit', 'Kontakt', 'Zusammenarbeit'],
-            status: 'Demnächst',
-            date: 'Februar 2026',
         },
     },
 };
