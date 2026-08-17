@@ -40,5 +40,61 @@
         "offsetX": 50,
         "offsetY": 50,
         "status": "active member"
+    },
+    {
+        "id": "yasindemirel",
+        "name": "Yasin Demirel",
+        "role": "Member",
+        "department": "Strategic Partnerships",
+        "image": "/cms/team/Yasin_Demirel_Porträt.png",
+        "linkedin": "https://www.linkedin.com/in/yasin-demirel-4235b1232/",
+        "github": "",
+        "email": "",
+        "zoom": 1,
+        "offsetX": 50,
+        "offsetY": 50,
+        "status": "active member"
+    },
+    {
+        "id": "fabiankallenbach",
+        "name": "Fabian Kallenbach",
+        "role": "Member",
+        "department": "Strategic Partnerships",
+        "image": "/cms/team/Fabian_Kallenbach_Porträt.png",
+        "linkedin": "https://www.linkedin.com/in/fabian-kallenbach/",
+        "github": "",
+        "email": "",
+        "zoom": 1,
+        "offsetX": 50,
+        "offsetY": 50,
+        "status": "active member"
+    },
+    {
+        "id": "maxalthoff",
+        "name": "Max Althoff",
+        "role": "Member",
+        "department": "Engineering",
+        "image": "/cms/team/Max_Althoff_Porträt.png",
+        "linkedin": "https://www.linkedin.com/in/maxalthoff/",
+        "github": "",
+        "email": "",
+        "zoom": 1,
+        "offsetX": 50,
+        "offsetY": 50,
+        "status": "active member"
+    },
+    {
+        "id": "davidsättler",
+        "name": "David Sättler",
+        "role": "Member",
+        "department": "Engineering",
+        "image": "/cms/team/David_Sättler_Porträt.png",
+        "linkedin": "https://www.linkedin.com/in/david-sättler-505272293/",
+        "github": "",
+        "email": "",
+        "zoom": 1,
+        "offsetX": 50,
+        "offsetY": 50,
+        "status": "active member"
     }
 ]
