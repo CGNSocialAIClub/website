@@ -95,7 +95,7 @@ export const translations = {
             contact: {
                 badge: 'CONTACT',
                 title: 'Get in touch',
-                subtitle: 'Questions about the CGN Social AI Club? Send us a message at cgn.socialaiclub@gmail.com or use the contact form below.',
+                subtitle: 'Questions about the CGN Social AI Club? Send us a message at contact@cologne-socialaiclub.de or use the contact form below.',
             },
             socialPartners: {
                 badge: 'NONPROFIT PARTNERS',
@@ -422,7 +422,7 @@ export const translations = {
             contact: {
                 badge: 'KONTAKT',
                 title: 'Schreib uns',
-                subtitle: 'Du möchtest mit dem CGN Social AI Club in Kontakt treten? Schreib uns an cgn.socialaiclub@gmail.com oder nutze das Kontaktformular.',
+                subtitle: 'Du möchtest mit dem CGN Social AI Club in Kontakt treten? Schreib uns an contact@cologne-socialaiclub.de oder nutze das Kontaktformular.',
             },
             socialPartners: {
                 badge: 'GEMEINNÜTZIGE PARTNER',

@@ -70,7 +70,7 @@ export default function Footer() {
                                     />
                                 </a>
                                 <a
-                                    href="mailto:cgn.socialaiclub@gmail.com"
+                                    href="mailto:contact@cologne-socialaiclub.de"
                                     className="bg-[var(--bg-accent)] text-[var(--text-inverse)] p-2.5 rounded-full hover:opacity-90 transition-opacity"
                                     aria-label="Email"
                                 >

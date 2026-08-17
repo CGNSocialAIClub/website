@@ -60,10 +60,10 @@ export default function Imprint() {
                     <p>
                         E-Mail:{' '}
                         <a
-                            href="mailto:cgn.socialaiclub@gmail.com"
+                            href="mailto:contact@cologne-socialaiclub.de"
                             className="font-semibold text-[var(--text-primary)]"
                         >
-                            cgn.socialaiclub@gmail.com
+                            contact@cologne-socialaiclub.de
                         </a>
                         <br />
                         Webseite:{' '}
