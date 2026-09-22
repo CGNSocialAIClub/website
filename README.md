@@ -207,7 +207,7 @@ The banner below the homepage hero is `src/components/sections/RecruitingBanner.
 For a new semester:
 1. Set the new date in `RECRUITING.applicationsOpenAt`.
 2. Update the texts under `home.recruiting` (kicker, title, texts, buttons) and `pages.application.statusTitleBefore` / `statusSubtitleBefore` in `translations.js`, in **both** languages. Keep ` ` between the day and the month (e.g. `1 October`) so the date never breaks across two lines.
-3. To change the artwork, replace `public/assets/banners/recruiting-light.webp` and `recruiting-dark.webp`. Keep the same format: 3:1, left half empty for the text, same background colours as the site (white / `#0A2D57`). The dark image appears automatically in dark mode.
+3. To change the artwork, replace `public/assets/banners/recruiting-light.webp` and `recruiting-dark.webp`. Keep the same format: 3:1, left half empty for the text, same background colours as the site (white / `#0A2D57`). The dark image appears automatically in dark mode. Make the images **at least ~3000 px wide** (the current ones are 4344 × 1448), or they look blurry on retina screens. AI image tools (ChatGPT etc.) usually output only ~1500–2000 px, so run the result through an AI upscaler first. Real-ESRGAN with the `realesrgan-x4plus-anime` model works very well for this line-art style (free app: Upscayl). Export as WebP (quality ~85) to keep each file under ~200 KB.
 4. To remove the banner after recruiting, set `bannerEnabled: false`.
 
 ### Change contact email or social links

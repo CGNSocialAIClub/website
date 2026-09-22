@@ -74,7 +74,7 @@ function App() {
                 description={t.home.heroDescription}
                 structuredData={[organizationSchema, websiteSchema]}
             />
-            <div className="relative w-full min-h-[55vh] flex items-center justify-center overflow-hidden -mt-28 pt-24">
+            <div className="relative w-full min-h-[55vh] flex items-end justify-center overflow-hidden -mt-28 pt-24">
                 <div className="absolute inset-0 w-full h-full">
                     <Aurora
                         colorStops={['#4BFFC0', '#4A98FF', '#0a2d57']}
