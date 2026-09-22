@@ -202,7 +202,7 @@ Legal pages (privacy, imprint) have their text directly inside their page files.
 
 ### Recruiting banner (each semester)
 
-The banner below the homepage hero is `src/components/sections/RecruitingBanner.jsx`. Before the date in `RECRUITING.applicationsOpenAt` (in `src/config/features.js`), it says "Applications open on …" with a "See what to expect" button. The application page then says "Applications open on …" and hides the application-form button. From that date on, both switch to "Apply now" automatically, with no deploy needed.
+The banner below the homepage hero is `src/components/sections/RecruitingBanner.jsx`. A small announcement pill above the hero logo (`src/components/ui/RecruitingPill.jsx`, texts `home.recruiting.pillBefore` / `pillOpen`) makes sure visitors notice it in the first view; clicking it scrolls down to the banner. Both follow the same `RECRUITING` switch. Before the date in `RECRUITING.applicationsOpenAt` (in `src/config/features.js`), it says "Applications open on …" with a "See what to expect" button. The application page then says "Applications open on …" and hides the application-form button. From that date on, both switch to "Apply now" automatically, with no deploy needed.
 
 For a new semester:
 1. Set the new date in `RECRUITING.applicationsOpenAt`.

@@ -15,10 +15,10 @@ export default function RecruitingBanner() {
     const isOpen = areApplicationsOpen();
 
     return (
-        <section className="w-full mt-20 mb-24" aria-labelledby="recruiting-title">
+        <section id="recruiting" className="w-full mt-20 mb-24 scroll-mt-28" aria-labelledby="recruiting-title">
             <Container>
                 <div className="relative overflow-hidden rounded-[24px] border border-[var(--border-default)] bg-[var(--recruiting-bg)] shadow-lg lg:aspect-[3/1]">
-                    <div className="relative z-10 flex flex-col items-start px-6 pt-8 md:px-10 md:pt-10 lg:absolute lg:inset-y-0 lg:left-0 lg:w-[48%] lg:justify-center lg:px-12 lg:py-8 xl:px-16">
+                    <div className="relative z-10 flex flex-col items-start px-6 pt-8 md:px-10 md:pt-10 lg:absolute lg:inset-y-0 lg:left-0 lg:w-[48%] lg:justify-start lg:px-12 lg:pt-12 xl:px-16 xl:pt-14">
                         <p className="mb-3 font-body text-xs font-semibold uppercase tracking-[0.14em] text-[var(--recruiting-kicker)] md:text-sm">
                             {copy.kicker}
                         </p>

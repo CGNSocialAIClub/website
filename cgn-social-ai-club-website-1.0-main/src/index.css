@@ -425,3 +425,23 @@
 .dark .recruiting-art-dark {
     display: block;
 }
+
+.recruiting-pill-icon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: 0 0 0 0 rgba(75, 255, 192, 0.55);
+    animation: recruiting-pill-pulse 2.4s ease-out infinite;
+}
+
+@keyframes recruiting-pill-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(75, 255, 192, 0.55); }
+    70%, 100% { box-shadow: 0 0 0 9px rgba(75, 255, 192, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .recruiting-pill-icon::after {
+        animation: none;
+    }
+}

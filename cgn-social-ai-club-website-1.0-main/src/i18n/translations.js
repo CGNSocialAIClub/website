@@ -58,6 +58,8 @@ export const translations = {
                 textOpen: "We're looking for students who want to use AI where it matters. Applications are now open!",
                 ctaBefore: 'See what to expect',
                 ctaOpen: 'Apply now',
+                pillBefore: 'Winter semester 2026/27: applications open 1\u00A0October',
+                pillOpen: 'Applications for winter semester 2026/27 are open',
             },
         },
         cta: {
@@ -394,6 +396,8 @@ export const translations = {
                 textOpen: 'Wir suchen Studierende, die KI dort einsetzen wollen, wo sie wirklich etwas bewirkt. Die Bewerbungsphase läuft!',
                 ctaBefore: 'Mehr erfahren',
                 ctaOpen: 'Jetzt bewerben',
+                pillBefore: 'Wintersemester 2026/27: Bewerbungsstart am 1.\u00A0Oktober',
+                pillOpen: 'Bewerbungen fürs Wintersemester 2026/27 sind offen',
             },
         },
         cta: {
