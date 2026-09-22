@@ -51,6 +51,14 @@ export const translations = {
             socialsTitle: 'Stay updated',
             socialsLinkedinDescription: 'Follow our updates on projects, events, and collaborations.',
             socialsInstagramDescription: 'Behind-the-scenes content, event highlights, and community moments.',
+            recruiting: {
+                kicker: 'Winter semester 2026/27',
+                title: 'Code for good this semester.',
+                textBefore: "We're looking for students who want to use AI where it matters. Applications open on 1\u00A0October.",
+                textOpen: "We're looking for students who want to use AI where it matters. Applications are now open!",
+                ctaBefore: 'See what to expect',
+                ctaOpen: 'Apply now',
+            },
         },
         cta: {
             general: {
@@ -125,6 +133,8 @@ export const translations = {
                 badge: 'APPLICATION',
                 title: 'Application',
                 statusTitle: 'Applications are open',
+                statusTitleBefore: 'Applications open on 1\u00A0October',
+                statusSubtitleBefore: 'Our application phase for the winter semester starts on 1\u00A0October. Until then, explore the member journey below or reach out via our contact page.',
                 statusSubtitle: 'We review applications on a rolling basis. Fill out our application form or reach out via our contact page, and we will get back to you.',
                 startApplication: 'Fill Out Application',
                 journeyBadge: 'MEMBER JOURNEY',
@@ -377,6 +387,14 @@ export const translations = {
             socialsTitle: 'Bleib auf dem Laufenden',
             socialsLinkedinDescription: 'Auf LinkedIn findest du Updates zu Projekten, Events und Kooperationen.',
             socialsInstagramDescription: 'Behind-the-Scenes, Event-Highlights und Einblicke in unsere Community.',
+            recruiting: {
+                kicker: 'Wintersemester 2026/27',
+                title: 'Dieses Semester: KI für den guten Zweck.',
+                textBefore: 'Wir suchen Studierende, die KI dort einsetzen wollen, wo sie wirklich etwas bewirkt. Bewerbungen öffnen am 1.\u00A0Oktober.',
+                textOpen: 'Wir suchen Studierende, die KI dort einsetzen wollen, wo sie wirklich etwas bewirkt. Die Bewerbungsphase läuft!',
+                ctaBefore: 'Mehr erfahren',
+                ctaOpen: 'Jetzt bewerben',
+            },
         },
         cta: {
             general: {
@@ -451,6 +469,8 @@ export const translations = {
                 badge: 'BEWERBUNG',
                 title: 'Bewerbung',
                 statusTitle: 'Bewerbungen sind offen',
+                statusTitleBefore: 'Bewerbungsstart am 1.\u00A0Oktober',
+                statusSubtitleBefore: 'Unsere Bewerbungsphase für das Wintersemester startet am 1.\u00A0Oktober. Bis dahin kannst du unten die Member Journey entdecken oder uns über das Kontaktformular schreiben.',
                 statusSubtitle: 'Wir prüfen Bewerbungen laufend. Fülle unser Bewerbungsformular aus oder melde dich über unser Kontaktformular – wir melden uns zeitnah bei dir.',
                 startApplication: 'Bewerbung ausfüllen',
                 journeyBadge: 'MEMBER JOURNEY',

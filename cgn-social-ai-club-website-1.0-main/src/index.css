@@ -402,3 +402,26 @@
         animation: none;
     }
 }
+
+/* Recruiting banner (src/components/sections/RecruitingBanner.jsx) */
+:root {
+    --recruiting-bg: #FFFFFF;
+    --recruiting-kicker: #1F6FD6;
+}
+
+.dark {
+    --recruiting-bg: #092D58;
+    --recruiting-kicker: #4BFFC0;
+}
+
+.recruiting-art-dark {
+    display: none;
+}
+
+.dark .recruiting-art-light {
+    display: none;
+}
+
+.dark .recruiting-art-dark {
+    display: block;
+}

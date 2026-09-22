@@ -197,7 +197,18 @@ Legal pages (privacy, imprint) have their text directly inside their page files.
 [`src/config/features.js`](cgn-social-ai-club-website-1.0-main/src/config/features.js):
 
 - `PROJECT_DETAILS_ENABLED`: turns project article pop-ups on or off.
+- `RECRUITING`: the recruiting banner on the homepage (see below). `bannerEnabled` shows or hides it, and `applicationsOpenAt` is the moment the site switches from "Applications open on …" to "Apply now".
 - `SITE_POPUP`: an announcement pop-up on the application page, useful for recruiting deadlines. Set `enabled: true` and fill in `body`, `ctaLabel` and `ctaHref`. Change `storageKey` for each new announcement, because visitors who dismissed the old one won't see a popup with the same key again.
+
+### Recruiting banner (each semester)
+
+The banner below the homepage hero is `src/components/sections/RecruitingBanner.jsx`. Before the date in `RECRUITING.applicationsOpenAt` (in `src/config/features.js`), it says "Applications open on …" with a "See what to expect" button. The application page then says "Applications open on …" and hides the application-form button. From that date on, both switch to "Apply now" automatically, with no deploy needed.
+
+For a new semester:
+1. Set the new date in `RECRUITING.applicationsOpenAt`.
+2. Update the texts under `home.recruiting` (kicker, title, texts, buttons) and `pages.application.statusTitleBefore` / `statusSubtitleBefore` in `translations.js`, in **both** languages. Keep ` ` between the day and the month (e.g. `1 October`) so the date never breaks across two lines.
+3. To change the artwork, replace `public/assets/banners/recruiting-light.webp` and `recruiting-dark.webp`. Keep the same format: 3:1, left half empty for the text, same background colours as the site (white / `#0A2D57`). The dark image appears automatically in dark mode.
+4. To remove the banner after recruiting, set `bannerEnabled: false`.
 
 ### Change contact email or social links
 

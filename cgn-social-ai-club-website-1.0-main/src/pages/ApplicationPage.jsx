@@ -12,7 +12,7 @@ import CTASection from '../components/sections/CTASection';
 import { Rocket, Target, Brain, Lightbulb, Users, GraduationCap, X } from 'lucide-react';
 import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
-import { SITE_POPUP } from '../config/features';
+import { SITE_POPUP, areApplicationsOpen } from '../config/features';
 import SectionLabel from '../components/ui/SectionLabel';
 import { assetUrl } from '../utils/assetUrl';
 
@@ -23,7 +23,8 @@ export default function ApplicationPage() {
     const [showSitePopup, setShowSitePopup] = useState(false);
     const stepRefs = useRef([]);
     const connectorRefs = useRef([]);
-    const statusTitle = t.pages.application.statusTitle;
+    const applicationsOpen = areApplicationsOpen();
+    const statusTitle = applicationsOpen ? t.pages.application.statusTitle : t.pages.application.statusTitleBefore;
     const statusTitleWords = statusTitle.split(' ');
     const statusTitleWithPreferredBreak = statusTitleWords.length <= 1
         ? statusTitle
@@ -296,13 +297,15 @@ export default function ApplicationPage() {
                         {statusTitleWithPreferredBreak}
                     </h1>
                     <p className="mt-6 max-w-2xl text-xl leading-relaxed text-[var(--text-secondary)] md:text-2xl">
-                        {t.pages.application.statusSubtitle}
+                        {applicationsOpen ? t.pages.application.statusSubtitle : t.pages.application.statusSubtitleBefore}
                     </p>
-                    <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
-                        <Button className="z-10 apply-now-pulse" href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
-                            {t.pages.application.startApplication}
-                        </Button>
-                    </div>
+                    {applicationsOpen && (
+                        <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
+                            <Button className="z-10 apply-now-pulse" href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
+                                {t.pages.application.startApplication}
+                            </Button>
+                        </div>
+                    )}
                 </div>
             </Container>
 
@@ -311,8 +314,8 @@ export default function ApplicationPage() {
                 heading={t.pages.application.ctaHeading}
                 text={t.pages.application.ctaText}
                 buttons={[
-                    { label: t.pages.application.startApplication, href: APPLICATION_FORM_URL, variant: 'primary', target: '_blank' },
-                    { label: t.pages.application.ctaSecondary, href: '/contact', variant: 'tertiary' }
+                    ...(applicationsOpen ? [{ label: t.pages.application.startApplication, href: APPLICATION_FORM_URL, variant: 'primary', target: '_blank' }] : []),
+                    { label: t.pages.application.ctaSecondary, href: '/contact', variant: applicationsOpen ? 'tertiary' : 'primary' }
                 ]}
             />
 

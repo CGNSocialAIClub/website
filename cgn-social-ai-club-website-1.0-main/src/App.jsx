@@ -8,6 +8,7 @@ import ContactSection from './components/sections/ContactSection';
 import NetworkSection from './components/sections/NetworkSection';
 import SocialsSection from './components/sections/SocialsSection';
 import CTASection from './components/sections/CTASection';
+import RecruitingBanner from './components/sections/RecruitingBanner';
 import Aurora from './components/Aurora';
 import React from 'react';
 import Seo from './components/ui/Seo';
@@ -95,6 +96,7 @@ function App() {
             <div className="w-full h-[180px] md:h-[206px]" aria-hidden="true" />
             <TeamPhotoSection />
             */}
+            <RecruitingBanner />
             <AboutSection />
             <ProjectsSection />
             <SponsorsSectionFull />
