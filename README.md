@@ -1,6 +1,6 @@
 # CGN Social AI Club — Website
 
-The official website of **CGN Social AI Club e.V.**, live at **https://cgn-socialaiclub.de**.
+The official website of **CGN Social AI Club e.V.**, live at **https://cologne-socialaiclub.de**.
 
 This README is written for whoever maintains the site next. You don't need to be a React expert: most day-to-day changes (adding a member, a project, or changing text) mean editing a JSON or JS file and pushing to `main`.
 
@@ -226,7 +226,7 @@ The email `contact@cologne-socialaiclub.de` is written directly in several files
 |---|---|
 | Code | GitHub: `CGNSocialAIClub/website`, branch `main` |
 | Hosting | Cloudflare Workers (static assets), configured in `wrangler.jsonc` |
-| Domain | `cgn-socialaiclub.de`, connected in Cloudflare under the Worker's **Settings → Domains & Routes** |
+| Domain | `cologne-socialaiclub.de`, connected in Cloudflare under the Worker's **Settings → Domains & Routes** |
 
 **Normal workflow:** push to `main`, then Cloudflare builds and deploys automatically. In the Cloudflare dashboard (**Workers & Pages → the website Worker**) the Git connection is set up with:
 
@@ -262,7 +262,7 @@ When the person responsible for the website changes, make sure the new person ha
 
 - [ ] Admin or write access to the GitHub organisation **CGNSocialAIClub**
 - [ ] Access to the club's **Cloudflare account** (hosting + domain settings)
-- [ ] Access to wherever the **domain `cgn-socialaiclub.de`** is registered, and knows when it renews
+- [ ] Access to wherever the **domain `cologne-socialaiclub.de`** is registered, and knows when it renews
 - [ ] Access to the **contact@cologne-socialaiclub.de** mailbox, if they handle website enquiries
 - [ ] Read this README and done one small test change end-to-end (edit, build, push, check the live site)
 
