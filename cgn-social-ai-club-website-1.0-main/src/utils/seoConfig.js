@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://cgn-socialaiclub.de';
+export const SITE_URL = 'https://cologne-socialaiclub.de';
 
 export const ROUTE_SEO = {
     '/': {

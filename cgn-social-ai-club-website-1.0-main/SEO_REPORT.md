@@ -15,15 +15,15 @@ Date: 2026-02-18
 
 | URL path | Current title | Current H1 | Indexability |
 | --- | --- | --- | --- |
-| `/` | `Home | CGN Social AI Club` | `CGN Social AI Club: AI for social good projects with nonprofits` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/` |
-| `/community` | `Our Community | CGN Social AI Club` | `Get to Know Our Departments` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/community` |
-| `/social-partners` | `Nonprofits & Project Partners | CGN Social AI Club` | `Let's Build AI Solutions for Your Mission` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/social-partners` |
-| `/sponsors` | `Partners | CGN Social AI Club` | `Empower Tomorrow's AI Leaders` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/sponsors` |
-| `/contact` | `Contact | CGN Social AI Club` | `Let's Connect` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/contact` |
-| `/application` | `Application | CGN Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/application` |
-| `/privacy` | `Privacy Policy | CGN Social AI Club` | `Datenschutzerklärung` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/privacy` |
-| `/imprint` | `Imprint | CGN Social AI Club` | `Impressum` | Indexable. `robots=index,follow`. Canonical `https://cgn-socialaiclub.de/imprint` |
-| `*` not found route | `Page Not Found | CGN Social AI Club` | `Lost in AI?` | Non indexable. `robots=noindex,nofollow`. Canonical `https://cgn-socialaiclub.de/<unknown-path>` |
+| `/` | `Home | CGN Social AI Club` | `CGN Social AI Club: AI for social good projects with nonprofits` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/` |
+| `/community` | `Our Community | CGN Social AI Club` | `Get to Know Our Departments` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/community` |
+| `/social-partners` | `Nonprofits & Project Partners | CGN Social AI Club` | `Let's Build AI Solutions for Your Mission` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/social-partners` |
+| `/sponsors` | `Partners | CGN Social AI Club` | `Empower Tomorrow's AI Leaders` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/sponsors` |
+| `/contact` | `Contact | CGN Social AI Club` | `Let's Connect` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/contact` |
+| `/application` | `Application | CGN Social AI Club` | `Applications Are Currently Closed` or `Applications Are Now Open!` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/application` |
+| `/privacy` | `Privacy Policy | CGN Social AI Club` | `Datenschutzerklärung` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/privacy` |
+| `/imprint` | `Imprint | CGN Social AI Club` | `Impressum` | Indexable. `robots=index,follow`. Canonical `https://cologne-socialaiclub.de/imprint` |
+| `*` not found route | `Page Not Found | CGN Social AI Club` | `Lost in AI?` | Non indexable. `robots=noindex,nofollow`. Canonical `https://cologne-socialaiclub.de/<unknown-path>` |
 
 ### Existing SEO infrastructure
 - `robots.txt`: missing before. now present at `public/robots.txt`.
@@ -134,17 +134,17 @@ Date: 2026-02-18
 - Bundle size warning from Vite.
 
 ### Manual steps. Google Search Console
-1. Add and verify property `https://cgn-socialaiclub.de`.
-2. Submit sitemap `https://cgn-socialaiclub.de/sitemap.xml`.
+1. Add and verify property `https://cologne-socialaiclub.de`.
+2. Submit sitemap `https://cologne-socialaiclub.de/sitemap.xml`.
 3. Run URL Inspection and Request Indexing for core URLs.
 4. Monitor Coverage and Enhancements for Breadcrumb and Rich Result processing.
 
 ### URLs to test in Search Console
-- `https://cgn-socialaiclub.de/`
-- `https://cgn-socialaiclub.de/community`
-- `https://cgn-socialaiclub.de/social-partners`
-- `https://cgn-socialaiclub.de/sponsors`
-- `https://cgn-socialaiclub.de/contact`
-- `https://cgn-socialaiclub.de/application`
-- `https://cgn-socialaiclub.de/privacy`
-- `https://cgn-socialaiclub.de/imprint`
+- `https://cologne-socialaiclub.de/`
+- `https://cologne-socialaiclub.de/community`
+- `https://cologne-socialaiclub.de/social-partners`
+- `https://cologne-socialaiclub.de/sponsors`
+- `https://cologne-socialaiclub.de/contact`
+- `https://cologne-socialaiclub.de/application`
+- `https://cologne-socialaiclub.de/privacy`
+- `https://cologne-socialaiclub.de/imprint`

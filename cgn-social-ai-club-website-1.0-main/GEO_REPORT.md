@@ -51,8 +51,8 @@ Tatsächlich verwendete Kernbegriffe:
 
 Externe Profile und offizielle Kontaktpunkte:
 - LinkedIn: `https://www.linkedin.com/company/cgnsocialaiclub`
-- Website: `https://cgn-socialaiclub.de`
-- Contact: `contact@cgn-socialaiclub.de`
+- Website: `https://cologne-socialaiclub.de`
+- Contact: `contact@cologne-socialaiclub.de`
 
 ### 1.4 Mehrsprachigkeit
 - Keine getrennten Sprachversionen oder locale Routen.
@@ -67,7 +67,7 @@ Externe Profile und offizielle Kontaktpunkte:
 - Lösung: `llms.txt` plus `ai.txt` Hinweis ergänzen.
 - Wo im Code: `public/llms.txt`, `public/ai.txt`
 - Risiko: sehr gering
-- Wie testen: `curl https://cgn-socialaiclub.de/llms.txt` und `curl https://cgn-socialaiclub.de/ai.txt`
+- Wie testen: `curl https://cologne-socialaiclub.de/llms.txt` und `curl https://cologne-socialaiclub.de/ai.txt`
 
 2. Problem: Entity Kontext war vorhanden aber zu knapp für generative Zitierbarkeit.
 - Lösung: Organization JSON LD um affiliation context, location, areaServed, topical focus erweitern.
@@ -147,7 +147,7 @@ Empfohlene Route Patterns:
 ### 3.5 Empfohlene Redirect und Canonical Regeln
 - 301 `http -> https`
 - 301 `www -> apex`
-- canonical host always `https://cgn-socialaiclub.de`
+- canonical host always `https://cologne-socialaiclub.de`
 - trailing slash normalization by canonical tags already present
 
 ## 4. Umsetzung. Nur technische unsichtbare Maßnahmen
@@ -197,7 +197,7 @@ Empfohlene Route Patterns:
 
 ### 5.2 JSON LD und Snippet Tests
 1. Rich Results Test
-- Test `https://cgn-socialaiclub.de/`
+- Test `https://cologne-socialaiclub.de/`
 - Validate Organization and WebSite schema
 
 2. Schema validation
@@ -205,18 +205,18 @@ Empfohlene Route Patterns:
 - Confirm no schema errors
 
 3. Search Console
-- Property for `https://cgn-socialaiclub.de`
-- Submit sitemap `https://cgn-socialaiclub.de/sitemap.xml`
+- Property for `https://cologne-socialaiclub.de`
+- Submit sitemap `https://cologne-socialaiclub.de/sitemap.xml`
 - URL Inspection and Request indexing for key routes
 
 ### 5.3 Key URLs zum Testen
-- `https://cgn-socialaiclub.de/`
-- `https://cgn-socialaiclub.de/community`
-- `https://cgn-socialaiclub.de/social-partners`
-- `https://cgn-socialaiclub.de/sponsors`
-- `https://cgn-socialaiclub.de/contact`
-- `https://cgn-socialaiclub.de/application`
-- `https://cgn-socialaiclub.de/privacy`
-- `https://cgn-socialaiclub.de/imprint`
-- `https://cgn-socialaiclub.de/llms.txt`
-- `https://cgn-socialaiclub.de/ai.txt`
+- `https://cologne-socialaiclub.de/`
+- `https://cologne-socialaiclub.de/community`
+- `https://cologne-socialaiclub.de/social-partners`
+- `https://cologne-socialaiclub.de/sponsors`
+- `https://cologne-socialaiclub.de/contact`
+- `https://cologne-socialaiclub.de/application`
+- `https://cologne-socialaiclub.de/privacy`
+- `https://cologne-socialaiclub.de/imprint`
+- `https://cologne-socialaiclub.de/llms.txt`
+- `https://cologne-socialaiclub.de/ai.txt`
