@@ -50,7 +50,7 @@ Tatsächlich verwendete Kernbegriffe:
 - CGN. Cologne. Germany
 
 Externe Profile und offizielle Kontaktpunkte:
-- LinkedIn: `https://www.linkedin.com/company/cgnsocialaiclub`
+- LinkedIn: `https://www.linkedin.com/company/cgn-socialaiclub/`
 - Website: `https://cologne-socialaiclub.de`
 - Contact: `contact@cologne-socialaiclub.de`
 

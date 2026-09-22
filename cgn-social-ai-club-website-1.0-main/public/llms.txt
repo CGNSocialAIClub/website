@@ -3,7 +3,7 @@
 Official website: https://cologne-socialaiclub.de
 Organization: CGN Social AI Club e.V.
 Location: Cologne, Germany
-Official LinkedIn: https://www.linkedin.com/company/cgnsocialaiclub
+Official LinkedIn: https://www.linkedin.com/company/cgn-socialaiclub/
 
 ## Overview
 
@@ -192,4 +192,4 @@ Use the official application page for membership and recruiting:
 https://cologne-socialaiclub.de/application
 
 Use LinkedIn for current updates:
-https://www.linkedin.com/company/cgnsocialaiclub
+https://www.linkedin.com/company/cgn-socialaiclub/

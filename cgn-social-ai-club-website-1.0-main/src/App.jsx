@@ -50,7 +50,7 @@ function App() {
             'Student Community',
         ],
         sameAs: [
-            'https://www.linkedin.com/company/cgnsocialaiclub',
+            'https://www.linkedin.com/company/cgn-socialaiclub/',
         ],
     };
     const websiteSchema = {
