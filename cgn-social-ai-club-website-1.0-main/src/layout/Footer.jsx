@@ -31,7 +31,6 @@ export default function Footer() {
         { name: t.footer.contact, href: '/contact', isRoute: true },
         { name: t.footer.privacy, href: '/privacy', isRoute: true },
         { name: t.footer.imprint, href: '/imprint', isRoute: true },
-        { name: t.footer.notFound, href: '/404', isRoute: true },
     ];
 
     return (

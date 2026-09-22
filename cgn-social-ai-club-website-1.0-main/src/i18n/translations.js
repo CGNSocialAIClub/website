@@ -21,7 +21,6 @@ export const translations = {
             contact: 'Contact',
             privacy: 'Privacy Policy',
             imprint: 'Imprint',
-            notFound: '404',
             tagline: "Germany's first AI-for-Good student initiative.\nNow in Cologne.\nGlobal impact.",
         },
         home: {
@@ -346,7 +345,6 @@ export const translations = {
             contact: 'Kontakt',
             privacy: 'Datenschutz',
             imprint: 'Impressum',
-            notFound: '404',
             tagline: 'Deutschlands erste studentische AI-for-Good Initiative.\nJetzt in Köln.\nGlobale Wirkung.',
         },
         home: {
