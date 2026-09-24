@@ -410,7 +410,7 @@
 }
 
 .dark {
-    --recruiting-bg: #092D58;
+    --recruiting-bg: #042F5B; /* matches the dark banner artwork background */
     --recruiting-kicker: #4BFFC0;
 }
 
