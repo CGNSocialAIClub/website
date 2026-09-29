@@ -96,5 +96,19 @@
         "offsetX": 50,
         "offsetY": 50,
         "status": "active member"
+    },
+    {
+        "id": "sörenschäfer",
+        "name": "Sören Schäfer",
+        "role": "Member",
+        "department": "Engineering",
+        "image": "/cms/team/Soeren_Schaefer_Portraet.jpeg",
+        "linkedin": "https://www.linkedin.com/in/sören-schäfer-118a05249/",
+        "github": "",
+        "email": "",
+        "zoom": 1,
+        "offsetX": 50,
+        "offsetY": 50,
+        "status": "active member"
     }
 ]
