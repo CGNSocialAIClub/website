@@ -16,7 +16,7 @@ import { SITE_POPUP, areApplicationsOpen } from '../config/features';
 import SectionLabel from '../components/ui/SectionLabel';
 import { assetUrl } from '../utils/assetUrl';
 
-const APPLICATION_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSe-w-BjsELMrcPbdA2b4Maa8d3h6Tw-wngtP4pgIONB1FN6Cw/viewform?usp=dialog';
+const APPLICATION_FORM_URL = 'https://tally.so/r/dWrOqD';
 
 export default function ApplicationPage() {
     const { t } = useLocale();
