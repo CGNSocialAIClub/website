@@ -8,7 +8,7 @@ export default function Seo({
     title,
     description,
     url,
-    image = `${SITE_URL}/assets/social-preview/link-preview-image-1.png`,
+    image = `${SITE_URL}/assets/social-preview/link-preview-cgn.png`,
     noIndex,
     structuredData = [],
 }) {
