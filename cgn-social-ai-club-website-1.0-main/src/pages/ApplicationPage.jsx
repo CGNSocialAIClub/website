@@ -1,5 +1,4 @@
-
-
+import OptimizedImage from '../components/ui/OptimizedImage.jsx';
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Container from '../components/ui/Container';
@@ -9,11 +8,10 @@ import DepartmentCard from '../components/cards/DepartmentCard';
 
 import Button from '../components/ui/Button';
 import CTASection from '../components/sections/CTASection';
-import { Rocket, Target, Brain, Lightbulb, Users, GraduationCap, X } from 'lucide-react';
+import { Rocket, Target, Brain, Lightbulb, Users, TrendingUp, GraduationCap, X } from 'lucide-react';
 import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
 import { SITE_POPUP, areApplicationsOpen } from '../config/features';
-import SectionLabel from '../components/ui/SectionLabel';
 import { assetUrl } from '../utils/assetUrl';
 
 const APPLICATION_FORM_URL = 'https://tally.so/r/dWrOqD';
@@ -32,8 +30,9 @@ export default function ApplicationPage() {
             <>
                 {statusTitleWords[0]}
                 {' '}
-                <wbr />
-                {statusTitleWords.slice(1).join('\u00A0')}
+                <span className="sm:whitespace-nowrap">
+                    {statusTitleWords.slice(1).join(' ')}
+                </span>
             </>
         );
 
@@ -122,18 +121,28 @@ export default function ApplicationPage() {
             <Seo title={t.pages.application.title} description={t.pages.application.subtitle} />
             <Container>
                 <HeadingSection
-                    as="h2"
+                    as="h1"
                     badge={t.pages.application.journeyBadge}
-                    title={t.pages.application.journeyTitle}
-                    subtitle={t.pages.application.subtitle}
-                    className=""
+                    title={statusTitleWithPreferredBreak}
+                    subtitle={applicationsOpen
+                        ? t.pages.application.statusSubtitle
+                        : t.pages.application.statusSubtitleBefore}
                 />
 
-                <div className="journey-connector mx-auto -my-5 md:-my-7" />
+                <div className="application-journey relative mx-auto max-w-4xl">
+                    <div className="absolute inset-x-0 bottom-0 overflow-hidden pointer-events-none" style={{ top: applicationsOpen ? '24px' : 0 }} aria-hidden="true">
+                        <div className="timeline-line" />
+                    </div>
+                {applicationsOpen && (
+                    <div id="start-application" className="relative mx-auto mb-8 flex max-w-4xl flex-col items-center scroll-mt-36">
+                        <Button className="z-10 application-start-pulse" href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
+                            {t.pages.application.startApplication}
+                        </Button>
+                    </div>
+                )}
 
                 {/* Timeline Layout - sequential border glow */}
-                <div className="relative max-w-4xl mx-auto flex flex-col gap-0">
-                    <div className="journey-backbone" />
+                <div className="relative max-w-4xl mx-auto flex flex-col gap-8 md:gap-12">
                     {/* Step 1: Batch Introduction - Centered at top */}
                     <div className="relative flex justify-center">
                         <div ref={(element) => { stepRefs.current[0] = element; }} className="journey-step rounded-3xl w-full max-w-md z-10">
@@ -144,19 +153,17 @@ export default function ApplicationPage() {
                             />
                         </div>
                     </div>
-                    <div ref={(element) => { connectorRefs.current[0] = element; }} className="journey-connector mx-auto -my-5 md:-my-7" />
-
                     {/* Step 2: Initiative Track & Engineering Track - Connected box */}
                     <div className="relative flex justify-center">
                         <div ref={(element) => { stepRefs.current[1] = element; }} className="journey-step w-full z-10 bg-[var(--bg-surface)] rounded-2xl shadow-lg border border-[var(--border-default)]">
                             <div className="grid grid-cols-1 md:grid-cols-2 relative">
                                 {/* Engineering Track - First on mobile (stacked on top), Left on desktop */}
                                 <div className="p-6 md:p-8 flex flex-col gap-3 order-1 md:order-1">
-                                    <div className="flex items-start gap-3 mb-2">
+                                    <div className="flex items-center gap-3 mb-2">
                                         <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--bg-surface-subtle)] flex-shrink-0">
                                             <Brain className="w-7 h-7 text-purple-400" />
                                         </div>
-                                        <span className="text-lg font-semibold text-[var(--text-primary)] font-heading pt-1.5">
+                                        <span className="text-[length:var(--type-heading-sm)] leading-heading font-semibold text-[var(--text-primary)] font-heading">
                                             {t.pages.application.steps.engineeringTitle}
                                         </span>
                                     </div>
@@ -181,11 +188,11 @@ export default function ApplicationPage() {
 
                                 {/* Initiative Track - Second on mobile, Right on desktop */}
                                 <div className="p-6 md:p-8 flex flex-col gap-3 order-3 md:order-2">
-                                    <div className="flex items-start gap-3 mb-2">
+                                    <div className="flex items-center gap-3 mb-2">
                                         <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-[var(--bg-surface-subtle)] flex-shrink-0">
                                             <Target className="w-7 h-7 text-[#FF7D00]" />
                                         </div>
-                                        <span className="text-lg font-semibold text-[var(--text-primary)] font-heading pt-1.5">
+                                        <span className="text-[length:var(--type-heading-sm)] leading-heading font-semibold text-[var(--text-primary)] font-heading">
                                             {t.pages.application.steps.initiativeTitle}
                                         </span>
                                     </div>
@@ -196,8 +203,6 @@ export default function ApplicationPage() {
                             </div>
                         </div>
                     </div>
-                    <div ref={(element) => { connectorRefs.current[1] = element; }} className="journey-connector mx-auto -my-5 md:-my-7" />
-
                     {/* Step 3: Expert Mentorship */}
                     <div className="relative flex justify-center">
                         <div ref={(element) => { stepRefs.current[2] = element; }} className="journey-step rounded-3xl z-10 max-w-md w-full">
@@ -208,8 +213,6 @@ export default function ApplicationPage() {
                             />
                         </div>
                     </div>
-                    <div ref={(element) => { connectorRefs.current[2] = element; }} className="journey-connector mx-auto -my-5 md:-my-7" />
-
                     {/* Step 4: Community Events */}
                     <div className="relative flex justify-center">
                         <div ref={(element) => { stepRefs.current[3] = element; }} className="journey-step rounded-3xl z-10 max-w-md w-full">
@@ -220,11 +223,19 @@ export default function ApplicationPage() {
                             />
                         </div>
                     </div>
-                    <div ref={(element) => { connectorRefs.current[3] = element; }} className="journey-connector mx-auto -my-5 md:-my-7" />
-
-                    {/* Step 5: Alumni Network - Centered at bottom */}
+                    {/* Step 5: Leadership & Ownership */}
                     <div className="relative flex justify-center">
                         <div ref={(element) => { stepRefs.current[4] = element; }} className="journey-step rounded-3xl w-full max-w-md z-10">
+                            <MemberJourneyCard
+                                icon={<TrendingUp className="w-7 h-7 text-violet-400" />}
+                                title={t.pages.application.steps.leadershipTitle}
+                                description={t.pages.application.steps.leadershipText}
+                            />
+                        </div>
+                    </div>
+                    {/* Step 6: Alumni Network - Centered at bottom */}
+                    <div className="relative flex justify-center">
+                        <div ref={(element) => { stepRefs.current[5] = element; }} className="journey-step rounded-3xl w-full max-w-md z-10">
                             <MemberJourneyCard
                                 icon={<GraduationCap className="w-7 h-7 text-amber-400" />}
                                 title={t.pages.application.steps.alumniTitle}
@@ -234,7 +245,9 @@ export default function ApplicationPage() {
                     </div>
                 </div>
 
-                <div className="mt-16 md:mt-20">
+                </div>
+
+                <div className="section-start">
                     <HeadingSection
                         as="h2"
                         badge={t.pages.community.departmentsBadge}
@@ -256,24 +269,9 @@ export default function ApplicationPage() {
                                 { name: 'Finance Legal Admin', logo: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL.png'), logoDark: assetUrl('/assets/logos/V6_ICON+DEPARTMENT-FINANCE-LEGAL-light.png') },
                             ];
 
-                            const engineering = departments.find((dept) => dept.name === 'Engineering');
-                            const others = departments.filter((dept) => dept.name !== 'Engineering');
-
                             return (
-                                <>
-                                    {engineering && (
-                                        <div>
-                                            <DepartmentCard
-                                                key={engineering.name}
-                                                name={engineering.name}
-                                                logo={engineering.logo}
-                                                logoDark={engineering.logoDark}
-                                                isMain
-                                            />
-                                        </div>
-                                    )}
                                     <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-                                        {others.map((dept) => (
+                                        {departments.map((dept) => (
                                             <div key={dept.name} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] max-w-[420px]">
                                                 <DepartmentCard
                                                     name={dept.name}
@@ -283,30 +281,11 @@ export default function ApplicationPage() {
                                             </div>
                                         ))}
                                     </div>
-                                </>
                             );
                         })()}
                     </div>
                 </div>
 
-                <div className="mx-auto mt-16 mb-12 flex w-full max-w-4xl flex-col items-center text-center md:mt-20">
-                    <div className="mb-6">
-                        <SectionLabel>{t.pages.application.badge}</SectionLabel>
-                    </div>
-                    <h1 className="max-w-4xl text-5xl font-bold font-heading text-[var(--text-primary)] md:text-6xl">
-                        {statusTitleWithPreferredBreak}
-                    </h1>
-                    <p className="mt-6 max-w-2xl text-xl leading-relaxed text-[var(--text-secondary)] md:text-2xl">
-                        {applicationsOpen ? t.pages.application.statusSubtitle : t.pages.application.statusSubtitleBefore}
-                    </p>
-                    {applicationsOpen && (
-                        <div id="start-application" className="mt-8 flex w-full flex-col items-center gap-8 scroll-mt-36">
-                            <Button className="z-10 apply-now-pulse" href={APPLICATION_FORM_URL} target="_blank" rel="noopener noreferrer">
-                                {t.pages.application.startApplication}
-                            </Button>
-                        </div>
-                    )}
-                </div>
             </Container>
 
             <CTASection
@@ -314,8 +293,8 @@ export default function ApplicationPage() {
                 heading={t.pages.application.ctaHeading}
                 text={t.pages.application.ctaText}
                 buttons={[
-                    ...(applicationsOpen ? [{ label: t.pages.application.startApplication, href: APPLICATION_FORM_URL, variant: 'primary', target: '_blank' }] : []),
-                    { label: t.pages.application.ctaSecondary, href: '/contact', variant: applicationsOpen ? 'tertiary' : 'primary' }
+                    ...(applicationsOpen ? [{ label: t.pages.application.startApplication, href: APPLICATION_FORM_URL, variant: 'gradient', target: '_blank' }] : []),
+                    { label: t.pages.application.ctaSecondary, href: '/contact', variant: applicationsOpen ? 'tertiary' : 'gradient' }
                 ]}
             />
 
@@ -334,9 +313,10 @@ export default function ApplicationPage() {
                     </button>
                     <div className="pr-8">
                         <div className="flex items-center gap-2">
-                            <img
+                            <OptimizedImage
                                 src={SITE_POPUP.badgeLogoSrc}
                                 alt={SITE_POPUP.badgeLogoAlt}
+                                fallback={<span className="font-heading font-bold">{SITE_POPUP.badgeLogoAlt}</span>}
                                 className="h-5 w-auto shrink-0"
                             />
                             <p className="text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)]">

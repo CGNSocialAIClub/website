@@ -1,3 +1,4 @@
+import projectTeams from '../data/projectTeams.json';
 import projects from '../data/projects.json';
 import team from '../data/team.json';
 
@@ -51,25 +52,28 @@ function withLocaleProject(project, locale = 'en') {
     return localized ? { ...project, ...localized } : project;
 }
 
-export function getProjects(locale = 'en') {
-    return projects.map((project) => {
-        const author = team.find(member => member.id === project.authorId);
-        return {
-            ...withLocaleProject(project, locale),
-            author
-        };
+function publicProject(project, locale) {
+    const contributors = (projectTeams[project.id] || []).flatMap(({ memberId, role, id, name }) => {
+        // Named project credits need not create an unrelated global team profile.
+        const member = memberId ? team.find(person => person.id === memberId) : (id && name ? { id, name } : null);
+        return member ? [{ ...member, projectRole: role }] : [];
     });
+    return {
+        ...withLocaleProject(project, locale),
+        author: team.find(member => member.id === project.authorId),
+        contributors,
+    };
+}
+
+export function getProjects(locale = 'en') {
+    return projects
+        .filter(project => project.published !== false)
+        .map(project => publicProject(project, locale));
 }
 
 export function getProjectById(id, locale = 'en') {
-    const project = projects.find(p => p.id === id);
-    if (!project) return null;
-
-    const author = team.find(member => member.id === project.authorId);
-    return {
-        ...withLocaleProject(project, locale),
-        author
-    };
+    const project = projects.find(p => p.id === id && p.published !== false);
+    return project ? publicProject(project, locale) : null;
 }
 
 export function getTeamMembers() {

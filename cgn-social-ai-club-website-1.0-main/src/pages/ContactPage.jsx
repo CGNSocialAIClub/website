@@ -1,4 +1,5 @@
 
+import CTASection from '../components/sections/CTASection';
 import Container from '../components/ui/Container';
 import HeadingSection from '../components/ui/HeadingSection';
 import ContactSection from '../components/sections/ContactSection';
@@ -7,7 +8,7 @@ import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
 
 export default function ContactPage() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
 
     return (
         <>
@@ -23,7 +24,7 @@ export default function ContactPage() {
                             {t.pages.contact.subtitle.split('contact@cologne-socialaiclub.de')[0]}
                             <a
                                 href="mailto:contact@cologne-socialaiclub.de"
-                                className="text-[var(--text-secondary)] hover:underline transition-colors font-medium"
+                                className="text-[var(--text-primary)] hover:text-[var(--text-accent)] hover:underline transition-colors font-medium"
                             >
                                 contact@cologne-socialaiclub.de
                             </a>
@@ -36,6 +37,10 @@ export default function ContactPage() {
                 </Container>
             </div>
             <SocialsSection />
+            <CTASection heading={locale==='de'?'Lerne uns näher kennen.':'Get to know us.'} text={locale==='de'?'Die Menschen hinter den Projekten und die Arbeit, die uns zusammenbringt.':'Meet the people behind the projects and see what we are working on.'} buttons={[
+                {label:t.cta.students.buttons[1],href:'/team',variant:'primary'},
+                {label:t.cta.members.buttons[1],href:'/projects',variant:'tertiary'},
+            ]}/>
         </>
     );
 }

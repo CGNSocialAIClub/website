@@ -8,7 +8,7 @@ const SponsorsSectionFull = () => {
     const { t } = useLocale();
 
     return (
-        <section id="sponsors" className="w-full py-16">
+        <section id="sponsors" className="w-full section-block">
             <Container>
                 <div className="flex flex-col items-center mb-12 md:mb-16 space-y-4 text-center px-2">
                     <SectionLabel>{t.home.sponsorsBadge}</SectionLabel>

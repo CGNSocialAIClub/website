@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PartnerCard from '../cards/PartnerCard';
+import './SponsorsSection.css';
 import Button from '../ui/Button';
 import { useLocale } from '../../i18n/LocaleContext';
 import { assetUrl } from '../../utils/assetUrl';
@@ -7,10 +8,9 @@ import { assetUrl } from '../../utils/assetUrl';
 export default function SponsorsSection({ hideCTA = false }) {
     const { t } = useLocale();
     const normalizeTier = (tier) => (tier || '').toLowerCase().trim();
-    const sponsorContainerRef = useRef(null);
-    const supporterContainerRef = useRef(null);
-    const [sponsorCols, setSponsorCols] = useState(1);
-    const [supporterCols, setSupporterCols] = useState(1);
+    const sponsorCardRefs = useRef([]);
+    const [sponsorCols, setSponsorCols] = useState(null);
+    const [centeredSponsorIndex, setCenteredSponsorIndex] = useState(null);
 
     // Current strategic partner data
     const partners = [
@@ -19,8 +19,8 @@ export default function SponsorsSection({ hideCTA = false }) {
             name: 'STARTPLATZ',
             tier: 'partner',
             logo: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
-            href: 'https://www.startplatz.de',
+            logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo-white.png'),
+            website: 'https://www.startplatz.de',
         },
 
         // Supporter
@@ -29,7 +29,7 @@ export default function SponsorsSection({ hideCTA = false }) {
             tier: 'supporter',
             logo: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-dark.png'),
             logoDark: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-white.png'),
-            href: 'https://www.datacamp.com/',
+            website: 'https://www.datacamp.com/',
         },
 
         // Gold Tier
@@ -76,105 +76,120 @@ export default function SponsorsSection({ hideCTA = false }) {
     const sponsorPartners = partners.filter((p) => normalizeTier(p.tier) !== 'supporter');
     const supporterPartners = partners.filter((p) => normalizeTier(p.tier) === 'supporter');
 
+    // CSS owns the responsive layout; this query only enables the mobile highlight.
     useEffect(() => {
-        const updateCols = () => {
-            if (sponsorContainerRef.current) {
-                const width = sponsorContainerRef.current.offsetWidth;
-                setSponsorCols(Math.max(1, Math.floor((width + 32) / (384 + 32))));
+        const singleColumn = window.matchMedia('(max-width: 639px)');
+        const updateHighlight = () => setSponsorCols(singleColumn.matches ? 1 : null);
+        updateHighlight();
+        singleColumn.addEventListener('change', updateHighlight);
+        return () => singleColumn.removeEventListener('change', updateHighlight);
+    }, []);
+
+    useEffect(() => {
+        if (sponsorCols !== 1) {
+            setCenteredSponsorIndex(null);
+            return undefined;
+        }
+
+        let animationFrame = null;
+
+        const updateCenteredSponsor = () => {
+            animationFrame = null;
+            const viewportCenter = window.innerHeight / 2;
+            let activeIndex = null;
+            let latestTopAtOrAboveViewportCenter = Number.NEGATIVE_INFINITY;
+            let firstVisibleIndex = null;
+            let firstVisibleTop = Number.POSITIVE_INFINITY;
+
+            sponsorCardRefs.current.forEach((card, index) => {
+                if (!card) return;
+
+                const rect = card.getBoundingClientRect();
+                const isVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+                if (!isVisible) return;
+
+                if (rect.top < firstVisibleTop) {
+                    firstVisibleTop = rect.top;
+                    firstVisibleIndex = index;
+                }
+
+                if (
+                    rect.top <= viewportCenter
+                    && rect.top > latestTopAtOrAboveViewportCenter
+                ) {
+                    latestTopAtOrAboveViewportCenter = rect.top;
+                    activeIndex = index;
+                }
+            });
+
+            if (activeIndex === null) {
+                activeIndex = firstVisibleIndex;
             }
 
-            if (supporterContainerRef.current) {
-                const width = supporterContainerRef.current.offsetWidth;
-                setSupporterCols(Math.max(1, Math.floor((width + 32) / (260 + 32))));
+            setCenteredSponsorIndex((currentIndex) => (
+                currentIndex === activeIndex ? currentIndex : activeIndex
+            ));
+        };
+
+        const scheduleUpdate = () => {
+            if (animationFrame === null) {
+                animationFrame = window.requestAnimationFrame(updateCenteredSponsor);
             }
         };
 
-        updateCols();
-        window.addEventListener('resize', updateCols);
-        return () => window.removeEventListener('resize', updateCols);
-    }, []);
+        scheduleUpdate();
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('resize', scheduleUpdate);
 
-    const splitForOrphan = (items, cols) => {
-        if (cols <= 2 || items.length <= 1 || items.length % cols !== 1) {
-            return [items, []];
-        }
-        return [items.slice(0, -2), items.slice(-2)];
-    };
-
-    const [sponsorPrimary, sponsorTail] = splitForOrphan(sponsorPartners, sponsorCols);
-    const [supporterPrimary, supporterTail] = splitForOrphan(supporterPartners, supporterCols);
+        return () => {
+            window.removeEventListener('scroll', scheduleUpdate);
+            window.removeEventListener('resize', scheduleUpdate);
+            if (animationFrame !== null) {
+                window.cancelAnimationFrame(animationFrame);
+            }
+        };
+    }, [sponsorCols]);
 
     return (
         <>
             {sponsorPartners.length > 0 && (
-                <div ref={sponsorContainerRef} className="px-4">
-                    <div className="flex flex-wrap justify-center items-center gap-8">
-                        {sponsorPrimary.map((partner, index) => (
-                            <div key={`sponsor-primary-${index}`} className="w-full max-w-sm">
-                                <PartnerCard
-                                    variant="sponsor"
-                                    tier={partner.tier}
-                                    name={partner.name}
-                                    logo={partner.logo}
-                                    logoDark={partner.logoDark}
-                                    href={partner.href}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    {sponsorTail.length > 0 && (
-                        <div className="mt-8 flex flex-wrap justify-center items-center gap-8">
-                            {sponsorTail.map((partner, index) => (
-                                <div key={`sponsor-tail-${index}`} className="w-full max-w-sm">
-                                    <PartnerCard
-                                        variant="sponsor"
-                                        tier={partner.tier}
-                                        name={partner.name}
-                                        logo={partner.logo}
-                                        logoDark={partner.logoDark}
-                                    href={partner.href}
-                                    />
-                                </div>
-                            ))}
+                <div className="partner-card-grid partner-card-grid--sponsors">
+                    {sponsorPartners.map((partner, index) => (
+                        <div key={partner.name} ref={(element) => { sponsorCardRefs.current[index] = element; }} className="partner-card-grid__item">
+                            <PartnerCard
+                                variant="sponsor"
+                                tier={partner.tier}
+                                name={partner.name}
+                                logo={partner.logo}
+                                logoDark={partner.logoDark}
+                                wordmark={partner.wordmark}
+                                website={partner.website}
+                                showMetallicBackground={sponsorCols === 1 && centeredSponsorIndex !== null && index === centeredSponsorIndex}
+                                useCenteredHighlight={sponsorCols === 1}
+                            />
                         </div>
-                    )}
+                    ))}
                 </div>
             )}
             {supporterPartners.length > 0 && (
-                <div ref={supporterContainerRef} className="px-4 mt-8">
-                    <div className="flex flex-wrap justify-center items-center gap-8">
-                        {supporterPrimary.map((partner, index) => (
-                            <div key={`supporter-primary-${index}`} className="w-full max-w-[260px]">
-                                <PartnerCard
-                                    variant="supporter"
-                                    name={partner.name}
-                                    logo={partner.logo}
-                                    logoDark={partner.logoDark}
-                                    href={partner.href}
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    {supporterTail.length > 0 && (
-                        <div className="mt-8 flex flex-wrap justify-center items-center gap-8">
-                            {supporterTail.map((partner, index) => (
-                                <div key={`supporter-tail-${index}`} className="w-full max-w-[260px]">
-                                    <PartnerCard
-                                        variant="supporter"
-                                        name={partner.name}
-                                        logo={partner.logo}
-                                        logoDark={partner.logoDark}
-                                    href={partner.href}
-                                    />
-                                </div>
-                            ))}
+                <div className="partner-card-grid partner-card-grid--supporters" style={{ '--supporter-count': supporterPartners.length }}>
+                    {supporterPartners.map((partner) => (
+                        <div key={partner.name} className="partner-card-grid__item">
+                            <PartnerCard
+                                variant="supporter"
+                                name={partner.name}
+                                logo={partner.logo}
+                                logoDark={partner.logoDark}
+                                wordmark={partner.wordmark}
+                                website={partner.website}
+                            />
                         </div>
-                    )}
+                    ))}
                 </div>
             )}
             {!hideCTA && (
-                <div className="mt-16 text-center">
-                    <p className="text-secondary mb-8">
+                <div className="section-followup">
+                    <p className="text-secondary">
                         {t.sponsorsSection.ctaText}
                     </p>
                     <Button variant="primary" href="/sponsors">

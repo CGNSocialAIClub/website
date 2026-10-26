@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
-import { motion } from 'framer-motion';
 import Container from '../components/ui/Container';
 import HeadingSection from '../components/ui/HeadingSection';
 import TeamMemberCard from '../components/cards/TeamMemberCard';
+import AlumniSection from '../components/sections/AlumniSection';
 import CTASection from '../components/sections/CTASection';
 import Button from '../components/ui/Button';
 import { getTeamMembers } from '../utils/cms';
 import Seo from '../components/ui/Seo';
 import { useLocale } from '../i18n/LocaleContext';
+import { FEATURES } from '../config/features';
 
-/** Wraps a member card so it animates in/out by row (line by line) when scrolling. */
-function AnimatedMemberCardWrapper({ children, rowIndex, className = '' }) {
-    const delay = rowIndex * 0.05;
-    return (
-        <motion.div
-            initial={{ scale: 1, opacity: 1 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.15, delay }}
-            className={className}
-        >
-            {children}
-        </motion.div>
-    );
+// Cards do not need animation controllers for identical start/end styles.
+function AnimatedMemberCardWrapper({ children, className = '' }) {
+    return <div className={className}>{children}</div>;
 }
+
+// Shared sizing keeps board and member cards identical at every breakpoint.
+const MEMBER_CARD_CLASS = "flex w-[calc(50%-8px)] sm:w-[200px] md:w-[220px]";
 
 // Community definitions with order and descriptions
 const communityConfig = [
@@ -50,10 +44,10 @@ const communityConfig = [
             // Secondary sort for Management Board based on specific roles
             if (rankA === 0) {
                 const roleOrder = [
-                    'Head of Strategy',
-                    'Head of Growth',
+                    'Head of Community',
                     'Head of AI Projects',
-                    'Head of Community'
+                    'Head of Strategy',
+                    'Head of Partnerships'
                 ];
                 const aIndex = roleOrder.indexOf(a.role);
                 const bIndex = roleOrder.indexOf(b.role);
@@ -147,14 +141,14 @@ function CommunitySection({ configuration, members, showCommunityLabels, selecte
             <div ref={containerRef} className="w-full">
                 {/* Management Board */}
                 {boardMembers.length > 0 && (
-                    <div className={`mx-auto grid w-full max-w-[724px] grid-cols-2 justify-center gap-4 sm:gap-6 md:gap-8 md:grid-cols-3 ${boardMembers.some(m => m.id === selectedMemberId) ? 'items-start' : 'items-stretch'}`}>
+                    <div className={`mx-auto flex w-full flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 ${boardMembers.some(m => m.id === selectedMemberId) ? 'items-start' : 'items-stretch'}`}>
                         {boardMembers.map((member, idx) => {
                             const rowIndex = Math.floor(idx / numCols);
                             return (
                                 <AnimatedMemberCardWrapper
                                     key={`board-${member.id}-${idx}`}
                                     rowIndex={rowIndex}
-                                    className="flex w-full self-start"
+                                    className={MEMBER_CARD_CLASS}
                                 >
                                     <TeamMemberCard member={member} showDepartment={showCommunityLabels} isSelected={selectedMemberId === member.id} onSelect={onSelectMember} onSocialClick={onSocialClick} />
                                 </AnimatedMemberCardWrapper>
@@ -173,7 +167,7 @@ function CommunitySection({ configuration, members, showCommunityLabels, selecte
                                     <AnimatedMemberCardWrapper
                                         key={`member-primary-${member.id}-${idx}`}
                                         rowIndex={rowIndex}
-                                        className="flex w-[calc(50%-8px)] sm:w-[200px] md:w-[220px] self-start"
+                                        className={MEMBER_CARD_CLASS}
                                     >
                                         <TeamMemberCard member={member} showDepartment={showCommunityLabels} isSelected={selectedMemberId === member.id} onSelect={onSelectMember} onSocialClick={onSocialClick} />
                                     </AnimatedMemberCardWrapper>
@@ -189,7 +183,7 @@ function CommunitySection({ configuration, members, showCommunityLabels, selecte
                                         <AnimatedMemberCardWrapper
                                             key={`member-tail-${member.id}-${idx}`}
                                             rowIndex={rowIndex}
-                                            className="flex w-[calc(50%-8px)] sm:w-[200px] md:w-[220px] self-start"
+                                            className={MEMBER_CARD_CLASS}
                                         >
                                             <TeamMemberCard member={member} showDepartment={showCommunityLabels} isSelected={selectedMemberId === member.id} onSelect={onSelectMember} onSocialClick={onSocialClick} />
                                         </AnimatedMemberCardWrapper>
@@ -209,6 +203,29 @@ export default function CommunityPage() {
     const allMembers = getTeamMembers();
     const [showCommunityLabels, setShowCommunityLabels] = useState(true);
     const [selectedMemberId, setSelectedMemberId] = useState(null);
+
+    useEffect(() => {
+        if (selectedMemberId === null) return;
+
+        const scrollThreshold = 80;
+        let scrollAnchor = null;
+        const handleScroll = () => {
+            if (scrollAnchor !== null && Math.abs(window.scrollY - scrollAnchor) >= scrollThreshold) {
+                setSelectedMemberId(null);
+            }
+        };
+
+        // Start measuring only after the card has been open for five seconds.
+        const timeout = window.setTimeout(() => {
+            scrollAnchor = window.scrollY;
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        }, 5_000);
+
+        return () => {
+            window.clearTimeout(timeout);
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [selectedMemberId]);
 
     const VIEW_LIMIT_PER_DAY = 5;
     const VIEW_STORAGE_KEY = 'community_member_views';
@@ -391,7 +408,7 @@ export default function CommunityPage() {
                 </div>
 
                 {/* Community Sections */}
-                <div className="space-y-24 mb-24">
+                <div className="section-stack section-block">
                     {communitySections.map((section) => (
                         <CommunitySection
                             key={section.id}
@@ -404,8 +421,9 @@ export default function CommunityPage() {
                         />
                     ))}
                 </div>
-                <CTASection variant="members" />
             </Container>
+            {FEATURES.alumni && <AlumniSection members={allMembers.filter(member => member.status === 'alumni')} />}
+            <CTASection variant="members" />
             {isLimitModalOpen && createPortal(
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
                     <div className="relative w-full max-w-md rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xl p-6 text-left flex flex-col gap-6">
@@ -419,7 +437,7 @@ export default function CommunityPage() {
                         </button>
 
                         <div className="flex items-start justify-between pr-12">
-                            <h3 className="text-2xl md:text-3xl leading-tight font-bold text-[var(--text-primary)] font-heading">
+                            <h3 className="text-2xl md:text-3xl leading-heading font-bold text-[var(--text-primary)] font-heading">
                                 {LIMIT_MODAL_VARIANTS[limitModalStep].title}
                             </h3>
                         </div>

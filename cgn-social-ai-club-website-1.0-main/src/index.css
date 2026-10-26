@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "./styles/typography.css";
+@import "./styles/spacing.css";
 
 @theme {
     /* ===== BRAND PRIMITIVES (Tailwind v4) ===== */
@@ -10,14 +12,27 @@
     --color-white: #FFFFFF;
 
     /* Font Families */
-    --font-family-heading: "League Spartan", sans-serif;
-    --font-family-body: "Albert Sans", sans-serif;
+    --font-heading: "League Spartan", sans-serif;
+    --font-body: "Albert Sans", sans-serif;
+
+    /* Compact rhythm for multiline League Spartan content headings. */
+    --leading-heading: 1.1;
 
     /* Custom Breakpoint */
     --breakpoint-nav-desktop: 1150px;
 }
 
-:root {
+:root, .theme-light {
+    --content-max-width: 72rem;
+    --floating-surface-opacity: 50%;
+    --floating-surface-blur: 12px;
+    --bg-floating-surface: color-mix(in srgb, var(--bg-surface) var(--floating-surface-opacity), transparent);
+    --hero-ink: #0a2d57;
+    --hero-copy: #173c65;
+    --hero-base: #edf4fc;
+    --hero-border: rgba(10,45,87,.25);
+    --hero-hover: rgba(255,255,255,.5);
+    --hero-overlay: linear-gradient(180deg,rgba(245,249,255,.64),rgba(245,249,255,.78) 45%,rgba(245,249,255,.60));
     /* ===== SEMANTIC TOKENS - LIGHT MODE ===== */
 
     /* Backgrounds */
@@ -29,9 +44,28 @@
     --bg-surface-subtle: #f8fafc;
     --bg-accent: #0a2d57;
     --bg-accent-hover: var(--color-azure);
+    --button-light-bg: rgba(255, 255, 255, 0.85);
+    --button-light-border: rgba(10, 45, 87, 0.1);
+    --button-light-blur: blur(12px);
+    --button-light-hover: #d5e4f3;
+    --button-dark-bg: rgba(10, 45, 87, 0.85);
+    --button-dark-border: rgba(255, 255, 255, 0.1);
+    --button-dark-blur: blur(12px);
+    --button-dark-hover: #2b75b0;
+    --button-dark-on-dark-hover: #245b92;
+    --button-primary-bg: var(--button-dark-bg);
+    --button-primary-border: var(--button-dark-border);
+    --button-primary-blur: var(--button-dark-blur);
+    --button-primary-hover: var(--button-dark-hover);
+    --button-secondary-bg: var(--button-light-bg);
+    --button-secondary-blur: var(--button-light-blur);
+    --button-secondary-hover: var(--button-light-hover);
+    --button-secondary-border: var(--button-light-border);
 
     /* Text */
     --text-primary: #0a2d57;
+    --text-body: var(--text-primary);
+    --text-on-image: #FFFFFF;
     --text-secondary: #64748b;
     --text-tertiary: #94a3b8;
     --text-inverse: #FFFFFF;
@@ -56,6 +90,12 @@
 }
 
 .dark {
+    --hero-ink: #fff;
+    --hero-copy: rgba(255,255,255,.9);
+    --hero-base: #0a2343;
+    --hero-border: rgba(255,255,255,.35);
+    --hero-hover: rgba(255,255,255,.1);
+    --hero-overlay: linear-gradient(180deg,rgba(5,22,43,.58),rgba(5,22,43,.46) 45%,rgba(5,22,43,.76));
     /* ===== SEMANTIC TOKENS - DARK MODE ===== */
 
     /* Backgrounds */
@@ -67,11 +107,21 @@
     --bg-surface-subtle: rgba(255, 255, 255, 0.05);
     --bg-accent: #FFFFFF;
     --bg-accent-hover: #4BFFC0;
+    --button-primary-bg: var(--button-light-bg);
+    --button-primary-border: var(--button-light-border);
+    --button-primary-blur: var(--button-light-blur);
+    --button-primary-hover: #a3c8f2;
+    --button-secondary-bg: var(--button-dark-bg);
+    --button-secondary-blur: var(--button-dark-blur);
+    --button-secondary-hover: var(--button-dark-on-dark-hover);
+    --button-secondary-border: var(--button-dark-border);
 
     /* Text */
-    --text-primary: #FFFFFF;
-    --text-secondary: #cbd5e1;
-    --text-tertiary: #94a3b8;
+    --text-primary: #F8FAFC;
+    --text-body: #E2E8F0;
+    --text-on-image: #F8FAFC;
+    --text-secondary: #E2E8F0;
+    --text-tertiary: #B8C4D4;
     --text-inverse: #0a2d57;
     --text-accent: #4BFFC0;
 
@@ -94,7 +144,7 @@
         font-family: var(--font-body);
         background: var(--bg-page);
         min-height: 100vh;
-        color: var(--text-primary);
+        color: var(--text-body);
         @apply transition-colors duration-300;
     }
 
@@ -107,6 +157,11 @@
         font-family: var(--font-heading);
         font-weight: 700;
         color: var(--text-primary);
+        text-wrap: balance;
+    }
+
+    p {
+        text-wrap: pretty;
     }
 
     /* Force visible resize handle on textareas */
@@ -157,7 +212,7 @@
 }
 
 .journey-step::after {
-    content: '';
+    content: none;
     position: absolute;
     inset: -1px;
     border-radius: inherit;
@@ -245,6 +300,251 @@
     animation: journey-border-color-cycle 5.2s linear infinite, journey-border-pulse-soft 2.4s ease-in-out infinite;
 }
 
+.application-journey {
+    --journey-cycle: 3.2s;
+}
+
+.application-start-pulse {
+    position: relative;
+    overflow: visible;
+    isolation: isolate;
+    color: #0a2d57;
+    background-color: #DEECFF;
+    background-image:
+        radial-gradient(circle at 18% 24%, rgba(75, 255, 192, 0.5) 0%, rgba(75, 255, 192, 0) 42%),
+        radial-gradient(circle at 82% 72%, rgba(74, 152, 255, 0.68) 0%, rgba(74, 152, 255, 0) 48%),
+        linear-gradient(120deg, #DEECFF 0%, #c4dfff 42%, #a8ceff 72%, #DEECFF 100%);
+    background-size: 160% 160%, 170% 170%, 220% 220%;
+    background-position: 35% 40%, 60% 55%, 50% 50%;
+    animation: application-button-pulse-light 14s ease-in-out infinite;
+    transition: filter 220ms ease;
+}
+
+.application-start-pulse:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 4px;
+    filter: saturate(1.25) brightness(1.06);
+}
+
+.application-start-pulse:active {
+    filter: saturate(1.15) brightness(0.97);
+}
+
+.application-start-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -7px;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+        radial-gradient(circle at 25% 40%, rgba(75, 255, 192, 0.72), transparent 55%),
+        radial-gradient(circle at 75% 60%, rgba(74, 152, 255, 0.78), transparent 58%);
+    filter: blur(12px);
+    pointer-events: none;
+    opacity: 0.27;
+    animation: application-button-halo 14s ease-in-out infinite;
+}
+
+.dark .application-start-pulse {
+    color: #0a2d57;
+    background-color: #f7fbff;
+    background-image:
+        radial-gradient(circle at 20% 25%, rgba(75, 255, 192, 0.86) 0%, rgba(75, 255, 192, 0) 44%),
+        radial-gradient(circle at 80% 75%, rgba(74, 152, 255, 0.58) 0%, rgba(74, 152, 255, 0) 48%),
+        linear-gradient(120deg, #ffffff 0%, #dff8f0 40%, #dcecff 72%, #ffffff 100%);
+    background-size: 160% 160%, 170% 170%, 220% 220%;
+    animation-name: application-button-pulse-dark;
+}
+
+@keyframes application-button-pulse-light {
+    0%,
+    100% {
+        background-position: 0% 20%, 100% 80%, 0% 50%;
+        box-shadow: 0 10px 24px rgba(10, 45, 87, 0.2), inset 0 0 18px rgba(75, 255, 192, 0.08);
+    }
+    50% {
+        background-position: 70% 65%, 25% 30%, 100% 50%;
+        box-shadow: 0 12px 28px rgba(74, 152, 255, 0.2), inset 0 0 22px rgba(75, 255, 192, 0.12);
+    }
+}
+
+@keyframes application-button-pulse-dark {
+    0%,
+    100% {
+        background-position: 0% 20%, 100% 80%, 0% 50%;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.26), inset 0 0 16px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        background-position: 72% 60%, 22% 32%, 100% 50%;
+        box-shadow: 0 12px 30px rgba(75, 255, 192, 0.15), inset 0 0 20px rgba(74, 152, 255, 0.12);
+    }
+}
+
+@keyframes application-button-halo {
+    0%,
+    100% {
+        opacity: 0.18;
+        transform: scale(0.96);
+    }
+    50% {
+        opacity: 0.36;
+        transform: scale(1.03);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .application-start-pulse,
+    .application-start-pulse::after {
+        animation: none;
+    }
+
+    .application-start-pulse {
+        transition: none;
+    }
+}
+
+:is(.ui-button-primary, .ui-button-secondary, .ui-button-always-white, .ui-button-always-dark, .ui-button-gradient) {
+    box-shadow: 0 0 3px rgb(5 22 43 / 0.12);
+}
+
+:is(.ui-button-primary, .ui-button-secondary, .ui-button-always-white, .ui-button-always-dark, .ui-button-gradient):active:not(:disabled) {
+    box-shadow: 0 0 9px rgb(5 22 43 / 0.2);
+}
+
+/* Paint the gradient through the border so fractional rounded edges cannot
+   repeat the opposite end colour in a one-pixel strip. */
+.ui-button-gradient {
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.ui-button-gradient:active:not(:disabled) {
+    filter: brightness(1.05);
+}
+
+.ui-button-secondary {
+    --button-hover-bg: var(--button-secondary-hover);
+    border-color: var(--button-secondary-border);
+    backdrop-filter: var(--button-secondary-blur);
+    -webkit-backdrop-filter: var(--button-secondary-blur);
+}
+
+.ui-button-primary {
+    --button-hover-bg: var(--button-primary-hover);
+    backdrop-filter: var(--button-primary-blur);
+    -webkit-backdrop-filter: var(--button-primary-blur);
+}
+
+.ui-button-always-white { --button-hover-bg: var(--button-light-hover); }
+.ui-button-always-dark { --button-hover-bg: var(--button-dark-hover); }
+.dark .ui-button-always-dark { --button-hover-bg: var(--button-dark-on-dark-hover); }
+.theme-light .ui-button-always-dark { --button-hover-bg: var(--button-dark-hover); }
+
+:is(.ui-button-primary, .ui-button-secondary, .ui-button-always-white, .ui-button-always-dark):active:not(:disabled) {
+    background-color: var(--button-hover-bg);
+}
+
+/* Keep hover feedback exclusive to devices with a precise hover pointer.
+   Touch devices use the corresponding short-lived active states instead. */
+@media (hover: hover) and (pointer: fine) {
+    .application-start-pulse:hover:not(:active) {
+        filter: saturate(1.3) brightness(1.08);
+    }
+
+    :is(.ui-button-primary, .ui-button-secondary, .ui-button-always-white, .ui-button-always-dark, .ui-button-gradient):hover:not(:disabled) {
+        box-shadow: 0 0 9px rgb(5 22 43 / 0.2);
+    }
+
+    :is(.ui-button-primary, .ui-button-secondary, .ui-button-always-white, .ui-button-always-dark):hover:not(:disabled) {
+        background-color: var(--button-hover-bg);
+    }
+
+    .ui-button-gradient:hover:not(:disabled) {
+        filter: brightness(1.05);
+    }
+
+    .ui-button-tertiary:hover:not(:disabled) {
+        background-color: var(--active-overlay);
+        border-color: var(--border-default);
+    }
+
+    .ui-hover-overlay:hover {
+        background-color: var(--active-overlay);
+    }
+
+    .ui-text-accent-hover:hover {
+        color: var(--text-accent);
+    }
+
+    .ui-text-primary-hover:hover {
+        color: var(--text-primary);
+    }
+
+    .group:hover > .language-toggle-hover {
+        opacity: 1;
+    }
+}
+
+.member-carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.5rem 0 4.5rem;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 7%, black 93%, transparent);
+}
+
+.member-carousel-track {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    padding-left: 1rem;
+    animation: member-carousel-scroll var(--member-scroll-duration, 60s) linear infinite;
+    will-change: transform;
+}
+
+@keyframes member-carousel-scroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(calc(-50% - 0.5rem), 0, 0);
+    }
+}
+
+@media (min-width: 768px) {
+    .member-carousel-track {
+        gap: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    @keyframes member-carousel-scroll {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+        to {
+            transform: translate3d(calc(-50% - 0.75rem), 0, 0);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .member-carousel-viewport {
+        overflow-x: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .member-carousel-track {
+        animation: none;
+    }
+
+    .member-carousel-group[aria-hidden='true'] {
+        display: none;
+    }
+}
+
 .button-shine {
     background-image: repeating-linear-gradient(
         125deg, 
@@ -306,11 +606,27 @@
     }
 }
 
+@keyframes application-banner-gradient-shift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.application-banner-surface {
+    background-size: 180% 100%;
+    animation: application-banner-gradient-shift 14s ease-in-out infinite;
+}
+
 .application-banner-track {
     animation: application-banner-scroll 120s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .application-banner-surface,
     .application-banner-track {
         animation: none;
     }
@@ -345,22 +661,152 @@
     filter: blur(0.5px);
 }
 
-
-.journey-backbone {
+.timeline-line {
     position: absolute;
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px;
+    width: 6px;
     transform: translateX(-50%);
     z-index: 0;
     background: linear-gradient(
         to bottom,
-        rgba(75, 255, 192, 0.05) 0%,
-        rgba(75, 255, 192, 0.45) 30%,
-        rgba(75, 255, 192, 0.45) 70%,
-        rgba(75, 255, 192, 0.05) 100%
+        transparent 0%,
+        var(--text-accent) 10%,
+        var(--text-accent) 90%,
+        transparent 100%
     );
+    background: rgba(75, 255, 192, 0.4);
+    box-shadow: 0 0 12px rgba(75, 255, 192, 0.35);
+}
+
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 8px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(75, 255, 192, 0.95) 0%,
+        rgba(75, 255, 192, 0.35) 20%,
+        rgba(75, 255, 192, 0.12) 35%,
+        rgba(75, 255, 192, 0.03) 55%,
+        rgba(75, 255, 192, 0) 100%
+    );
+    box-shadow: 0 0 4px rgba(75, 255, 192, 0.25);
+    z-index: 2;
+    animation: timeline-orb-1 var(--journey-cycle) linear infinite;
+}
+
+.timeline-line::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 6px;
+    height: 160px;
+    border-radius: 2px;
+    background: linear-gradient(
+        to bottom,
+        var(--text-accent) 0%,
+        rgba(75, 255, 192, 0.45) 40%,
+        transparent 100%
+    );
+    filter: blur(1px);
+    z-index: 1;
+    animation: timeline-orb-1 var(--journey-cycle) linear infinite;
+    margin-top: -154px;
+}
+
+.dark .timeline-line::before {
+    background: var(--text-accent);
+    box-shadow: 0 0 5px rgba(75, 255, 192, 0.45);
+}
+
+.dark .timeline-line::after {
+    background: linear-gradient(
+        to bottom,
+        var(--text-accent) 0%,
+        rgba(75, 255, 192, 0.7) 40%,
+        transparent 100%
+    );
+    filter: blur(1px);
+}
+
+@keyframes timeline-pulse {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes timeline-orb-1 {
+    0%, 49% {
+        top: 0;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+    50% {
+        top: 0;
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    94% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    100% {
+        top: 100%;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.8);
+    }
+}
+
+@keyframes timeline-orb-2 {
+    0% {
+        top: -20%;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.6);
+    }
+    5% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.8);
+    }
+    95% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(0.8);
+    }
+    100% {
+        top: 120%;
+        opacity: 0;
+        transform: translateX(-50%) scale(0.6);
+    }
+}
+
+@keyframes timeline-shimmer {
+    from {
+        background-position: 0% 0%;
+    }
+    to {
+        background-position: 0% 200%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-line,
+    .timeline-line::before,
+    .timeline-line::after {
+        animation: none;
+    }
+
+    .timeline-line::before,
+    .timeline-line::after {
+        opacity: 0;
+    }
 }
 
 .partner-marquee-track {
@@ -445,3 +891,179 @@
         animation: none;
     }
 }
+
+/* Photo-led homepage: real club moments, with a calm foreground for the brand. */
+.photo-hero {
+    margin-top: -6rem;
+    /* Keep the crop stable while mobile browser toolbars collapse on scroll. */
+    min-height: 100lvh;
+    padding: 0;
+    align-items: flex-start;
+    --text-primary: var(--hero-ink);
+    --hover-overlay: var(--hero-hover);
+}
+/* Anchor foreground elements to positions in the painted video image. */
+.hero-content {
+    position: absolute;
+    inset: 0;
+}
+.hero-intro, .hero-actions {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+}
+.hero-intro {
+    top: var(--hero-heading-y, 40%);
+}
+.hero-actions {
+    top: var(--hero-buttons-y, 62%);
+    margin-top: 0;
+}
+.photo-hero-image {
+    object-position: center bottom;
+    filter: blur(4px);
+    transform: scale(1.12);
+    /* Fixed zoom origin keeps the lower edge covered at every aspect ratio. */
+    transform-origin: center 180%;
+}
+.photo-hero-image > img,
+.photo-hero-image > video {
+    object-position: center var(--hero-video-y, 200%);
+    transform: scale(1.18);
+    transform-origin: center;
+}
+@media (max-width: 639px) {
+    .photo-hero { min-height: 100lvh; }
+    .photo-hero-image { object-position: center bottom; }
+}
+
+/* League Spartan’s visible letters sit above the line-box center. */
+.icon-aligned-heading {
+    transform: translateY(0.12em);
+}
+
+/* Benefit icons follow the selected site theme, including manual light mode. */
+.collaboration-icon--blue {
+    background-color: #edf5ff;
+    border-color: #d6e7fc;
+    color: #2468b5;
+}
+.collaboration-icon--green {
+    background-color: #e9faf4;
+    border-color: #cdeee2;
+    color: #087b66;
+}
+.dark .collaboration-icon--blue {
+    background-color: rgba(74, 152, 255, .12);
+    border-color: rgba(74, 152, 255, .22);
+    color: #8fc3ff;
+}
+.dark .collaboration-icon--green {
+    background-color: rgba(75, 255, 192, .09);
+    border-color: rgba(75, 255, 192, .18);
+    color: #76e6c0;
+}
+
+.collaboration-icon--amber {
+    background-color: #fff7df;
+    border-color: #f5e5ae;
+    color: #b77b09;
+}
+.collaboration-icon--purple {
+    background-color: #f4eeff;
+    border-color: #e6d8fb;
+    color: #8550bd;
+}
+.dark .collaboration-icon--amber {
+    background-color: rgba(245, 158, 11, .12);
+    border-color: rgba(252, 211, 77, .20);
+    color: #fcd34d;
+}
+.dark .collaboration-icon--purple {
+    background-color: rgba(168, 85, 247, .12);
+    border-color: rgba(216, 180, 254, .20);
+    color: #d8b4fe;
+}
+
+.hero-logo-dark { display: none; }
+.dark .hero-logo-light { display: none; }
+.dark .hero-logo-dark { display: block; }
+
+/* Keep the wordmark at its natural size while the surrounding navbar slot changes width. */
+.navbar-logo-fixed, .navbar-logo-fixed a, .navbar-logo-fixed a > div {
+    flex-shrink: 0;
+}
+.navbar-logo-fixed img {
+    max-width: none;
+}
+
+@keyframes route-loading-spin {
+    to { transform: rotate(360deg); }
+}
+.route-loading-icon {
+    animation: route-loading-spin 2.4s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    .route-loading-icon { animation: none; }
+}
+
+/* Shared midpoint of the former language selection and active nav background. */
+:root, .dark {
+    --nav-selection-background: color-mix(in srgb, rgba(255, 255, 255, 0.2) 50%, color-mix(in srgb, var(--active-overlay) 55%, transparent));
+}
+
+/* Each item fades its own active background; no moving selection layer. */
+.navbar-page-link {
+    transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+.navbar-page-link[aria-current="page"]:not(:hover):not(:active) {
+    background-color: var(--nav-selection-background);
+}
+@media (prefers-reduced-motion: reduce) {
+    .navbar-page-link { transition: none; }
+}
+
+/* Light navigation needs a navy tint instead of a nearly invisible white wash. */
+:root:not(.dark) { --nav-selection-background: rgba(10,45,87,.10); }
+:root:not(.dark) .navbar-page-link:hover,
+:root:not(.dark) [aria-label="Language toggle"] .language-toggle-hover { background-color:rgba(10,45,87,.07); }
+:root:not(.dark) .navbar-page-link:active,
+:root:not(.dark) [aria-label="Language toggle"] button:active { background-color:rgba(10,45,87,.15); }
+:root:not(.dark) [aria-label="Language toggle"] { border-color:rgba(10,45,87,.28)!important; }
+
+/* Extend the page beneath Safari's status area, but keep navigation controls
+   at the usable top edge. No device-size guesses or negative offsets. */
+:root { --browser-safe-top: 0px; }
+:root[data-ios-safari-edge] { --browser-safe-top: env(safe-area-inset-top, 0px); }
+@media (max-width: 767px) {
+    :root[data-ios-safari-edge] [data-persistent-navigation] {
+        top: var(--browser-safe-top);
+    }
+    :root[data-ios-safari-edge] [data-persistent-navigation] > nav {
+        --navbar-top-gap: max(0px, calc(16px - env(safe-area-inset-top, 0px)));
+        padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+}
+
+/* Desktop navigation falls back when its intrinsic contents no longer fit. */
+.navbar-fit-measure { position:fixed !important; top:-10000px !important; left:0 !important; visibility:hidden !important; pointer-events:none !important; width:max-content !important; max-width:none !important; display:grid !important; grid-template-columns:auto auto auto !important; gap:12px !important; padding-right:8px !important; }
+.navbar-fit-measure .hidden.nav-desktop\:flex { display:flex !important; }
+.navbar-fit-measure .hidden.nav-desktop\:block { display:block !important; }
+.navbar-fit-measure .nav-desktop\:hidden { display:none !important; }
+.navbar-fit-measure > div:first-child { flex:none !important; width:var(--desktop-left-width) !important; }
+.navbar-surface[data-nav-compact="true"] { display:flex; gap:16px; padding-right:16px; }
+.navbar-surface[data-nav-compact="true"] > div:first-child { flex:1; width:auto; min-width:0; }
+.navbar-surface[data-nav-compact="true"] .hidden.nav-desktop\:flex,
+.navbar-surface[data-nav-compact="true"] .hidden.nav-desktop\:block { display:none; }
+.navbar-surface[data-nav-compact="true"] .nav-desktop\:hidden { display:block; }
+.navbar-surface[data-nav-compact="true"] a.nav-desktop\:hidden { display:grid; }
+.navbar-surface[data-nav-compact="true"] button.nav-desktop\:hidden { display:flex; }
+
+/* Shared sizing for project status and event category pills. */
+.article-badge { display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box; min-height:26px; padding:4px 12px; border:1px solid; border-radius:999px; font:700 var(--type-label)/1.333333 var(--font-body); letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; flex-shrink:0; }
+
+/* Supplemental text uses the quieter dark-theme tone, not opacity. */
+.dark :is(.project-credits-date, .project-credit-person span, .event-card-meta, .event-scene-meta .event-location, .event-scene-meta [data-event-part="date"]) { color:var(--text-tertiary); }
+
+.dark .text-white, .dark .hover\:text-white:hover { color:var(--text-primary); }

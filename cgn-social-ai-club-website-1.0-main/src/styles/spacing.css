@@ -1,0 +1,34 @@
+/* Shared vertical rhythm: sections are separate, follow-up actions belong
+   to their preceding content, and headlines use the approved CTA rhythm. */
+:root {
+  --section-gap: 4rem;
+  --heading-content-gap: 2rem;
+  --heading-copy-gap: 1.5rem;
+  --copy-action-gap: 2rem;
+  --followup-gap: 2rem;
+  --followup-action-gap: 1rem;
+}
+@media (min-width: 768px) {
+  :root { --section-gap: 6rem; --heading-content-gap: 3rem; }
+}
+.section-block { margin-bottom: var(--section-gap); }
+.section-heading { margin-bottom: var(--heading-content-gap); }
+.page-heading { padding-top: 1rem; }
+@media (min-width: 768px) { .page-heading { padding-top: 3rem; } }
+.section-heading-label { margin-bottom: 1.5rem; }
+.section-heading-label > span { margin-bottom: 0; }
+.section-heading-title { margin-bottom: 0; }
+.section-heading-title:has(+ .section-heading-copy) { margin-bottom: var(--heading-copy-gap); }
+.section-heading-actions { margin-top: var(--copy-action-gap); }
+.section-followup { margin-top: var(--followup-gap); text-align: center; }
+.section-followup > p { margin-bottom: var(--followup-action-gap); }
+.cta-section { padding-top:2rem; padding-bottom:var(--section-gap); }
+@media(min-width:768px) { .cta-section { padding-top:3rem; } }
+.cta-heading { margin-bottom: var(--heading-copy-gap); }
+.cta-copy { margin-bottom: var(--copy-action-gap); }
+.footer-column-title { font-family: var(--font-body); font-size: var(--type-body); line-height: 1.5; font-weight: 700; }
+
+/* A section owns its outgoing gap; the following badge adds no extra top padding. */
+.section-block > .page-heading { margin-bottom:0; }
+.section-stack > :not(:first-child) { margin-top:var(--section-gap); }
+.section-start { margin-top:var(--section-gap); }

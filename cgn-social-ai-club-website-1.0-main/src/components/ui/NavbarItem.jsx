@@ -1,12 +1,13 @@
 import Button from './Button';
 
-export default function NavbarItem({ href, children, className = "", onClick }) {
+export default function NavbarItem({ href, children, className = "", onClick, active = false }) {
     return (
         <Button
             variant="tertiary"
             href={href}
             onClick={onClick}
-            className={`px-4 py-2 ${className}`}
+            aria-current={active ? 'page' : undefined}
+            className={`navbar-page-link px-4 py-2 ${className}`}
         >
             {children}
         </Button>

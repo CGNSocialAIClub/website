@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Home, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Container from '../components/ui/Container';
 import Button from '../components/ui/Button';
 import HeadingSection from '../components/ui/HeadingSection';
@@ -10,7 +10,7 @@ import RunnerGame from '../components/ui/RunnerGame';
 export default function NotFound() {
     const { t } = useLocale();
     return (
-        <div className="min-h-[80vh] flex items-center justify-center pt-10 pb-10">
+        <div className="min-h-[80vh] flex items-center justify-center pt-4 sm:pt-10 pb-10">
             <Seo
                 title={t.pages.notFound.title}
                 description={t.pages.notFound.subtitle}
@@ -18,7 +18,8 @@ export default function NotFound() {
                 noIndex
             />
             <Container>
-                <div className="max-w-2xl mx-auto text-center space-y-12">
+                <div className="max-w-2xl mx-auto text-center space-y-6 sm:space-y-10">
+                    {!t.pages.notFound.title && <h1 className="sr-only">{t.pages.notFound.badge}</h1>}
                     <HeadingSection
                         as="h1"
                         badge={t.pages.notFound.badge}
@@ -26,6 +27,10 @@ export default function NotFound() {
                         subtitle={t.pages.notFound.subtitle}
                         className="mt-0 mb-0"
                     />
+
+                    <div className="py-2">
+                        <RunnerGame />
+                    </div>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <button
@@ -35,10 +40,6 @@ export default function NotFound() {
                             <ArrowLeft className="w-5 h-5" />
                             {t.pages.notFound.goBack}
                         </button>
-                    </div>
-
-                    <div className="py-2">
-                        <RunnerGame />
                     </div>
 
                     <div className="pt-10 border-t border-[var(--border-default)]">

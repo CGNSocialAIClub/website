@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 let activeScrollAnimation = null;
@@ -38,9 +38,7 @@ function animateScrollTo(targetY, duration = 900, easing = 'easeInOutCubic') {
 
 export default function ScrollToTop() {
     const { pathname, hash } = useLocation();
-    const previousPathnameRef = useRef(pathname);
     const maxAttempts = 20;
-    const didPathChange = previousPathnameRef.current !== pathname;
 
     useEffect(() => {
         if (hash) {
@@ -75,10 +73,7 @@ export default function ScrollToTop() {
                 }
             };
 
-            // For cross-page hash navigation: let page transition finish, then scroll.
-            // For same-page hash changes: scroll immediately.
-            const delay = didPathChange ? 560 : 0;
-            const timer = setTimeout(scrollWhenReady, delay);
+            const timer = setTimeout(scrollWhenReady, 0);
 
             return () => {
                 clearTimeout(timer);
@@ -95,9 +90,9 @@ export default function ScrollToTop() {
         }
     }, [pathname, hash]);
 
-    useEffect(() => {
-        previousPathnameRef.current = pathname;
-    }, [pathname]);
+    useLayoutEffect(() => {
+        if (!hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, [pathname, hash]);
 
     return null;
 }

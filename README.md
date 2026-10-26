@@ -147,6 +147,20 @@ After any change, check it with `npm run dev`, run `npm run build`, then commit 
 
 The order of the board is set by the `roleOrder` list in [`src/pages/CommunityPage.jsx`](cgn-social-ai-club-website-1.0-main/src/pages/CommunityPage.jsx). If board titles change, update that list too.
 
+### Optional modules (switches)
+
+`FEATURES` in [`src/config/features.js`](cgn-social-ai-club-website-1.0-main/src/config/features.js) turns modules taken over from the Munich site on or off. Off means no route and no navigation link.
+
+| Switch | What it is | Before switching on |
+|---|---|---|
+| `introAnimation` (on) | Logo intro on the homepage: two figures merge into the icon, which flies into the hero logo. Plays once per day per visitor (`localStorage`), never with reduced motion. Off = plain hero logo. In `npm run dev`, `/?intro` replays it | Nothing. Logo files: `public/assets/logos/hero-wordmark-*.svg` (text only) and `public/assets/intro/logo-motion.bin` |
+| `articles` (on) | Long-form project pages (`/projects/<slug>`) and the animated project dialog | Set `hasArticle: true` (and optionally `slug`) on a project in `projects.json`; credit people in `src/data/projectTeams.json` |
+| `events` | Events calendar and event articles | Fill `src/data/events.json` |
+| `newsletter` | Sign-up page | Needs a backend, see `api/` |
+| `linksPage` | Link-in-bio page `/links` | Check `src/data/links.json` |
+| `alumni` | Alumni block on the team page | Set `"status": "alumni"` on members |
+| `cookieBanner` | Consent banner and footer link | List every optional tracking tool in `OPTIONAL_SERVICES` (`src/utils/consent.js`) and update the privacy policy |
+
 ### Add a project
 
 1. Put the image in `public/cms/projects/`.
@@ -244,6 +258,8 @@ The email `contact@cologne-socialaiclub.de` is written directly in several files
 - Root directory: `cgn-social-ai-club-website-1.0-main`
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
+
+`wrangler.jsonc` also contains `build.command`, so `wrangler deploy` builds `dist/` itself. Without it, builds that skip the dashboard's build step (e.g. branch previews) fail with "assets.directory ... does not exist".
 
 If a deploy fails, open the Worker in the Cloudflare dashboard, go to **Deployments**, and read the build log. Usually the same error also shows up locally with `npm run build`.
 

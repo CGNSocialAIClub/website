@@ -20,7 +20,7 @@ function ErrorFallback() {
                         </div>
                     </div>
                     
-                    <h1 className="text-2xl md:text-3xl font-bold font-heading mb-4 text-[var(--text-primary)]">
+                    <h1 className="text-2xl md:text-3xl font-bold font-heading mb-4 text-[var(--text-primary)] leading-heading">
                         {t.error.title}
                     </h1>
                     
@@ -28,9 +28,9 @@ function ErrorFallback() {
                         {t.error.message}
                     </p>
                     
-                    <Button 
-                        variant="primary" 
-                        className="w-full flex items-center justify-center gap-2 py-4 shadow-lg hover:shadow-xl transition-all duration-300"
+                    <Button
+                        variant="primary"
+                        className="w-full py-4 shadow-lg transition-all duration-300 [&>span]:flex [&>span]:items-center [&>span]:justify-center [&>span]:gap-2"
                         onClick={() => window.location.reload()}
                     >
                         <RefreshCcw className="w-5 h-5" />

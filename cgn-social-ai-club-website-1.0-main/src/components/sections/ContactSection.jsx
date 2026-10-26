@@ -81,7 +81,7 @@ export default function ContactSection() {
                     <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#4BFFC0] text-white shadow-[0_0_24px_rgba(75,255,192,0.22)]">
                         <Check className="h-8 w-8 stroke-[3]" />
                     </div>
-                    <h3 className="text-2xl font-bold font-heading text-[var(--text-primary)]">
+                    <h3 className="text-2xl font-bold font-heading text-[var(--text-primary)] leading-heading">
                         {t.contactForm.successTitle}
                     </h3>
                     <p className="mt-2 max-w-[14rem] text-sm text-[var(--text-secondary)]">

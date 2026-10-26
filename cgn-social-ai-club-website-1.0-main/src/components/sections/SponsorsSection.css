@@ -1,0 +1,49 @@
+/* Fixed slots preserve equal card sizes and center incomplete final rows. */
+.partner-card-grid {
+  --partner-columns: 1;
+  --partner-gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--partner-gap);
+  width: 100%;
+  margin-inline: auto;
+}
+
+.partner-card-grid__item {
+  flex: 0 0 calc((100% - (var(--partner-columns) - 1) * var(--partner-gap)) / var(--partner-columns));
+  min-width: 0;
+}
+
+.partner-card-grid--sponsors { max-width: 1200px; }
+.partner-card-grid--sponsors .partner-card-grid__item { max-width: 300px; }
+
+.partner-card-grid--supporters .partner-card-grid__item { max-width: 220px; }
+
+.partner-card-grid--supporters {
+  --partner-columns: 2;
+  --partner-gap: 16px;
+  max-width: 300px;
+  margin-top: 24px;
+}
+
+@media (min-width: 640px) {
+  .partner-card-grid--sponsors { --partner-columns: 2; }
+  .partner-card-grid--supporters {
+    --partner-columns: 3;
+    --partner-gap: 24px;
+    max-width: 624px;
+  }
+}
+
+@media (min-width: 768px) {
+  .partner-card-grid--sponsors { --partner-columns: 3; }
+}
+
+@media (min-width: 1024px) {
+  .partner-card-grid--sponsors { --partner-columns: 4; }
+  .partner-card-grid--supporters {
+    --partner-columns: var(--supporter-count);
+    max-width: 1200px;
+  }
+}

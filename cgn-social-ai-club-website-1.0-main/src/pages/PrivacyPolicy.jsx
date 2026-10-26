@@ -91,8 +91,18 @@ export default function PrivacyPolicy() {
                     <h2 className="text-2xl font-semibold mb-4 text-[var(--text-primary)]">{isGerman ? '6. Analytics' : '6. Analytics'}</h2>
                     <p>
                         {isGerman
-                            ? 'Aktuell verwenden wir keine Analyse- oder Tracking-Tools zur Auswertung des Nutzerverhaltens auf dieser Website.'
-                            : 'We currently do not use analytics or tracking tools to evaluate user behavior on this website.'}
+                            ? 'Mit Ihrer Einwilligung setzen wir Google Analytics 4 ein, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland ("Google"). Der Dienst hilft uns zu verstehen, wie diese Website genutzt wird, und sie zu verbessern.'
+                            : 'With your consent, we use Google Analytics 4, a web analytics service provided by Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland ("Google"). It helps us understand how this website is used and improve it.'}
+                    </p>
+                    <p className="mt-4">
+                        {isGerman
+                            ? 'Google Analytics wird erst geladen, nachdem Sie im Hinweisfenster zugestimmt haben. Dabei werden Cookies (z. B. "_ga") gesetzt und Nutzungsdaten wie aufgerufene Seiten, ungefährer Standort, Gerät und Browser sowie die Verweildauer erfasst. Die Anonymisierung der IP-Adresse ist aktiviert; Google-Signale und personalisierte Werbung sind deaktiviert. Die Daten werden zu Statistikzwecken ausgewertet.'
+                            : 'Google Analytics is loaded only after you agree in the privacy notice. This sets cookies (e.g. "_ga") and records usage data such as pages viewed, approximate location, device and browser, and time on site. IP anonymization is enabled; Google signals and personalized advertising are disabled. The data is evaluated for statistical purposes.'}
+                    </p>
+                    <p className="mt-4">
+                        {isGerman
+                            ? 'Rechtsgrundlage ist Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO sowie § 25 Abs. 1 TDDDG. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie im Footer unter "Cookies" Ihre Auswahl ändern. Eine Übermittlung von Daten in Drittländer, insbesondere in die USA, kann nicht ausgeschlossen werden; Google ist nach dem EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen finden Sie in der Datenschutzerklärung von Google unter policies.google.com/privacy.'
+                            : 'The legal basis is your consent under Art. 6(1)(a) GDPR and Section 25(1) TDDDG. You can withdraw your consent at any time with effect for the future by changing your choice under "Cookies" in the footer. Transfers of data to third countries, in particular the United States, cannot be ruled out; Google is certified under the EU-U.S. Data Privacy Framework. For more information, see Google\'s privacy policy at policies.google.com/privacy.'}
                     </p>
                 </section>
 

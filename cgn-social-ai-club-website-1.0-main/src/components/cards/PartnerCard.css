@@ -1,0 +1,79 @@
+/* Shared fixed radius matches the Benefits cards at every card size. */
+.partner-card-shape {
+  --partner-card-radius: 1.5rem;
+  --partner-badge-height: 1.25rem;
+  /* Absolute offsets start inside the 1px card border. Align both arc centres. */
+  --partner-badge-inset: calc(var(--partner-card-radius) - var(--partner-badge-height) / 2 - 1px);
+  border-radius: var(--partner-card-radius);
+}
+
+/* Each label scales against its own card, using the 300px mobile sponsor
+   and 142px mobile supporter as the visual references. */
+.partner-card--sponsor,
+.partner-card--social,
+.partner-card--supporter {
+  container-type: inline-size;
+}
+.partner-card--sponsor { --partner-badge-height: 7.666667cqw; }
+.partner-tier-badge {
+  padding-inline: 2.333333cqw;
+  font-size: var(--type-micro);
+  font-size: max(var(--type-badge-min), 3.333333cqw);
+  background-color: rgb(255 255 255 / 90%);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+  transition: box-shadow 600ms ease-in-out;
+}
+.partner-card--sponsor[data-highlighted="true"] .partner-tier-badge {
+  box-shadow: 0 1px 2px transparent;
+}
+.partner-supporter-badge {
+  font-size: var(--type-micro);
+  font-size: max(var(--type-badge-min), 4.929577cqw);
+  padding-inline: 3.521127cqw;
+}
+@media (prefers-reduced-motion: reduce) {
+  .partner-tier-badge { transition: none; }
+}
+
+.partner-card--social { --partner-badge-height: 6.666667cqw; }
+.partner-social-badge { font-size: max(var(--type-badge-min), 3.333333cqw); padding-inline: 2.666667cqw; }
+
+/* Centre the visible uppercase glyphs, rather than the font's ascender space. */
+.partner-tier-badge,
+.partner-supporter-badge,
+.partner-social-badge {
+  justify-content: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+.partner-badge-text {
+  display: block;
+  line-height: 1;
+  transform: translateY(0.06em);
+}
+@supports (text-box-trim: trim-both) {
+  .partner-badge-text {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+    transform: none;
+  }
+}
+
+/* Label height follows its minimum readable font size; keep concentric geometry. */
+:root .partner-card--sponsor,
+:root .partner-card--social {
+  --partner-badge-height: max(1.25rem, 7.666667cqw);
+}
+:root .partner-card--supporter {
+  --partner-badge-height: max(1.125rem, 12.676056cqw) !important;
+}
+
+/* Older engines retain readable pills without container-query units. */
+@supports not (font-size: 1cqw) {
+  .partner-card--sponsor,
+  .partner-card--social { --partner-badge-height: 1.25rem; }
+  .partner-card--supporter { --partner-badge-height: 1.125rem !important; }
+  .partner-tier-badge,
+  .partner-supporter-badge,
+  .partner-social-badge { padding-inline: .5rem; }
+}

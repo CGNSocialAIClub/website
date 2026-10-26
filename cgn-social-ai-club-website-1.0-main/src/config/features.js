@@ -4,6 +4,18 @@
 
 export const PROJECT_DETAILS_ENABLED = true;
 
+// Modules adopted from the partner club's website. They stay hidden (no route,
+// no navigation link) until the CGN content for them exists and the switch is set to true.
+export const FEATURES = {
+    introAnimation: true, // logo intro on the homepage (once per day); off = plain hero logo
+    events: false,      // /events calendar, event articles
+    articles: true,     // /projects/:slug long-form project pages (only projects with hasArticle: true)
+    newsletter: false,  // /newsletter (needs a backend)
+    linksPage: false,   // /links bio-link page
+    alumni: false,      // alumni section on the team page
+    cookieBanner: true,  // consent banner + footer link; gates the tools listed in OPTIONAL_SERVICES (utils/consent.js)
+};
+
 // Recruiting banner on the homepage + application page wording.
 // Before `applicationsOpenAt` the site says "applications open on …";
 // from that moment on it switches to "apply now" automatically.

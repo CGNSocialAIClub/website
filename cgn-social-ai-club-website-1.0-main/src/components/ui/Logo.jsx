@@ -1,8 +1,10 @@
+import OptimizedImage from './OptimizedImage.jsx';
 import React, { useState, useEffect } from 'react';
 import { assetUrl } from '../../utils/assetUrl';
 
-export default function Logo({ className = "h-8", iconOnly = false, stacked = false, v6Full = false, heroMobile = false, navbarSingleLine = false, heroDesktopSingleLine = false, navbarText = false, fullWidth = false }) {
+export default function Logo({ className = "h-8", iconOnly = false, stacked = false, v6Full = false, heroMobile = false, navbarSingleLine = false, heroDesktopSingleLine = false, navbarText = false, fullWidth = false, onError }) {
     const [isDark, setIsDark] = useState(false);
+    const [loadedSource, setLoadedSource] = useState(null);
 
     useEffect(() => {
         const checkDark = () => {
@@ -69,11 +71,20 @@ export default function Logo({ className = "h-8", iconOnly = false, stacked = fa
 
     return (
         <div className={`relative ${className}`}>
-            <img
+            <OptimizedImage
+                key={src}
                 src={src}
                 alt="CGN Social AI Club Logo"
                 className={imgClassName}
-                loading="lazy"
+                width={navbarText ? 2191 : iconOnly ? 500 : undefined}
+                height={navbarText ? 182 : iconOnly ? 500 : undefined}
+                style={{ visibility: loadedSource === src ? 'visible' : 'hidden' }}
+                loading={onError ? 'eager' : 'lazy'}
+                onLoad={() => setLoadedSource(src)}
+                onError={onError}
+                fallback={onError ? undefined : <span aria-label="CGN Social AI Club" style={{ display: 'block', fontFamily: "'League Spartan', sans-serif", fontWeight: 700, fontSize: 'clamp(18px, 4vw, 34px)', lineHeight: 1 }}>
+                    {stacked || v6Full ? <>CGN<br />SOCIAL AI<br />CLUB</> : 'CGN SOCIAL AI CLUB'}
+                </span>}
             />
         </div>
     );

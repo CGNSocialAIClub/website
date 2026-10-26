@@ -1,0 +1,69 @@
+.event-scene-card .event-gallery { container-type:inline-size; }
+.event-scene-card .event-gallery > .event-photo-grid {
+  display:grid;
+  position:relative;
+  isolation:isolate;
+  overflow-anchor:none;
+  touch-action:pan-y;
+  border-radius:16px;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-template-rows:none;
+  grid-auto-flow:row dense;
+  grid-auto-rows:clamp(76px,18cqw,160px);
+  gap:clamp(12px,2cqw,20px);
+  width:100%;
+  max-width:none;
+  height:auto;
+}
+.event-scene-card .event-photo-grid[data-columns="3"] { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.event-scene-card .event-photo-grid[data-count="1"] { grid-template-columns:1fr; grid-template-rows:1fr; grid-auto-rows:auto; height:auto; aspect-ratio:16 / 10; }
+.event-scene-card .event-photo-grid .event-photo-tile {
+  position:relative;
+  min-width:0;
+  min-height:0;
+  width:100%;
+  height:100%;
+  aspect-ratio:auto;
+  overflow:hidden;
+  border-radius:16px;
+  padding:0;
+  background:var(--bg-surface-subtle);
+}
+.event-scene-card .event-photo-tile--main { grid-column:1 / 3; grid-row:1 / 3; }
+.event-scene-card .event-photo-grid[data-count="1"] .event-photo-tile--main { grid-column:1; grid-row:1; }
+.event-scene-card .event-photo-grid img { display:block; width:100%; height:100%; max-height:none; object-fit:cover; border-radius:inherit; }
+.event-photo-grid .event-image-credit { font-size:var(--type-micro); right:6px; bottom:6px; }
+.event-photo-grid button:focus-visible { outline:2px solid var(--text-primary); outline-offset:3px; }
+.event-scene-card .event-photo-grid button { cursor:pointer; }
+.event-scene-card .event-photo-tile--main { cursor:pointer; }
+.event-scene-card .event-photo-grid button:disabled { cursor:default; }
+.event-photo-tile:not(.event-photo-tile--main) { outline:3px solid transparent; outline-offset:3px; transition:outline-color 180ms ease; }
+@media (hover:hover) {
+  .event-photo-tile:not(.event-photo-tile--main):enabled:hover { outline-color:#70b9f0; }
+  .dark .event-photo-tile:not(.event-photo-tile--main):enabled:hover { outline-color:#a3d9ff; }
+}
+
+.event-photo-grid:focus-visible { outline:2px solid var(--text-primary); outline-offset:4px; }
+
+/* Seven photos: a wider focus image, two beside it and four below. */
+.event-scene-card .event-photo-grid[data-count="7"] .event-photo-tile--main { grid-column:1 / 4; grid-row:1 / 3; }
+
+.event-scene-card .event-photo-grid .event-photo-tile[data-tall] { grid-row:span 2; }
+@media (max-width:1279px) {
+  .event-scene-card .event-gallery > .event-photo-grid { grid-template-columns:minmax(0,1fr); grid-template-rows:none; grid-auto-rows:auto; height:auto; aspect-ratio:auto; gap:16px; }
+  .event-scene-card .event-gallery > .event-photo-grid .event-photo-tile { grid-column:1; grid-row:auto; height:auto; aspect-ratio:16 / 10; }
+  .event-scene-card .event-photo-grid img { position:absolute; inset:0; }
+}
+
+/* Posters retain their complete artwork in the mobile reading gallery. */
+@media (max-width:1279px) {
+  .event-scene-card .event-gallery > .event-photo-grid .event-photo-tile[data-cover] { aspect-ratio:auto; height:auto; }
+  .event-scene-card .event-photo-grid .event-photo-tile[data-cover] img { position:static; height:auto; object-fit:contain; }
+}
+
+/* Keep the hover outline hidden until the tile reaches its final position. */
+.event-photo-tile[data-moving]:enabled:hover {
+  outline-color: transparent;
+  transition: none;
+}
+.dark .event-photo-tile[data-moving]:enabled:hover { outline-color: transparent; }

@@ -1,0 +1,97 @@
+{
+  "intro": {
+    "en": "AI for good. People for change.",
+    "de": "KI für Gutes. Gemeinsam etwas bewegen."
+  },
+  "description": {
+    "en": "Student-built AI. Real social impact. Cologne.",
+    "de": "KI von Studierenden. Gesellschaftliche Wirkung. Köln."
+  },
+  "image": "/assets/club/demo-day-group-900.jpg",
+  "links": [
+    {
+      "id": "website",
+      "href": "/",
+      "icon": "globe",
+      "enabled": true,
+      "title": {
+        "en": "Explore our website",
+        "de": "Entdecke unsere Website"
+      },
+      "description": {
+        "en": "Get to know CGN Social AI Club",
+        "de": "Lerne den CGN Social AI Club kennen"
+      }
+    },
+    {
+      "id": "apply",
+      "href": "/application",
+      "icon": "join",
+      "featured": true,
+      "enabled": true,
+      "title": {
+        "en": "Apply now",
+        "de": "Jetzt bewerben"
+      },
+      "description": {
+        "en": "Join our next batch",
+        "de": "Werde Teil des nächsten Batches"
+      }
+    },
+    {
+      "id": "events",
+      "href": "",
+      "icon": "calendar",
+      "enabled": true,
+      "title": {
+        "en": "Meet us at our events",
+        "de": "Triff uns bei unseren Events"
+      },
+      "description": {
+        "en": "Talks, workshops & community",
+        "de": "Talks, Workshops & Community"
+      },
+      "label": "Luma"
+    },
+    {
+      "id": "newsletter",
+      "href": "/newsletter",
+      "icon": "newspaper",
+      "enabled": true,
+      "title": {
+        "en": "Newsletter",
+        "de": "Newsletter"
+      },
+      "description": {
+        "en": "Stay up to date with our club",
+        "de": "Bleib über unseren Club auf dem Laufenden"
+      }
+    },
+    {
+      "id": "contact",
+      "href": "/contact",
+      "icon": "mail",
+      "enabled": true,
+      "title": {
+        "en": "Contact us",
+        "de": "Kontaktiere uns"
+      },
+      "description": {
+        "en": "Get in touch with our team",
+        "de": "Nimm Kontakt mit unserem Team auf"
+      }
+    }
+  ],
+  "socials": [
+    {
+      "label": "Instagram",
+      "icon": "instagram",
+      "href": "https://www.instagram.com/cgnsocialaiclub"
+    },
+    {
+      "label": "LinkedIn",
+      "icon": "linkedin",
+      "href": "https://www.linkedin.com/company/cgnsocialaiclub"
+    }
+  ]
+}

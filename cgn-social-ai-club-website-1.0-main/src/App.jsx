@@ -10,6 +10,8 @@ import SocialsSection from './components/sections/SocialsSection';
 import CTASection from './components/sections/CTASection';
 import RecruitingBanner from './components/sections/RecruitingBanner';
 import Aurora from './components/Aurora';
+import FirstVisitIntro from './components/ui/FirstVisitIntro';
+import { FEATURES } from './config/features';
 import React from 'react';
 import Seo from './components/ui/Seo';
 import { SITE_URL } from './utils/seoRoutes';
@@ -74,7 +76,8 @@ function App() {
                 description={t.home.heroDescription}
                 structuredData={[organizationSchema, websiteSchema]}
             />
-            <div className="relative w-full flex items-end justify-center overflow-hidden -mt-28 pt-24">
+            {FEATURES.introAnimation && <FirstVisitIntro />}
+            <div data-intro-host className="relative w-full flex items-end justify-center overflow-hidden -mt-28 pt-24">
                 <div className="absolute inset-0 w-full h-full">
                     <Aurora
                         colorStops={['#4BFFC0', '#4A98FF', '#0a2d57']}
@@ -83,11 +86,11 @@ function App() {
                         speed={0.8}
                     />
                 </div>
-                <div className="relative z-10 w-full">
+                <div className="intro-content relative z-10 w-full">
                     <HeroSection />
                 </div>
             </div>
-            <div className="w-full mb-2" id="partners">
+            <div className="w-full pt-8 md:pt-12 section-block" id="partners">
                 <PartnerMarquee />
             </div>
             {/* Founding-Foto — wieder aktivieren wenn wir ein gutes Foto haben:
