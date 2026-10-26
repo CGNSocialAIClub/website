@@ -95,7 +95,9 @@ function SponsorCard({ tier, name, logo, logoDark, showMetallicBackground = fals
     const config = sponsorTierConfig[tier] || sponsorTierConfig.silver;
     const [isHovered, setIsHovered] = useState(false);
     const isDarkMode = useDarkMode();
-    const displayLogo = isDarkMode && logoDark ? logoDark : logo;
+    // The metallic highlight is light, so it keeps the dark-text logo even in dark mode.
+    const isHighlighted = showMetallicBackground || (!useCenteredHighlight && isHovered);
+    const displayLogo = isDarkMode && logoDark && !isHighlighted ? logoDark : logo;
 
     return (
         <div

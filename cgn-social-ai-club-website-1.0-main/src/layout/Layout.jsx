@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ApplicationStatusBanner from '../components/ui/ApplicationStatusBanner';
+import CookieConsentBanner from '../components/ui/CookieConsentBanner';
+import { FEATURES } from '../config/features';
 import { APPLICATIONS_OPEN, APPLICATION_BANNER_HEIGHT } from '../config/applicationStatus';
 
 export default function Layout({ children }) {
@@ -20,7 +22,7 @@ export default function Layout({ children }) {
     }, [location.pathname]);
 
     if (location.pathname.replace(/\/$/, '') === '/links') {
-        return <div className="bg-page text-primary min-h-screen"><main>{children}</main></div>;
+        return <div className="bg-page text-primary min-h-screen"><main>{children}</main>{FEATURES.cookieBanner && <CookieConsentBanner />}</div>;
     }
 
     return (
@@ -36,6 +38,7 @@ export default function Layout({ children }) {
                 {children}
             </main>
             <Footer />
+            {FEATURES.cookieBanner && <CookieConsentBanner />}
             
         </div>
     );

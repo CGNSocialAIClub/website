@@ -1,13 +1,8 @@
 import { getProjects } from './cms.js';
 import events from '../data/events.json' with { type: 'json' };
 
-// Stable URLs do not change when an editorial title is revised.
-const PROJECT_SLUGS = {
-  '1': 'wrpbench', '2': 'gute-dinge-ki', '3': 'geospatial-ai-well-drilling',
-  '4': 'impendo', '5': 'initiativgruppe-chatbot', '7': 'aflaconnect',
-  '8': 'allocura', '9': 'political-transparency', '10': 'kolpo',
-};
-export const projectArticlePath = project => PROJECT_SLUGS[project.id] ? `/projects/${PROJECT_SLUGS[project.id]}` : null;
+// Stable URL: set `slug` in projects.json (falls back to project-<id>), so renaming a title never breaks links.
+export const projectArticlePath = project => project.hasArticle ? `/projects/${project.slug || `project-${project.id}`}` : null;
 export const eventArticlePath = event => `/events/${event.id}`;
 export function getContentEntries(locale = 'en') {
   return [

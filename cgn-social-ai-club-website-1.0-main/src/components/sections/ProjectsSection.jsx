@@ -11,7 +11,8 @@ import { useLocale } from '../../i18n/LocaleContext';
 const ProjectsSection = () => {
     const { t, locale } = useLocale();
     const projectGridRoot = useAlignedEventRows('cards', locale);
-    const projectData = getProjects(locale);
+    const orderedProjects = getProjects(locale);
+    const projectData = orderedProjects;
     const [selectedProject, setSelectedProject] = useState(null);
 
     return (
@@ -38,6 +39,7 @@ const ProjectsSection = () => {
                 {PROJECT_DETAILS_ENABLED && selectedProject && (
                     <ProjectDetails
                         project={selectedProject}
+                        projects={orderedProjects}
                         author={selectedProject.author}
                         onClose={() => setSelectedProject(null)}
                     />

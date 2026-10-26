@@ -10,6 +10,7 @@ export const translations = {
             apply: 'Become a Member',
         },
         footer: {
+            cookieSettings: 'Cookies',
             pages: 'Pages',
             information: 'Information',
             home: 'Home',
@@ -353,6 +354,7 @@ export const translations = {
             apply: 'Mitglied werden',
         },
         footer: {
+            cookieSettings: 'Cookies',
             pages: 'Seiten',
             information: 'Informationen',
             home: 'Startseite',

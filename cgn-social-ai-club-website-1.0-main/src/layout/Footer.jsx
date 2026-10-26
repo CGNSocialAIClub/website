@@ -8,6 +8,7 @@ import LanguageToggle from '../components/ui/LanguageToggle';
 import ThemeToggle from '../components/ui/ThemeToggle';
 import { useLocale } from '../i18n/LocaleContext';
 import { FEATURES } from '../config/features';
+import { openConsentSettings } from '../utils/consent';
 import { openSocialAppLink } from '../utils/socialAppLinks';
 
 
@@ -36,6 +37,7 @@ export default function Footer() {
         { name: t.footer.contact, href: '/contact', isRoute: true },
         { name: t.footer.privacy, href: '/privacy', isRoute: true },
         { name: t.footer.imprint, href: '/imprint', isRoute: true },
+        ...(FEATURES.cookieBanner ? [{ name: t.footer.cookieSettings, onClick: openConsentSettings }] : []),
     ];
 
     return (

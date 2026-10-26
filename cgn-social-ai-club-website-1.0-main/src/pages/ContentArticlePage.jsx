@@ -26,7 +26,7 @@ export default function ContentArticlePage() {
   const overview = project ? '/projects' : '/events';
   const de = locale === 'de';
   return <>
-    <Seo />
+    <Seo title={item.title} description={item.description} />
     <Container className="py-12">
       <nav aria-label={de ? 'Seitennavigation' : 'Breadcrumb'} className="mb-8 text-sm text-[var(--text-secondary)]">
         <Link to={overview}>{project ? (de ? 'Projekte' : 'Projects') : 'Events'}</Link>

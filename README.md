@@ -147,6 +147,19 @@ After any change, check it with `npm run dev`, run `npm run build`, then commit 
 
 The order of the board is set by the `roleOrder` list in [`src/pages/CommunityPage.jsx`](cgn-social-ai-club-website-1.0-main/src/pages/CommunityPage.jsx). If board titles change, update that list too.
 
+### Optional modules (switches)
+
+`FEATURES` in [`src/config/features.js`](cgn-social-ai-club-website-1.0-main/src/config/features.js) turns modules taken over from the Munich site on or off. Off means no route and no navigation link.
+
+| Switch | What it is | Before switching on |
+|---|---|---|
+| `articles` (on) | Long-form project pages (`/projects/<slug>`) and the animated project dialog | Set `hasArticle: true` (and optionally `slug`) on a project in `projects.json`; credit people in `src/data/projectTeams.json` |
+| `events` | Events calendar and event articles | Fill `src/data/events.json` |
+| `newsletter` | Sign-up page | Needs a backend, see `api/` |
+| `linksPage` | Link-in-bio page `/links` | Check `src/data/links.json` |
+| `alumni` | Alumni block on the team page | Set `"status": "alumni"` on members |
+| `cookieBanner` | Consent banner and footer link | List every optional tracking tool in `OPTIONAL_SERVICES` (`src/utils/consent.js`) and update the privacy policy |
+
 ### Add a project
 
 1. Put the image in `public/cms/projects/`.

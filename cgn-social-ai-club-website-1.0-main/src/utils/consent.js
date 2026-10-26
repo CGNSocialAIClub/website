@@ -2,8 +2,10 @@ export const CONSENT_STORAGE_KEY = 'cgn-social-ai-consent-v1';
 export const CONSENT_SETTINGS_EVENT = 'cgn-social-ai-open-consent-settings';
 export const CONSENT_VISIBILITY_EVENT = 'cgn-social-ai-consent-visibility';
 
-const APOLLO_APP_ID = '6985af350409fe000db2f1d7';
-const APOLLO_SCRIPT_ID = 'apollo-website-tracker';
+// Optional services that load only after the visitor agrees. Add one entry per tool, e.g.
+//   { id: 'plausible', src: 'https://plausible.io/js/script.js', attrs: { 'data-domain': 'cologne-socialaiclub.de', defer: '' } }
+// Leave empty while the site uses no analytics or tracking; keep the privacy policy in sync.
+export const OPTIONAL_SERVICES = [];
 
 export function readConsent() {
     if (typeof window === 'undefined') return null;
@@ -41,30 +43,25 @@ export function openConsentSettings() {
     window.dispatchEvent(new CustomEvent(CONSENT_SETTINGS_EVENT));
 }
 
-export function loadApolloTracking() {
+const serviceScriptId = (service) => `consent-service-${service.id}`;
+
+export function loadOptionalServices() {
     if (typeof window === 'undefined') return;
-    // Confirmation and unsubscribe URLs contain private bearer tokens.
-    if (/^\/(newsletter|unsubscribe)(\/|$)/.test(window.location.pathname)) return;
-    if (document.getElementById(APOLLO_SCRIPT_ID)) return;
-
-    const cacheBust = Math.random().toString(36).substring(7);
-    const script = document.createElement('script');
-    script.id = APOLLO_SCRIPT_ID;
-    script.src = `https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=${cacheBust}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => {
-        if (window.trackingFunctions?.onLoad) {
-            window.trackingFunctions.onLoad({ appId: APOLLO_APP_ID });
-        }
-    };
-
-    document.head.appendChild(script);
+    OPTIONAL_SERVICES.forEach((service) => {
+        if (document.getElementById(serviceScriptId(service))) return;
+        const script = document.createElement('script');
+        script.id = serviceScriptId(service);
+        script.src = service.src;
+        script.async = true;
+        Object.entries(service.attrs || {}).forEach(([name, value]) => script.setAttribute(name, value));
+        script.onload = () => service.onLoad?.();
+        document.head.appendChild(script);
+    });
 }
 
-export function disableApolloTracking() {
+export function disableOptionalServices() {
     if (typeof window === 'undefined') return;
-
-    const script = document.getElementById(APOLLO_SCRIPT_ID);
-    if (script) script.remove();
+    OPTIONAL_SERVICES.forEach((service) => {
+        document.getElementById(serviceScriptId(service))?.remove();
+    });
 }

@@ -8,10 +8,11 @@ export const PROJECT_DETAILS_ENABLED = true;
 // no navigation link) until the CGN content for them exists and the switch is set to true.
 export const FEATURES = {
     events: false,      // /events calendar, event articles
-    articles: false,    // /projects/:slug long-form project pages
+    articles: true,     // /projects/:slug long-form project pages (only projects with hasArticle: true)
     newsletter: false,  // /newsletter (needs a backend)
     linksPage: false,   // /links bio-link page
     alumni: false,      // alumni section on the team page
+    cookieBanner: false, // consent banner + footer link; switch on together with OPTIONAL_SERVICES in utils/consent.js
 };
 
 // Recruiting banner on the homepage + application page wording.

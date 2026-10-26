@@ -19,7 +19,7 @@ export default function SponsorsSection({ hideCTA = false }) {
             name: 'STARTPLATZ',
             tier: 'partner',
             logo: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
-            logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo-white.png'),
             website: 'https://www.startplatz.de',
         },
 

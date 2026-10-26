@@ -4,8 +4,8 @@ import { useLocale } from '../../i18n/LocaleContext';
 import {
     CONSENT_SETTINGS_EVENT,
     CONSENT_VISIBILITY_EVENT,
-    disableApolloTracking,
-    loadApolloTracking,
+    disableOptionalServices,
+    loadOptionalServices,
     readConsent,
     writeConsent,
 } from '../../utils/consent';
@@ -69,7 +69,7 @@ export default function CookieConsentBanner() {
         if (!savedConsent) {
             scheduleBanner();
         } else if (savedConsent.analytics) {
-            loadApolloTracking();
+            loadOptionalServices();
         }
 
         return () => {
@@ -85,9 +85,9 @@ export default function CookieConsentBanner() {
         setIsVisible(false);
 
         if (analytics) {
-            loadApolloTracking();
+            loadOptionalServices();
         } else {
-            disableApolloTracking();
+            disableOptionalServices();
         }
     };
 
