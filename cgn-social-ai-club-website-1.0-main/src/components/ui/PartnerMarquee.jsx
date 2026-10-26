@@ -5,7 +5,7 @@ import { useLocale } from '../../i18n/LocaleContext';
 import { assetUrl } from '../../utils/assetUrl';
 
 const strategicLogos = [
-    { src: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'), alt: 'STARTPLATZ', width: 120, height: 54, website: 'https://www.startplatz.de' },
+    { src: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'), alt: 'STARTPLATZ', width: 150, height: 67, website: 'https://www.startplatz.de' },
     { src: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-dark.png'), alt: 'DataCamp', width: 160, height: 44, website: 'https://www.datacamp.com/' },
 ];
 

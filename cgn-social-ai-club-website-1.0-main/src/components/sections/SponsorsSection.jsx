@@ -21,6 +21,7 @@ export default function SponsorsSection({ hideCTA = false }) {
             logo: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
             logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo-white.png'),
             website: 'https://www.startplatz.de',
+            logoFit: 'tall',
         },
 
         // Supporter
@@ -164,6 +165,7 @@ export default function SponsorsSection({ hideCTA = false }) {
                                 logoDark={partner.logoDark}
                                 wordmark={partner.wordmark}
                                 website={partner.website}
+                                logoFit={partner.logoFit}
                                 showMetallicBackground={sponsorCols === 1 && centeredSponsorIndex !== null && index === centeredSponsorIndex}
                                 useCenteredHighlight={sponsorCols === 1}
                             />

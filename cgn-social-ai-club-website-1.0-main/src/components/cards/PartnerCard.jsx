@@ -48,6 +48,8 @@ const sponsorTierConfig = {
 const SPONSOR_LOGO_CONTAINER_CLASS = 'absolute inset-x-0 bottom-0 top-[var(--partner-badge-inset)] z-10 flex items-center justify-center';
 const LOGO_CONTAINER_CLASS = 'absolute inset-0 z-10 flex translate-y-[3%] items-center justify-center';
 const LOGO_IMAGE_CLASS = 'w-full h-full max-w-[80%] max-h-[30%] object-contain';
+// For logos with a compact shape (e.g. icon + short word) that would otherwise look small in the card.
+const LOGO_IMAGE_CLASS_TALL = 'w-full h-full max-w-[80%] max-h-[52%] object-contain';
 
 function useDarkMode() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -90,7 +92,7 @@ function PartnerCardLink({ website, name, children }) {
 
 // ─── Sponsor variant (gold, silver, bronze) ───
 // Fancy metallic hover background, large card
-function SponsorCard({ tier, name, logo, logoDark, showMetallicBackground = false, useCenteredHighlight = false }) {
+function SponsorCard({ tier, name, logo, logoDark, logoFit, showMetallicBackground = false, useCenteredHighlight = false }) {
     const { locale } = useLocale();
     const config = sponsorTierConfig[tier] || sponsorTierConfig.silver;
     const [isHovered, setIsHovered] = useState(false);
@@ -131,7 +133,7 @@ function SponsorCard({ tier, name, logo, logoDark, showMetallicBackground = fals
                         src={displayLogo}
                         alt={`${name} Logo`}
                         fallback={<PartnerLogoFallback name={name} />}
-                        className={`${LOGO_IMAGE_CLASS} transition-all duration-500`}
+                        className={`${logoFit === 'tall' ? LOGO_IMAGE_CLASS_TALL : LOGO_IMAGE_CLASS} transition-all duration-500`}
                         loading="lazy"
                     />
                 ) : (
@@ -222,7 +224,7 @@ function SocialPartnerCard({ name, logo, logoDark, logoFallback, description }) 
 // ─── Unified PartnerCard ───
 // variant: 'sponsor' | 'supporter' | 'social'
 // tier (sponsor only): 'gold' | 'silver' | 'bronze'
-export default function PartnerCard({ variant = 'sponsor', tier, name, logo, logoDark, wordmark, logoFallback, description, website, showMetallicBackground = false, useCenteredHighlight = false }) {
+export default function PartnerCard({ variant = 'sponsor', tier, name, logo, logoDark, wordmark, logoFallback, description, website, logoFit, showMetallicBackground = false, useCenteredHighlight = false }) {
     const wrap = (card) => (
         <PartnerCardLink website={website} name={name}>
             {card}
@@ -244,6 +246,7 @@ export default function PartnerCard({ variant = 'sponsor', tier, name, logo, log
             name={name}
             logo={logo}
             logoDark={logoDark}
+            logoFit={logoFit}
             showMetallicBackground={showMetallicBackground}
             useCenteredHighlight={useCenteredHighlight}
         />
