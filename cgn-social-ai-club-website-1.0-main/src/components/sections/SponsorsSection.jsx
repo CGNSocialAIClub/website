@@ -32,6 +32,13 @@ export default function SponsorsSection({ hideCTA = false }) {
             logoDark: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-white.png'),
             website: 'https://www.datacamp.com/',
         },
+        {
+            name: 'OpenAdvo',
+            tier: 'supporter',
+            logo: assetUrl('/cms/strategic-partner-logos/supporter/openadvo-logo.svg'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/openadvo-logo-white.svg'),
+            website: 'https://openadvo.com',
+        },
 
         // Gold Tier
         // { name: 'Gold Partner Name', tier: 'gold', logo: '/cms/strategic-partner-logos/gold/logo.svg' },
