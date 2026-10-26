@@ -13,7 +13,7 @@ export const FEATURES = {
     newsletter: false,  // /newsletter (needs a backend)
     linksPage: false,   // /links bio-link page
     alumni: false,      // alumni section on the team page
-    cookieBanner: false, // consent banner + footer link; switch on together with OPTIONAL_SERVICES in utils/consent.js
+    cookieBanner: true,  // consent banner + footer link; gates the tools listed in OPTIONAL_SERVICES (utils/consent.js)
 };
 
 // Recruiting banner on the homepage + application page wording.

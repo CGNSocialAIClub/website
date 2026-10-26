@@ -13,7 +13,7 @@ import {
 const copy = {
     en: {
         title: 'Privacy preferences',
-        text: 'We use necessary browser storage for language, theme, and basic site features. With your consent, we also use optional website measurement. You can change your choice at any time via Cookies in the footer.',
+        text: 'We use necessary browser storage for language, theme, and basic site features. With your consent, we also use Google Analytics to understand how the site is used. You can change your choice at any time via Cookies in the footer.',
         privacy: 'Privacy policy',
         reject: 'Necessary only',
         accept: 'Agree',
@@ -22,7 +22,7 @@ const copy = {
     },
     de: {
         title: 'Privatsphäre-Einstellungen',
-        text: 'Wir nutzen notwendige Browser-Speicherung für Sprache, Theme und grundlegende Website-Funktionen. Mit deiner Zustimmung nutzen wir zusätzlich optionale Website-Messung. Du kannst deine Auswahl jederzeit über Cookies im Footer ändern.',
+        text: 'Wir nutzen notwendige Browser-Speicherung für Sprache, Theme und grundlegende Website-Funktionen. Mit deiner Zustimmung nutzen wir zusätzlich Google Analytics, um zu verstehen, wie die Website genutzt wird. Du kannst deine Auswahl jederzeit über Cookies im Footer ändern.',
         privacy: 'Datenschutzerklärung',
         reject: 'Nur notwendige',
         accept: 'Zustimmen',
