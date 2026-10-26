@@ -259,6 +259,8 @@ The email `contact@cologne-socialaiclub.de` is written directly in several files
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`
 
+`wrangler.jsonc` also contains `build.command`, so `wrangler deploy` builds `dist/` itself. Without it, builds that skip the dashboard's build step (e.g. branch previews) fail with "assets.directory ... does not exist".
+
 If a deploy fails, open the Worker in the Cloudflare dashboard, go to **Deployments**, and read the build log. Usually the same error also shows up locally with `npm run build`.
 
 **Manual deploy** (only if the automatic one is broken): run `npx wrangler login` once, then `npm run deploy`.
