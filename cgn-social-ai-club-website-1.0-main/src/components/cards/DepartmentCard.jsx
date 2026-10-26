@@ -1,3 +1,5 @@
+import PartnerLogoFallback from '../ui/PartnerLogoFallback';
+import OptimizedImage from '../ui/OptimizedImage.jsx';
 import { useState, useEffect } from 'react';
 import { useLocale } from '../../i18n/LocaleContext';
 
@@ -34,9 +36,10 @@ export default function DepartmentCard({ name, logo, logoDark, isMain = false, c
                 <>
                     {displayLogo && (
                         <div className="flex items-center justify-start w-full md:w-[220px]">
-                            <img
+                            <OptimizedImage
                                 src={displayLogo}
                                 alt={displayName}
+                                fallback={<PartnerLogoFallback name={displayName} />}
                                 className="w-full max-w-[180px] md:max-w-full h-auto object-contain"
                                 loading="eager"
                                 decoding="async"
@@ -53,9 +56,10 @@ export default function DepartmentCard({ name, logo, logoDark, isMain = false, c
                 <>
                     <div className="flex items-center justify-start w-full mb-6" style={{ height: '84px' }}>
                         {displayLogo && (
-                            <img
+                            <OptimizedImage
                                 src={displayLogo}
                                 alt={displayName}
+                                fallback={<PartnerLogoFallback name={displayName} />}
                                 className="h-full max-h-20 w-auto object-contain"
                                 loading="eager"
                                 decoding="async"

@@ -1,17 +1,35 @@
+import '../events/EventScene.css';
+import '../../pages/EventsPage.css';
+import { projectArticlePath } from '../../utils/contentRoutes';
+import EventCard, { EventCardHeader } from '../events/EventCard';
+import { rememberArticleCard } from '../../hooks/useArticleExpansion';
 import TiltedCard from '../ui/TiltedCard';
+import Button from '../ui/Button';
 import { useLocale } from '../../i18n/LocaleContext';
-import { assetUrl } from '../../utils/assetUrl';
+import ProjectAvatarStack from './ProjectAvatarStack';
+import './ProjectCard.css';
 
-export default function ProjectCard({ project, onClick }) {
-    const { t } = useLocale();
-    const statusStyles = {
-        Active: 'bg-teal-500/35 text-white border-teal-500/40',
-        Upcoming: 'bg-blue-500/35 text-white border-blue-500/40',
-        default: 'bg-slate-500/35 text-white border-slate-500/40',
-    };
+export function ProjectCardSummary({ project, metadata, actions, actionHref, onClick }) {
+    const { t, locale } = useLocale();
+    const opensArticle = project.hasArticle && typeof onClick === 'function';
+    const contributors = [...(project.contributors || [])].sort((a, b) => Number(b.projectRole === 'lead') - Number(a.projectRole === 'lead'));
+    return <div className="project-card-summary">
+        {metadata}
+        <p className="flex-grow text-[var(--text-secondary)] text-[length:var(--type-card-copy)] leading-relaxed">{project.description}</p>
+        {actions || ((opensArticle || actionHref) && <div className="project-card-actions mt-4">
+            <Button variant="always-white" href={actionHref || projectArticlePath(project)} onClick={event => {
+                event.stopPropagation();
+                if (!actionHref && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) { event.preventDefault(); onClick(); }
+            }}>{actionHref ? t.projects.startProject : t.projects.learnMore}</Button>
+            <ProjectAvatarStack contributors={contributors} locale={locale} />
+        </div>)}
+    </div>;
+}
 
-    const badgeClass = statusStyles[project.status] || statusStyles.default;
+export default function ProjectCard({ project, onClick, actionHref, metadata, actions, imageFit, imageAspect = '16 / 10', articleLayoutId }) {
     const isClickable = typeof onClick === 'function';
+    const opensArticle = project.hasArticle && isClickable;
+    const isCardClickable = isClickable && !opensArticle && !actionHref;
 
     return (
         <TiltedCard
@@ -21,62 +39,19 @@ export default function ProjectCard({ project, onClick }) {
             scaleOnHover={1}
             showMobileWarning={false}
             showTooltip={false}
-            onClick={isClickable ? onClick : undefined}
+            onClick={isCardClickable ? onClick : undefined}
         >
-            <div
-                className={`group bg-[var(--bg-surface)] shadow-lg rounded-3xl overflow-hidden transition-all duration-300 flex flex-col h-full ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
-            >
-                {/* Image Wrapper with Padding */}
-                <div className="p-4 pb-0">
-                    <div className={`h-48 w-full relative overflow-hidden rounded-xl border border-[var(--border-subtle)] ${project.isLogo ? 'bg-white' : 'bg-[var(--bg-surface-subtle)]'}`}>
-                        {project.image ? (
-                            <img
-                                src={assetUrl(project.image)}
-                                alt={project.title}
-                                className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${project.isLogo
-                                    ? 'object-contain p-10'
-                                    : 'object-cover'
-                                    }`}
-                                loading="lazy"
-                                onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    e.target.nextSibling.style.display = 'flex';
-                                }}
-                            />
-                        ) : null}
-                        <div className={`w-full h-full flex items-center justify-center bg-[var(--bg-surface-subtle)] text-[var(--text-secondary)] ${project.image ? 'hidden' : 'flex'}`}>
-                            <span className="text-sm font-medium">{t.projects.fallbackImage}</span>
-                        </div>
-
-                        <div className="absolute top-4 right-4 z-10 pointer-events-none">
-                            <span className={`px-3 py-1 rounded-full text-xs font-bold border backdrop-blur-md ${badgeClass}`}>
-                                {t.projects.statuses[project.status] || project.status}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Content */}
-                <div className="px-6 pt-6 pb-4 flex flex-col flex-grow">
-                    <div className="mb-4">
-                        <h3 className="text-3xl font-bold text-[var(--text-primary)] group-hover:text-[#4A98FF] transition-colors font-heading">{project.title}</h3>
-                    </div>
-
-                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed mb-6 flex-grow">
-                        {project.description}
-                    </p>
-
-                    <div className="mt-auto pt-4">
-                        <div className="flex flex-wrap gap-2">
-                            {project.tags.map(tag => (
-                                <span key={tag} className="px-3 py-1 bg-[var(--bg-surface-subtle)] text-[var(--text-secondary)] text-xs rounded-full border border-[var(--border-subtle)]">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <EventCard event={{...project,articleKind:'project',id:`project-${project.id}`,imageFit:imageFit || project.imageFit || (project.isLogo?'contain':'cover')}} state="grid" morph={false}
+                data-article-kind="project"
+                onClickCapture={event => { if (opensArticle) rememberArticleCard(articleLayoutId || `project-article-${project.id}`, event.currentTarget); }}
+                className={`project-article-source group bg-[var(--bg-surface)] shadow-lg rounded-3xl overflow-hidden flex flex-col h-full ${isCardClickable ? 'cursor-pointer' : 'cursor-default'}`}>
+                <EventCardHeader
+                    coverProps={{style:{aspectRatio:imageAspect || undefined,height:imageAspect?undefined:192}}}
+                    badgeProps={{style:{position:'absolute',right:40,top:40,pointerEvents:'none'}}}
+                    titleProps={{as:'h3',className:'font-bold leading-[1.05] text-[var(--text-primary)] font-heading'}}>
+                    <ProjectCardSummary project={project} metadata={metadata} actions={actions} actionHref={actionHref} onClick={onClick}/>
+                </EventCardHeader>
+            </EventCard>
         </TiltedCard>
     );
 }

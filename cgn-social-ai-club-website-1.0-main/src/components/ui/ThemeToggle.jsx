@@ -60,7 +60,7 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={cycleTheme}
-            className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[var(--border-default)] text-[var(--text-primary)] transition-all hover:bg-[var(--hover-overlay)]"
+            className="ui-hover-overlay flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border-default)] text-[var(--text-primary)] transition-all active:bg-[var(--hover-overlay)]"
             aria-label={`Current theme: ${theme}. Click to cycle.`}
             title="Toggle Theme (System -> Light -> Dark)"
         >

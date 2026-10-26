@@ -1,0 +1,84 @@
+.club-photo-tiles {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  gap: clamp(8px, 1.4vw, 18px);
+  aspect-ratio: 2;
+  isolation: isolate;
+  border-radius: 24px;
+}
+
+.club-photo-tile {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: var(--bg-surface-subtle);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.club-photo-tile > img {
+  display: block;
+  border-radius: inherit;
+}
+
+.club-photo-tile:not(.club-photo-slot-0) {
+  outline: 3px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 180ms ease;
+}
+
+@media (hover: hover) {
+  .club-photo-tile:not(.club-photo-slot-0):enabled:hover { outline-color: #70b9f0; }
+  .dark .club-photo-tile:not(.club-photo-slot-0):enabled:hover { outline-color: #a3d9ff; }
+}
+
+.club-photo-tiles:focus-visible,
+.club-photo-tile:focus-visible {
+  outline: 3px solid var(--text-primary);
+  outline-offset: 4px;
+  z-index: 2;
+}
+
+.club-photo-slot-0 { grid-column: 1; grid-row: 1 / 4; }
+.club-photo-slot-1 { grid-column: 2; grid-row: 1; }
+.club-photo-slot-2 { grid-column: 2; grid-row: 2; }
+.club-photo-slot-3 { grid-column: 2; grid-row: 3; }
+
+@media (max-width: 767px) {
+  .club-photo-tiles {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 3fr 1fr;
+    aspect-ratio: 1;
+  }
+
+  .club-photo-slot-0 { grid-column: 1 / 4; grid-row: 1; }
+  .club-photo-slot-1 { grid-column: 1; grid-row: 2; }
+  .club-photo-slot-2 { grid-column: 2; grid-row: 2; }
+  .club-photo-slot-3 { grid-column: 3; grid-row: 2; }
+}
+
+.club-photo-credit {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  z-index: 1;
+  color: var(--text-on-image);
+  font-size: var(--type-micro);
+  line-height: 1.2;
+  font-weight: 400;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Keep the hover outline hidden until the tile reaches its final position. */
+.club-photo-tile[data-moving]:enabled:hover {
+  outline-color: transparent;
+  transition: none;
+}
+.dark .club-photo-tile[data-moving]:enabled:hover { outline-color: transparent; }

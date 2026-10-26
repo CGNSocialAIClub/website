@@ -25,7 +25,7 @@ export default function Breadcrumbs() {
                                         {crumb.name}
                                     </span>
                                 ) : (
-                                    <Link to={crumb.path} className="hover:text-[var(--text-primary)] transition-colors">
+                                    <Link to={crumb.path} className="ui-text-primary-hover active:text-[var(--text-primary)] transition-colors">
                                         {crumb.name}
                                     </Link>
                                 )}

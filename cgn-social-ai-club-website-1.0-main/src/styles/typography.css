@@ -1,0 +1,102 @@
+/* Shared typography. Branding geometry and animated title fitting stay separate. */
+:root {
+  --type-heading-weight: 700;
+  --type-micro: 0.625rem;
+  --type-label: 0.75rem;
+  --type-meta: 0.875rem;
+  --type-body: 1rem;
+  --type-lead: 1.125rem;
+  --type-subhead: 1.25rem;
+  --type-heading-sm: 1.5rem;
+  --type-heading-md: 1.75rem;
+  --type-card-title: 1.875rem;
+  --type-project-card-title: 1.875rem;
+  --type-heading-lg: 2.25rem;
+  --type-display-sm: 2.5rem;
+  --type-display-md: 3rem;
+  --type-display-lg: 3.5rem;
+  --type-display-xl: 3.75rem;
+  --type-display-2xl: 4rem;
+  --type-display-3xl: 4.5rem;
+  --type-display-4xl: 6rem;
+  --type-quote: 6.5rem;
+  --type-reading: var(--type-lead);
+  --type-card-copy: var(--type-body);
+  --type-reading-leading: 1.6;
+  --type-reading-mobile-leading: 1.6;
+  --type-reading-align: left;
+  --type-badge-min: var(--type-micro);
+}
+
+@theme inline {
+  --text-xs: var(--type-label);
+  --text-xs--line-height: 1.333333;
+  --text-sm: var(--type-meta);
+  --text-sm--line-height: 1.428571;
+  --text-base: var(--type-body);
+  --text-base--line-height: 1.5;
+  --text-lg: var(--type-lead);
+  --text-lg--line-height: 1.555556;
+  --text-xl: var(--type-subhead);
+  --text-xl--line-height: 1.4;
+  --text-2xl: var(--type-heading-sm);
+  --text-2xl--line-height: 1.333333;
+  --text-3xl: var(--type-card-title);
+  --text-3xl--line-height: 1.2;
+  --text-4xl: var(--type-heading-lg);
+  --text-4xl--line-height: 1.111111;
+  --text-5xl: var(--type-display-md);
+  --text-5xl--line-height: 1;
+  --text-6xl: var(--type-display-xl);
+  --text-6xl--line-height: 1;
+  --text-7xl: var(--type-display-3xl);
+  --text-7xl--line-height: 1;
+  --text-8xl: var(--type-display-4xl);
+  --text-8xl--line-height: 1;
+}
+
+/* Long German compounds and enlarged user text must not escape their columns. */
+:root main :is(h1,h2,h3,h4,p,li) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+:root main .flex > div:not(.shrink-0) { min-width: 0; }
+@media (max-width: 639px) {
+  :root main a[class*="ui-button"] {
+    max-width: 100%;
+    min-width: 0;
+    white-space: normal;
+  }
+  :root main a[class*="ui-button"] > span { min-width: 0; overflow-wrap: anywhere; }
+  /* A readable minimum slot allows enlarged text to turn two logos into one. */
+  :root .social-partner-grid-item {
+    flex-basis: max(calc((100% - 16px) / 2), min(100%, 9rem));
+  }
+}
+:root .event-empty.compact { grid-template-columns: auto minmax(0, 1fr) auto; }
+:root .event-empty.compact > :not(svg) { min-width: 0; }
+@media (max-width: 767px) {
+  :root .event-empty.compact { grid-template-columns: auto minmax(0, 1fr); }
+}
+:root .club-photo-credit {
+  max-width: calc(100% - 20px);
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+@media (max-width: 639px) {
+  :root .partner-card-grid--supporters .partner-card-grid__item {
+    flex-basis: max(calc((100% - var(--partner-gap)) / 2), min(100%, 8rem));
+  }
+}
+/* Keep the composed lines during motion; at rest allow user spacing overrides
+   to wrap within a line rather than clipping its final words. */
+:root :is(.event-state-grid, .project-article-source, .event-scene-card[data-settled="true"]) [data-event-part="title"] > span {
+  white-space: normal !important;
+}
+
+/* League Spartan has one site-wide weight, including utility overrides and
+   CSS shorthand declarations. Albert Sans interface/body weights are separate. */
+:root :is(h1,h2,h3,h4,h5,h6,.font-heading,.member-story-byline,.club-links-item strong,[style*="League Spartan"]) {
+  font-weight: var(--type-heading-weight) !important;
+}

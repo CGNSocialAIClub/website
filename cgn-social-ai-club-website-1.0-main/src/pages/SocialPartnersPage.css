@@ -1,0 +1,29 @@
+.social-partner-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Fixed column widths keep a shorter final row the same size and centered. */
+.social-partner-grid-item {
+  flex: 0 0 calc((100% - 16px) / 2);
+  min-width: 0;
+}
+
+.social-partner-grid-item > a > div {
+  max-width: none;
+}
+
+@media (min-width: 768px) {
+  .social-partner-grid { gap: 24px; }
+  .social-partner-grid-item { flex-basis: calc((100% - 48px) / 3); }
+}
+
+@media (max-width: 359px) {
+  .social-partner-grid-item { flex-basis: 100%; }
+}
+
+@media (min-width: 1024px) {
+  .social-partner-grid-item { flex-basis: calc((100% - 72px) / 4); }
+}

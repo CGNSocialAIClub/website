@@ -22,17 +22,17 @@ export default function HeadingSection({
   const TitleTag = as;
 
   return (
-    <div className={`flex flex-col items-center text-center pt-4 md:pt-12 mb-10 md:mb-12 ${className}`}>
+    <div className={`section-heading ${as === 'h1' ? 'page-heading' : ''} flex flex-col items-center text-center ${className}`}>
       {/* Badge/Label */}
       {!hideBadge && badge && (
-        <div className="mb-5 md:mb-6">
+        <div className="section-heading-label">
           <SectionLabel>{badge}</SectionLabel>
         </div>
       )}
 
       {/* Main Title */}
       {title && (
-        <TitleTag className="text-4xl sm:text-5xl md:text-6xl font-bold font-heading text-[var(--text-primary)] mb-5 md:mb-6 max-w-4xl px-2">
+        <TitleTag className="text-4xl sm:text-5xl md:text-6xl font-bold font-heading text-[var(--text-primary)] section-heading-title max-w-4xl px-2">
           {typeof title === 'string'
             ? title.split('\n').map((part, index, array) => (
                 <React.Fragment key={`${part}-${index}`}>
@@ -46,14 +46,14 @@ export default function HeadingSection({
 
       {/* Subtitle/Description */}
       {subtitle && (
-        <p className="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed px-2">
+        <p className="section-heading-copy text-xl text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed px-2">
           {subtitle}
         </p>
       )}
 
       {/* Optional extra content (like buttons) */}
       {children && (
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <div className="section-heading-actions flex flex-wrap justify-center gap-4">
           {children}
         </div>
       )}

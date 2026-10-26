@@ -1,6 +1,6 @@
 export default function Container({ children, className = "" }) {
     return (
-        <div className={`mx-auto w-full max-w-screen-2xl px-4 ${className}`}>
+        <div data-content-container className={`mx-auto w-full max-w-[var(--content-max-width)] px-4 ${className}`}>
             {children}
         </div>
     );

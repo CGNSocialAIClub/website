@@ -1,0 +1,53 @@
+.alumni-window {
+    position: relative;
+    width: min(100%, 900px, calc(var(--alumni-count) * 220px - 180px));
+    margin-inline: auto;
+}
+
+.alumni-viewport {
+    width: 100%;
+    overflow-x: hidden;
+    touch-action: pan-y;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent, black 14%, black 86%, transparent);
+}
+
+.alumni-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.alumni-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+}
+
+.alumni-group {
+    display: flex;
+    align-items: stretch;
+    gap: 48px;
+    padding: 8px 24px 24px;
+}
+
+.alumni-card {
+    width: 172px;
+    flex-shrink: 0;
+}
+
+.alumni-card > .group > .aspect-square {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 639px) {
+    .alumni-window { width: min(100%, calc(var(--alumni-count) * 168px - 156px)); }
+    .alumni-card { width: 148px; }
+    .alumni-group { gap: 20px; padding-inline: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .alumni-track { will-change: auto; }
+    .alumni-group[aria-hidden='true'],
+    .alumni-card[aria-hidden='true'] { display: none; }
+    .alumni-viewport { mask-image: none; overflow-x: auto; touch-action: auto; }
+}

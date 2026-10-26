@@ -87,7 +87,7 @@ function App() {
                     <HeroSection />
                 </div>
             </div>
-            <div className="w-full mb-2" id="partners">
+            <div className="w-full pt-8 md:pt-12 section-block" id="partners">
                 <PartnerMarquee />
             </div>
             {/* Founding-Foto — wieder aktivieren wenn wir ein gutes Foto haben:

@@ -1,25 +1,32 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../components/ui/Logo';
 import Button from '../components/ui/Button';
 import NavbarItem from '../components/ui/NavbarItem';
 import LanguageToggle from '../components/ui/LanguageToggle';
+import NavbarLanguageToggle from '../components/ui/NavbarLanguageToggle';
 import ThemeToggle from '../components/ui/ThemeToggle';
 import { useLocale } from '../i18n/LocaleContext';
+import { FEATURES } from '../config/features';
 
-export default function Navbar() {
+export default function Navbar({ isBannerVisible = APPLICATIONS_OPEN, bannerHeight = APPLICATION_BANNER_HEIGHT }) {
     const { t } = useLocale();
+    const prefersReducedMotion = useReducedMotion();
     const navigate = useNavigate();
     const location = useLocation();
     const isHomePage = location.pathname === '/';
     const [isScrolled, setIsScrolled] = useState(false);
     const [hasPassedHeroLogo, setHasPassedHeroLogo] = useState(!isHomePage);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [navNeedsCompact,setNavNeedsCompact] = useState(false);
     const [touchedLink, setTouchedLink] = useState(null);
+    const pendingMobileNavigation = useRef(null);
     const [textLogoWidth, setTextLogoWidth] = useState(0);
-    const [mobileTextWidthCap, setMobileTextWidthCap] = useState(null);
+    const [logoUnavailable, setLogoUnavailable] = useState(false);
+    const handleLogoError = () => setLogoUnavailable(true);
+    const textWordmark = <span style={{ fontFamily: "'League Spartan', sans-serif", fontSize: 'var(--wordmark-font-size, 34px)', fontWeight: 700, lineHeight: 1, whiteSpace: 'nowrap', gridColumn: '1 / -1' }}>CGN SOCIAL AI CLUB</span>;
     const [isNavigating, setIsNavigating] = useState(false);
     const [logoTextOverride, setLogoTextOverride] = useState(null);
     const [desktopLeftState, setDesktopLeftState] = useState(isHomePage ? 'toggle' : 'logo');
@@ -27,14 +34,10 @@ export default function Navbar() {
     const textLogoMeasureRef = useRef(null);
     const desktopToggleMeasureRef = useRef(null);
     const navPillRef = useRef(null);
-    const mobileLeftGroupRef = useRef(null);
-    const mobileIconRef = useRef(null);
-    const rightControlsRef = useRef(null);
     const logoRevealTimerRef = useRef(null);
     const logoResetTimerRef = useRef(null);
     const desktopLeftStateTimerRef = useRef(null);
     const prevPathRef = useRef(location.pathname);
-    const prevIsScrolledRef = useRef(isScrolled);
     const getSectionId = (href) => (href.includes('#') ? href.split('#')[1] : '');
     const parseHref = (href) => {
         const [pathPart, hashPart] = href.split('#');
@@ -44,6 +47,12 @@ export default function Navbar() {
     };
 
     const navigateWithPreScroll = (href) => {
+        // Wait for the menu's actual exit completion, not a guessed timeout.
+        if (isMobileMenuOpen || pendingMobileNavigation.current) {
+            pendingMobileNavigation.current = href;
+            setIsMobileMenuOpen(false);
+            return;
+        }
         if (logoRevealTimerRef.current) clearTimeout(logoRevealTimerRef.current);
         if (logoResetTimerRef.current) clearTimeout(logoResetTimerRef.current);
 
@@ -92,17 +101,8 @@ export default function Navbar() {
             setIsNavigating(true);
             setIsMobileMenuOpen(false);
 
-            const shouldPreRevealLogo = isHomePage && !hasPassedHeroLogo;
-            if (shouldPreRevealLogo) {
-                setLogoTextOverride(true);
-                logoRevealTimerRef.current = setTimeout(() => {
-                    navigate(href);
-                    setIsNavigating(false);
-                }, 220);
-            } else {
-                navigate(href);
-                requestAnimationFrame(() => setIsNavigating(false));
-            }
+            navigate(href);
+            requestAnimationFrame(() => setIsNavigating(false));
             return;
         }
 
@@ -111,10 +111,14 @@ export default function Navbar() {
     };
 
     useEffect(() => {
+        const setSurfaceProgress = (progress) => {
+            navPillRef.current?.style.setProperty('--navbar-scroll-progress', String(progress));
+        };
         const updateNavbarState = () => {
             setIsScrolled(window.scrollY > 20);
 
             if (!isHomePage) {
+                setSurfaceProgress(Math.min(1, Math.max(0, window.scrollY / 80)));
                 setHasPassedHeroLogo(true);
                 return;
             }
@@ -123,6 +127,7 @@ export default function Navbar() {
             const navNode = navPillRef.current;
 
             if (!heroLogo || !navNode) {
+                setSurfaceProgress(Math.min(1, Math.max(0, window.scrollY / 80)));
                 setHasPassedHeroLogo(window.scrollY > 20);
                 return;
             }
@@ -130,25 +135,28 @@ export default function Navbar() {
             const heroRect = heroLogo.getBoundingClientRect();
             const navRect = navNode.getBoundingClientRect();
             const heroBottomDocumentY = heroRect.bottom + window.scrollY;
-            const handoffPoint = heroBottomDocumentY - navRect.height;
-
-            // Use an absolute scroll threshold instead of comparing two moving
-            // viewport rects, then add hysteresis around that threshold.
-            setHasPassedHeroLogo((previous) => {
-                if (previous) {
-                    return window.scrollY >= handoffPoint - 24;
-                }
-                return window.scrollY >= handoffPoint + 24;
+            const handoffPoint = heroBottomDocumentY - navRect.bottom;
+            // Hand off as soon as the navbar's actual lower edge covers the logo.
+            setSurfaceProgress(Math.min(1, Math.max(0, window.scrollY / Math.max(1, handoffPoint))));
+            setHasPassedHeroLogo(heroRect.bottom <= navRect.bottom);
+        };
+        let frame = null;
+        const scheduleUpdate = () => {
+            if (frame !== null) return;
+            frame = requestAnimationFrame(() => {
+                frame = null;
+                updateNavbarState();
             });
         };
         updateNavbarState();
-        window.addEventListener('scroll', updateNavbarState);
-        window.addEventListener('resize', updateNavbarState);
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('resize', scheduleUpdate);
         return () => {
-            window.removeEventListener('scroll', updateNavbarState);
-            window.removeEventListener('resize', updateNavbarState);
+            if (frame !== null) cancelAnimationFrame(frame);
+            window.removeEventListener('scroll', scheduleUpdate);
+            window.removeEventListener('resize', scheduleUpdate);
         };
-    }, [isHomePage]);
+    }, [isHomePage, isBannerVisible, bannerHeight]);
 
     useEffect(() => {
         const cameFromSubpage = prevPathRef.current !== '/' && location.pathname === '/';
@@ -186,52 +194,94 @@ export default function Navbar() {
     }, []);
 
     useEffect(() => {
-        if (desktopLeftStateTimerRef.current) {
-            clearTimeout(desktopLeftStateTimerRef.current);
-        }
-
-        const wasScrolled = prevIsScrolledRef.current;
-        prevIsScrolledRef.current = hasPassedHeroLogo;
-
-        if (!isHomePage) {
-            setDesktopLeftState('logo');
-            return;
-        }
-
-        if (!hasPassedHeroLogo) {
-            if (wasScrolled) {
-                setDesktopLeftState('icon');
-                desktopLeftStateTimerRef.current = setTimeout(() => {
-                    setDesktopLeftState('toggle');
-                }, 180);
-                return;
-            }
-
-            setDesktopLeftState('toggle');
-            return;
-        }
-
-        setDesktopLeftState('icon');
-        desktopLeftStateTimerRef.current = setTimeout(() => {
-            setDesktopLeftState('logo');
-        }, 140);
-
-        return () => {
-            if (desktopLeftStateTimerRef.current) {
-                clearTimeout(desktopLeftStateTimerRef.current);
-            }
-        };
+        setDesktopLeftState(!isHomePage || hasPassedHeroLogo ? 'logo' : 'toggle');
     }, [isHomePage, hasPassedHeroLogo]);
 
-    // Scroll Lock when Mobile Menu is Open
+    // Native touch handling keeps taps actionable during iOS momentum scrolling.
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
+        const pill = navPillRef.current;
+        if (!pill) return undefined;
+        let tap = null;
+        let suppressClickUntil = 0;
+        const start = event => {
+            const target = event.target instanceof Element ? event.target.closest('[data-nav-touch-action]') : null;
+            if (!target || event.touches.length !== 1) return;
+            const touch = event.touches[0];
+            tap = { target, x: touch.clientX, y: touch.clientY };
+            if (event.cancelable) event.preventDefault();
+        };
+        const end = event => {
+            const current = tap;
+            tap = null;
+            const touch = event.changedTouches[0];
+            if (!current || !touch) return;
+            if (event.cancelable) event.preventDefault();
+            if (Math.hypot(touch.clientX - current.x, touch.clientY - current.y) > 12) return;
+            // Reuse the normal link/button action, then suppress a synthetic second click.
+            suppressClickUntil = 0;
+            current.target.click();
+            suppressClickUntil = Date.now() + 700;
+        };
+        const cancel = () => { tap = null; };
+        const click = event => {
+            if (Date.now() < suppressClickUntil && event.target instanceof Element && event.target.closest('[data-nav-touch-action]')) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        };
+        pill.addEventListener('touchstart', start, { passive: false });
+        pill.addEventListener('touchend', end, { passive: false });
+        pill.addEventListener('touchcancel', cancel);
+        pill.addEventListener('click', click, true);
+        return () => {
+            pill.removeEventListener('touchstart', start);
+            pill.removeEventListener('touchend', end);
+            pill.removeEventListener('touchcancel', cancel);
+            pill.removeEventListener('click', click, true);
+        };
+    }, []);
+
+    // Lock the document, including touch scrolling on mobile Safari.
+    useEffect(() => {
+        if (!isMobileMenuOpen) {
             setTouchedLink(null);
+            return undefined;
         }
-        return () => { document.body.style.overflow = 'unset'; };
+        const root = document.documentElement;
+        const previousOverscroll = root.style.overscrollBehavior;
+        // Preserve the scrolling ancestor so the sticky navbar stays in place.
+        root.style.overscrollBehavior = 'none';
+        let touchY = 0;
+        const onTouchStart = event => { touchY = event.touches[0]?.clientY ?? 0; };
+        const blockBackgroundScroll = event => {
+            const menu = event.target instanceof Element ? event.target.closest('[data-mobile-menu]') : null;
+            const nextY = event.touches?.[0]?.clientY;
+            const delta = nextY == null ? event.deltaY : touchY - nextY;
+            if (nextY != null) touchY = nextY;
+            // Keep long menus usable, but never pass their overscroll to the page.
+            const canScroll = menu && menu.scrollHeight > menu.clientHeight &&
+                ((delta > 0 && menu.scrollTop + menu.clientHeight < menu.scrollHeight - 1) ||
+                 (delta < 0 && menu.scrollTop > 0));
+            if (!canScroll && event.cancelable) event.preventDefault();
+        };
+        const blockScrollKeys = event => {
+            if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable=true]')) return;
+            if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) {
+                if (event.key === ' ' && event.target instanceof Element && event.target.closest('button, [role=button]')) return;
+                event.preventDefault();
+            }
+        };
+        document.addEventListener('keydown', blockScrollKeys);
+        document.addEventListener('touchstart', onTouchStart, { passive: true });
+        document.addEventListener('touchmove', blockBackgroundScroll, { passive: false });
+        document.addEventListener('wheel', blockBackgroundScroll, { passive: false });
+        return () => {
+            document.removeEventListener('keydown', blockScrollKeys);
+            root.style.overscrollBehavior = previousOverscroll;
+            document.removeEventListener('touchstart', onTouchStart);
+            document.removeEventListener('touchmove', blockBackgroundScroll);
+            document.removeEventListener('wheel', blockBackgroundScroll);
+        };
     }, [isMobileMenuOpen]);
 
     useEffect(() => {
@@ -293,44 +343,37 @@ export default function Navbar() {
         };
     }, []);
 
-    useEffect(() => {
-        const updateMobileTextWidthCap = () => {
-            const navNode = navPillRef.current;
-            const leftNode = mobileLeftGroupRef.current;
-            const iconNode = mobileIconRef.current;
-            const rightNode = rightControlsRef.current;
-
-            if (!navNode || !leftNode || !iconNode || !rightNode) {
-                return;
-            }
-
-            const navRect = navNode.getBoundingClientRect();
-            const leftRect = leftNode.getBoundingClientRect();
-            const iconRect = iconNode.getBoundingClientRect();
-            const rightRect = rightNode.getBoundingClientRect();
-
-            // Keep the same minimum spacing between logo and hamburger as
-            // between hamburger and the right navbar edge.
-            const rightEdgeSpacing = Math.max(0, navRect.right - rightRect.right);
-            const availableLeftGroupWidth = rightRect.left - leftRect.left - rightEdgeSpacing;
-            const cap = Math.max(0, availableLeftGroupWidth);
-
-            setMobileTextWidthCap(cap);
-        };
-
-        updateMobileTextWidthCap();
-        window.addEventListener('resize', updateMobileTextWidthCap);
-        return () => window.removeEventListener('resize', updateMobileTextWidthCap);
-    }, [isMobileMenuOpen, location.pathname, textLogoWidth]);
-
     const navLinks = [
         { name: t.nav.about, href: '/' },
         { name: t.nav.projects, href: '/projects' },
+        ...(FEATURES.events ? [{ name: 'Events', href: '/events' }] : []),
         { name: t.nav.community, href: '/team' },
         { name: t.nav.nonprofits, href: '/social-partners' },
         { name: t.nav.partners, href: '/sponsors' },
         { name: t.nav.contact, href: '/contact' },
     ];
+
+    useEffect(()=>{
+        const surface=navPillRef.current;
+        if(!surface)return;
+        let frame;
+        const measure=()=>{
+            const clone=surface.cloneNode(true);
+            clone.removeAttribute('data-nav-compact');
+            clone.setAttribute('aria-hidden','true');
+            clone.inert=true;
+            clone.classList.add('navbar-fit-measure');
+            clone.querySelectorAll('[id]').forEach(node=>node.removeAttribute('id'));
+            document.body.append(clone);
+            const required=Math.ceil(clone.getBoundingClientRect().width);
+            clone.remove();
+            setNavNeedsCompact(surface.clientWidth<required+4);
+        };
+        const queue=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(measure);};
+        const observer=new ResizeObserver(queue);observer.observe(surface);
+        window.addEventListener('resize',queue);document.fonts?.ready.then(queue);queue();
+        return()=>{cancelAnimationFrame(frame);observer.disconnect();window.removeEventListener('resize',queue);};
+    },[t,desktopLeftState,textLogoWidth,isMobileMenuOpen]);
 
     const desktopMenuVariants = {
         hidden: { opacity: 0, x: -12 },
@@ -350,9 +393,18 @@ export default function Navbar() {
         hidden: { opacity: 0, x: -10 },
         show: { opacity: 1, x: 0, transition: { duration: 0.25, ease: 'easeOut' } },
     };
-    const desktopLeftWidth = Math.max(desktopToggleWidth, textLogoWidth + 30);
-    const logoTextVisible = logoTextOverride ?? (!isHomePage || desktopLeftState === 'logo');
-
+    const visibleLeftState = isMobileMenuOpen ? 'logo' : desktopLeftState;
+    const [logoExitComplete, setLogoExitComplete] = useState(isHomePage);
+    useEffect(() => {
+        if (visibleLeftState !== 'toggle') setLogoExitComplete(false);
+    }, [visibleLeftState]);
+    const showLanguageToggle = visibleLeftState === 'toggle' && logoExitComplete;
+    const navbarSurfaceProgress = isMobileMenuOpen ? '1' : 'var(--navbar-scroll-progress, 0)';
+    const desktopLeftWidth = showLanguageToggle
+        ? desktopToggleWidth || 98
+        : textLogoWidth + 15;
+    // The CGN single-line logo already contains the icon: 2191.43 x 181.84.
+    const mobileNaturalLogoWidth = 26 * (2191.43 / 181.84);
     // Handle "Slide Select"
     const handleTouchMove = (e) => {
         const touch = e.touches[0];
@@ -379,115 +431,97 @@ export default function Navbar() {
 
     return (
         <nav
-            className="fixed left-0 right-0 top-0 z-50 flex flex-col items-center transition-all duration-300 pt-4 px-4 pointer-events-none"
+            className="absolute left-0 right-0 z-50 mx-auto max-w-screen-2xl px-4 [--navbar-top-gap:16px] nav-desktop:[--navbar-top-gap:24px] flex flex-col items-center pointer-events-none"
+            style={{
+                '--navbar-radius': '24px',
+                '--navbar-theme-text': 'var(--text-primary)',
+                top: 0,
+                // The sticky wrapper handles the safe area; this is only the visual gap.
+                paddingTop: 'var(--navbar-top-gap)',
+            }}
         >
-            {/* Main Navbar Pill */}
+            {/* Keep height and vertical padding fixed while logo and toggle exchange. */}
             <motion.div
-                layout
-                transition={{ type: 'spring', stiffness: 260, damping: 28 }}
                 ref={navPillRef}
-                className={`pointer-events-auto relative transition-all duration-500 ease-in-out flex items-center justify-between p-4 nav-desktop:grid nav-desktop:grid-cols-[auto_minmax(0,1fr)_auto] nav-desktop:items-center nav-desktop:p-[8px] rounded-[24px] ${isScrolled
-                    ? 'max-w-screen-2xl w-full nav-desktop:w-[100%] bg-[var(--bg-surface-glass)] backdrop-blur-md shadow-lg border border-[var(--border-default)]'
-                    : 'max-w-screen-2xl w-full nav-desktop:w-[100%] bg-transparent border border-transparent'
-                    } ${isMobileMenuOpen ? '!bg-[var(--bg-surface)] !shadow-lg !border-[var(--border-default)]' : ''}`}
+                data-nav-compact={navNeedsCompact}
+                style={{
+                    backgroundColor: `color-mix(in srgb, var(--bg-surface) calc(${navbarSurfaceProgress} * var(--floating-surface-opacity)), transparent)`,
+                    backdropFilter: `blur(calc(${navbarSurfaceProgress} * var(--floating-surface-blur)))`,
+                    WebkitBackdropFilter: `blur(calc(${navbarSurfaceProgress} * var(--floating-surface-blur)))`,
+                    borderColor: `color-mix(in srgb, var(--border-default) calc(${navbarSurfaceProgress} * 100%), transparent)`,
+                    boxShadow: `0 10px 20px -5px rgba(0,0,0,calc(${navbarSurfaceProgress} * 0.1))`,
+                    ...(isHomePage ? {
+                        '--text-primary': `color-mix(in srgb, var(--navbar-theme-text) calc(${navbarSurfaceProgress} * 100%), var(--hero-ink))`,
+                    } : {}),
+                }}
+                className="navbar-surface pointer-events-auto relative z-20 flex items-center justify-between gap-4 h-[66px] shrink-0 py-0 pl-1 pr-4 nav-desktop:pr-2 nav-desktop:gap-3 nav-desktop:grid nav-desktop:grid-cols-[auto_minmax(max-content,1fr)_auto] nav-desktop:items-center rounded-[var(--navbar-radius)] max-w-screen-2xl w-full border"
             >
                 {/* Logo / Language Toggle (Left) */}
                 <div
-                    className="relative flex items-center shrink-0 nav-desktop:min-w-0 nav-desktop:pl-3 nav-desktop:justify-self-start"
-                    style={desktopLeftWidth ? { width: `${desktopLeftWidth}px` } : undefined}
+                    className="relative flex h-[56px] min-w-0 flex-1 items-center nav-desktop:flex-none nav-desktop:w-[var(--desktop-left-width)] nav-desktop:min-w-0 nav-desktop:justify-self-start nav-desktop:transition-[width] nav-desktop:duration-500 nav-desktop:ease-in-out motion-reduce:transition-none"
+                    style={{ '--desktop-left-width': `${desktopLeftWidth}px` }}
                 >
-                    <AnimatePresence mode="wait" initial={false}>
-                        {desktopLeftState === 'toggle' ? (
+                    <AnimatePresence initial={false}>
+                        {showLanguageToggle && <NavbarLanguageToggle key="language-toggle" />}
+                    </AnimatePresence>
+                    <AnimatePresence mode="wait" initial={false} onExitComplete={() => {
+                        if (visibleLeftState === 'toggle') setLogoExitComplete(true);
+                    }}>
+                        {visibleLeftState !== 'toggle' && (
                             <motion.div
-                                key="desktop-toggle"
-                                className="hidden w-full nav-desktop:-ml-3 nav-desktop:flex items-center justify-start"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.16, ease: 'easeOut' }}
-                            >
-                                <LanguageToggle />
-                            </motion.div>
-                        ) : (
-                            <motion.div
-                                key={`desktop-logo-${desktopLeftState}`}
-                                className="hidden nav-desktop:flex items-center"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.16, ease: 'easeOut' }}
+                                key="desktop-logo"
+                                className="navbar-logo-fixed hidden shrink-0 nav-desktop:flex items-center ml-[15px]"
+                                initial={{ opacity: 0, x: 0, clipPath: 'inset(0 100% 0 0)' }}
+                                animate={{ opacity: 1, x: 0, clipPath: 'inset(0 0% 0 0)' }}
+                                exit={{ opacity: 1, x: 0, clipPath: 'inset(0 100% 0 0)', transition: { duration: prefersReducedMotion ? 0 : 0.85, ease: [0.4, 0, 0.2, 1] } }}
+                                transition={{ duration: prefersReducedMotion ? 0 : 0.85, ease: [0.4, 0, 0.2, 1], opacity: { duration: prefersReducedMotion ? 0 : 0.2 } }}
                             >
                                 <Link
                                     to="/"
-                                    className="hidden nav-desktop:flex items-center"
+                                    className="hidden shrink-0 nav-desktop:flex items-center"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         navigateWithPreScroll('/');
                                     }}
                                 >
-                                    {isHomePage ? (
-                                        <motion.div
-                                            className="relative overflow-hidden h-[22px] min-h-[22px]"
-                                            initial={false}
-                                            style={{ width: textLogoWidth }}
-                                            animate={{
-                                                opacity: logoTextVisible ? 1 : 0,
-                                                clipPath: logoTextVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
-                                            }}
-                                            transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                                        >
-                                            <div className="absolute inset-0 flex items-center">
-                                                <Logo navbarText className="h-[22px]" />
-                                            </div>
-                                        </motion.div>
-                                    ) : (
-                                        <div className="h-[22px] min-h-[22px] flex items-center">
-                                            <Logo navbarText className="h-[22px]" />
-                                        </div>
-                                    )}
+                                    <div className="shrink-0 h-[26px] flex items-center">
+                                        {logoUnavailable ? textWordmark : <Logo navbarText className="h-[26px]" onError={handleLogoError} />}
+                                    </div>
                                 </Link>
                             </motion.div>
                         )}
                     </AnimatePresence>
 
+                    <AnimatePresence initial={false}>
+                    {visibleLeftState !== 'toggle' && (
+                    <motion.div key="mobile-logo" className="w-full min-w-0 nav-desktop:hidden" initial={{ opacity: 0, x: 0, clipPath: 'inset(0 100% 0 0)' }} animate={{ opacity: 1, x: 0, clipPath: 'inset(0 0% 0 0)' }} exit={{ opacity: 1, x: 0, clipPath: 'inset(0 100% 0 0)', transition: { duration: prefersReducedMotion ? 0 : 0.85, ease: [0.4, 0, 0.2, 1] } }} transition={{ duration: prefersReducedMotion ? 0 : 0.85, ease: [0.4, 0, 0.2, 1], opacity: { duration: prefersReducedMotion ? 0 : 0.2 } }}>
                     <Link
-                        ref={mobileLeftGroupRef}
                         to="/"
-                        className="flex nav-desktop:hidden items-center"
+                        aria-label="CGN Social AI Club"
+                        data-nav-touch-action="home"
+                        className="relative ml-[15px] grid w-[calc(100%-15px)] min-w-0 grid-cols-1 items-center nav-desktop:hidden"
+                        style={{
+                            maxWidth: `${mobileNaturalLogoWidth}px`,
+                            aspectRatio: '2191.43 / 181.84',
+                            containerType: 'inline-size',
+                            '--wordmark-font-size': 'min(34px, 10.6cqi)',
+                        }}
                         onClick={(e) => {
                             e.preventDefault();
                             navigateWithPreScroll('/');
                         }}
                     >
-                        <span ref={mobileIconRef} className="w-0 shrink-0" />
-                        {isHomePage ? (
-                            <motion.div
-                                className="relative overflow-hidden h-[22px] min-h-[22px]"
-                                initial={false}
-                                style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
-                                animate={{
-                                    opacity: logoTextVisible ? 1 : 0,
-                                    clipPath: logoTextVisible ? 'inset(0 0 0 0)' : 'inset(0 100% 0 0)',
-                                }}
-                                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <div className="absolute inset-0 flex items-center">
-                                    <Logo navbarText className="h-[22px]" />
-                                </div>
-                            </motion.div>
-                        ) : (
-                            <div
-                                className="h-[22px] min-h-[22px] flex items-center overflow-hidden"
-                                style={{ width: Math.max(0, Math.min(textLogoWidth, mobileTextWidthCap ?? textLogoWidth)) }}
-                            >
-                                <Logo navbarText className="h-[22px]" />
-                            </div>
-                        )}
+                        {logoUnavailable ? textWordmark : <div className="min-w-0" aria-hidden="true">
+                            <Logo navbarText fullWidth className="w-full" onError={handleLogoError} />
+                        </div>}
                     </Link>
+                    </motion.div>
+                    )}
+                    </AnimatePresence>
 
-                    <div className="absolute pointer-events-none opacity-0 -z-10">
-                        <div ref={textLogoMeasureRef} className="inline-flex items-center h-[22px]">
-                            <Logo navbarText className="h-[22px]" />
+                    <div aria-hidden="true" inert className="absolute w-max pointer-events-none opacity-0 -z-10">
+                        <div ref={textLogoMeasureRef} className="inline-flex items-center h-[26px]">
+                            {logoUnavailable ? textWordmark : <Logo navbarText className="h-[26px]" onError={handleLogoError} />}
                         </div>
                         <div ref={desktopToggleMeasureRef} className="inline-flex items-center">
                             <LanguageToggle />
@@ -496,23 +530,14 @@ export default function Navbar() {
                 </div>
 
                 {/* Centered Desktop Menu */}
-                <motion.div
-                    layout
-                    className="hidden nav-desktop:flex items-center justify-center gap-2 justify-self-stretch"
-                    variants={desktopMenuVariants}
-                    initial="hidden"
-                    animate="show"
-                    transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-                >
+                <div className="hidden nav-desktop:flex items-center justify-center justify-self-stretch">
+                    <div className="relative flex shrink-0 items-center gap-2">
                     {navLinks.map((link) => (
-                        <motion.div
-                            key={link.href}
-                            layout="position"
-                            variants={itemVariants}
-                            transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-                        >
+                        <div key={link.href}>
                             <NavbarItem
+                                active={location.pathname === link.href}
                                 href={link.href}
+                                className="px-2.5 xl:px-4"
                                 onClick={(event) => {
                                     event.preventDefault();
                                     navigateWithPreScroll(link.href);
@@ -520,21 +545,20 @@ export default function Navbar() {
                             >
                                 {link.name}
                             </NavbarItem>
-                        </motion.div>
+                        </div>
                     ))}
-                </motion.div>
+                    </div>
+                </div>
 
                 {/* Right Side (Button + Mobile Toggle) */}
                 <motion.div
-                    layout
                     transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-                    ref={rightControlsRef}
-                    className="flex items-center gap-4 shrink-0 nav-desktop:min-w-0 nav-desktop:justify-self-end"
+                    className="flex items-center gap-4 shrink-0 nav-desktop:min-w-max nav-desktop:justify-self-end"
                 >
-                    <motion.div layout="position" transition={{ type: 'spring', stiffness: 260, damping: 28 }} className="hidden nav-desktop:block">
+                    <motion.div className="hidden shrink-0 nav-desktop:block">
                         <Button
                             variant="primary"
-                            className="apply-now-pulse"
+                            className="application-start-pulse"
                             href="/application"
                             onClick={(event) => {
                                 event.preventDefault();
@@ -547,8 +571,12 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="nav-desktop:hidden text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors p-1 relative w-8 h-8 flex items-center justify-center"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        type="button"
+                        aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                        aria-expanded={isMobileMenuOpen}
+                        data-nav-touch-action="menu"
+                        className="ui-text-accent-hover nav-desktop:hidden text-[var(--text-primary)] active:text-[var(--text-accent)] transition-colors p-1 relative w-8 h-8 flex items-center justify-center"
+                        onClick={() => { if (!pendingMobileNavigation.current) setIsMobileMenuOpen(!isMobileMenuOpen); }}
                     >
                         <motion.div
                             initial={false}
@@ -577,26 +605,32 @@ export default function Navbar() {
             </motion.div>
 
             {/* Mobile Menu Card (Detached) */}
-            <AnimatePresence>
+            <AnimatePresence onExitComplete={() => {
+                const href = pendingMobileNavigation.current;
+                pendingMobileNavigation.current = null;
+                if (href) navigateWithPreScroll(href);
+            }}>
                 {isMobileMenuOpen && (
                     <>
                         <motion.button
                             type="button"
                             aria-label="Close menu overlay"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="nav-desktop:hidden fixed inset-0 pointer-events-auto"
+                            className={`fixed inset-0 pointer-events-auto ${navNeedsCompact?'':'nav-desktop:hidden'}`}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.15 }}
+                            transition={{ duration: prefersReducedMotion ? 0 : 0.15 }}
                         />
 
                         <motion.div
+                            data-mobile-menu
+                            style={{ overscrollBehavior: 'contain' }}
                             initial={{ opacity: 0, y: -10, scale: 0.98 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                            transition={{ duration: 0.2 }}
-                            className={`relative z-10 pointer-events-auto mt-2 p-4 flex flex-col items-center gap-2 rounded-[24px] shadow-xl border border-[var(--border-default)] backdrop-blur-md nav-desktop:hidden overflow-y-auto max-h-[calc(100vh-120px)] ${isScrolled
+                            transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
+                            className={`relative z-10 pointer-events-auto mt-2 p-4 flex flex-col items-center gap-2 rounded-[24px] shadow-xl border border-[var(--border-default)] backdrop-blur-md ${navNeedsCompact?'':'nav-desktop:hidden'} overflow-y-auto max-h-[calc(100vh-120px)] ${isScrolled
                                 ? 'max-w-[1000px] w-full bg-[var(--bg-surface-glass)]'
                                 : 'max-w-screen-2xl w-full bg-[var(--bg-surface-glass)]'
                                 }`}
@@ -611,15 +645,16 @@ export default function Navbar() {
                                     <Link
                                         key={link.href}
                                         to={link.href}
+                                        aria-current={location.pathname === link.href ? 'page' : undefined}
                                         data-section={sectionName || undefined}
                                         onClick={(event) => {
                                             event.preventDefault();
                                             navigateWithPreScroll(link.href);
                                         }}
-                                        className={`w-full text-center pt-[14px] pb-[13px] rounded-xl text-[16px] leading-[1.2em] font-bold font-body transition-all duration-200 text-[var(--text-primary)] 
+                                        className={`navbar-page-link relative w-full text-center pt-[14px] pb-[13px] rounded-xl text-[length:var(--type-body)] leading-[1.2em] font-bold font-body transition-all duration-200 text-[var(--text-primary)]
                                       ${isTouched
                                                 ? 'bg-[var(--active-overlay)]'
-                                                : 'hover:bg-[var(--hover-overlay)]'
+                                                : 'ui-hover-overlay active:bg-[var(--hover-overlay)]'
                                             }`}
                                     >
                                         {link.name}
@@ -630,7 +665,7 @@ export default function Navbar() {
                             <div className="w-full mt-2 mb-2">
                                 <Button
                                     variant="primary"
-                                    className="w-full apply-now-pulse"
+                                    className="w-full application-start-pulse"
                                     href="/application"
                                     onClick={(event) => {
                                         event.preventDefault();
@@ -641,7 +676,7 @@ export default function Navbar() {
                                 </Button>
                             </div>
 
-                            <div className="flex items-center justify-between w-full mt-2">
+                            <div className="flex items-center justify-between w-full">
                                 <LanguageToggle />
                                 <ThemeToggle />
                             </div>

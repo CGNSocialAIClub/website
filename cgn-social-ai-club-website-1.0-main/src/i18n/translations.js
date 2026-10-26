@@ -143,6 +143,8 @@ export const translations = {
                 journeyTitle: 'Member Journey',
                 subtitle: 'See how you can grow and contribute as a member.',
                 steps: {
+                    leadershipTitle: 'Leadership & Ownership',
+                    leadershipText: 'Grow into a team lead or board role, guide others, and help shape the club’s next chapter.',
                     introTitle: 'Onboarding & Orientation',
                     introText: 'Start with onboarding, meet the team, and get a clear view of how you can learn, contribute, and take ownership.',
                     engineeringTitle: 'Engineering Track',
@@ -236,10 +238,15 @@ export const translations = {
         },
         projects: {
             fallbackImage: 'Project Image',
+            learnMore: 'Read more',
+            startProject: 'Start a Project',
             authorLabel: 'Author',
             close: 'Close',
             statuses: {
                 Active: 'Active',
+                Completed: 'Completed',
+                'On hold': 'On hold',
+                'Under Evaluation': 'Under Evaluation',
                 Upcoming: 'Upcoming',
             },
         },
@@ -481,6 +488,8 @@ export const translations = {
                 journeyTitle: 'Member Journey',
                 subtitle: 'Sieh dir an, wie du dich als Mitglied einbringen und weiterentwickeln kannst.',
                 steps: {
+                    leadershipTitle: 'Leadership & Ownership',
+                    leadershipText: 'Wachse in eine Team Lead oder Board Rolle, begleite andere und gestalte das nächste Kapitel des Clubs mit.',
                     introTitle: 'Batch Introduction',
                     introText: 'Du startest mit dem Onboarding, lernst das Team kennen und bekommst einen klaren Überblick über deine Möglichkeiten im Club.',
                     engineeringTitle: 'Engineering Track',
@@ -569,10 +578,15 @@ export const translations = {
         },
         projects: {
             fallbackImage: 'Projektbild',
+            learnMore: 'Weiterlesen',
+            startProject: 'Projekt starten',
             authorLabel: 'Autor:in',
             close: 'Schließen',
             statuses: {
                 Active: 'Aktiv',
+                Completed: 'Abgeschlossen',
+                'On hold': 'Pausiert',
+                'Under Evaluation': 'In Prüfung',
                 Upcoming: 'Demnächst',
             },
         },
