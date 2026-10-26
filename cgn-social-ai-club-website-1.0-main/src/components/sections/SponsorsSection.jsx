@@ -13,8 +13,25 @@ export default function SponsorsSection({ hideCTA = false }) {
     const [supporterCols, setSupporterCols] = useState(1);
 
     // Current strategic partner data
-    // Deaktiviert bis echte Partner bestätigt sind — Karten ausblenden, Struktur für später behalten.
     const partners = [
+        // Partner
+        {
+            name: 'STARTPLATZ',
+            tier: 'partner',
+            logo: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'),
+            href: 'https://www.startplatz.de',
+        },
+
+        // Supporter
+        {
+            name: 'DataCamp',
+            tier: 'supporter',
+            logo: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-dark.png'),
+            logoDark: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-white.png'),
+            href: 'https://www.datacamp.com/',
+        },
+
         // Gold Tier
         // { name: 'Gold Partner Name', tier: 'gold', logo: '/cms/strategic-partner-logos/gold/logo.svg' },
 
@@ -100,6 +117,7 @@ export default function SponsorsSection({ hideCTA = false }) {
                                     name={partner.name}
                                     logo={partner.logo}
                                     logoDark={partner.logoDark}
+                                    href={partner.href}
                                 />
                             </div>
                         ))}
@@ -114,6 +132,7 @@ export default function SponsorsSection({ hideCTA = false }) {
                                         name={partner.name}
                                         logo={partner.logo}
                                         logoDark={partner.logoDark}
+                                    href={partner.href}
                                     />
                                 </div>
                             ))}
@@ -131,6 +150,7 @@ export default function SponsorsSection({ hideCTA = false }) {
                                     name={partner.name}
                                     logo={partner.logo}
                                     logoDark={partner.logoDark}
+                                    href={partner.href}
                                 />
                             </div>
                         ))}
@@ -144,6 +164,7 @@ export default function SponsorsSection({ hideCTA = false }) {
                                         name={partner.name}
                                         logo={partner.logo}
                                         logoDark={partner.logoDark}
+                                    href={partner.href}
                                     />
                                 </div>
                             ))}

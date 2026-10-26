@@ -4,6 +4,15 @@ import { assetUrl } from '../../utils/assetUrl';
 
 // Sponsor tier config (fancy metallic backgrounds)
 const sponsorTierConfig = {
+    partner: {
+        bg: assetUrl('/assets/sponsor-backgrounds/SilverSponsor-Background.jpeg'),
+        label: {
+            en: 'Partner',
+            de: 'Partner',
+        },
+        textColor: 'text-[#696969]',
+        borderColor: 'border-[#C0C0C0]/30',
+    },
     gold: {
         bg: assetUrl('/assets/sponsor-backgrounds/GoldSponsor-Background.jpeg'),
         label: {
@@ -188,16 +197,30 @@ function SocialPartnerCard({ name, logo, logoDark, logoFallback, description }) 
 
 // ─── Unified PartnerCard ───
 // variant: 'sponsor' | 'supporter' | 'social'
-// tier (sponsor only): 'gold' | 'silver' | 'bronze'
-export default function PartnerCard({ variant = 'sponsor', tier, name, logo, logoDark, logoFallback, description }) {
+// tier (sponsor only): 'partner' | 'gold' | 'silver' | 'bronze'
+// href (optional): makes the whole card a link
+export default function PartnerCard({ variant = 'sponsor', tier, name, logo, logoDark, logoFallback, description, href }) {
+    let card;
     if (variant === 'supporter') {
-        return <SupporterCard name={name} logo={logo} logoDark={logoDark} />;
+        card = <SupporterCard name={name} logo={logo} logoDark={logoDark} />;
+    } else if (variant === 'social') {
+        card = <SocialPartnerCard name={name} logo={logo} logoDark={logoDark} logoFallback={logoFallback} description={description} />;
+    } else {
+        // Default: sponsor (fancy)
+        card = <SponsorCard tier={tier} name={name} logo={logo} logoDark={logoDark} />;
     }
 
-    if (variant === 'social') {
-        return <SocialPartnerCard name={name} logo={logo} logoDark={logoDark} logoFallback={logoFallback} description={description} />;
-    }
+    if (!href) return card;
 
-    // Default: sponsor (fancy)
-    return <SponsorCard tier={tier} name={name} logo={logo} logoDark={logoDark} />;
+    return (
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={name}
+            className="block w-full rounded-3xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        >
+            {card}
+        </a>
+    );
 }

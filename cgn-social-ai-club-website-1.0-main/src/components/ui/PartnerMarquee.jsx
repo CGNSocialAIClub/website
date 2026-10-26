@@ -3,17 +3,11 @@ import SectionLabel from './SectionLabel';
 import { useLocale } from '../../i18n/LocaleContext';
 import { assetUrl } from '../../utils/assetUrl';
 
-// Logos hier eintragen wenn Partner vorhanden sind.
-// Datei ablegen in: public/cms/all-partner-logos/<dateiname>
-// Format: { src: assetUrl('/cms/all-partner-logos/<dateiname>'), alt: 'Name', heightClass: 'h-12' }
+// Logos hier eintragen. Datei ablegen in: public/cms/strategic-partner-logos/...
+// Format: { src: assetUrl('/cms/...'), alt: 'Name', href: 'https://...', heightClass: 'h-12' }
 const logos = [
-    { src: assetUrl('/cms/all-partner-logos/initiative-gruppe-blue.svg'), alt: 'Initiative Gruppe', heightClass: 'h-14' },
-    { src: assetUrl('/cms/all-partner-logos/entreculturas-blue.svg'), alt: 'Entreculturas', heightClass: 'h-10' },
-    { src: assetUrl('/cms/all-partner-logos/openai-blue.svg'), alt: 'OpenAI', heightClass: 'h-12' },
-    { src: assetUrl('/cms/all-partner-logos/kulturator-blue.svg'), alt: 'Kulturator' },
-    { src: assetUrl('/cms/all-partner-logos/knowunity-blue.svg'), alt: 'Knowunity', heightClass: 'h-12' },
-    { src: assetUrl('/cms/all-partner-logos/aws-blue.svg'), alt: 'AWS', heightClass: 'h-14' },
-    { src: assetUrl('/cms/all-partner-logos/un-women-blue.svg'), alt: 'UN Women', heightClass: 'h-12' },
+    { src: assetUrl('/cms/strategic-partner-logos/partner/Startplatz-logo.png'), alt: 'STARTPLATZ', href: 'https://www.startplatz.de', heightClass: 'h-14' },
+    { src: assetUrl('/cms/strategic-partner-logos/supporter/DataCamp-Donates-logo-dark.png'), alt: 'DataCamp', href: 'https://www.datacamp.com/', heightClass: 'h-14' },
 ];
 
 export default function PartnerMarquee() {
@@ -189,7 +183,7 @@ export default function PartnerMarquee() {
                                 aria-hidden={groupIndex > 0}
                             >
                                 {logos.map((logo) => (
-                                    <LogoItem key={`${groupIndex}-${logo.alt}`} logo={logo} getLogoStyle={getLogoStyle} />
+                                    <LogoItem key={`${groupIndex}-${logo.alt}`} logo={logo} getLogoStyle={getLogoStyle} isDuplicate={groupIndex > 0} />
                                 ))}
                             </div>
                         ))}
@@ -200,8 +194,19 @@ export default function PartnerMarquee() {
     );
 }
 
-function LogoItem({ logo, getLogoStyle }) {
+function LogoItem({ logo, getLogoStyle, isDuplicate }) {
     const [isHovered, setIsHovered] = useState(false);
+
+    const image = (
+        <img
+            src={logo.src}
+            alt={logo.alt}
+            className={`${logo.heightClass || 'h-16'} w-auto object-contain pointer-events-none select-none transition-all duration-300`}
+            style={getLogoStyle(isHovered)}
+            loading="lazy"
+            decoding="async"
+        />
+    );
 
     return (
         <div
@@ -209,14 +214,11 @@ function LogoItem({ logo, getLogoStyle }) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <img
-                src={logo.src}
-                alt={logo.alt}
-                className={`${logo.heightClass || 'h-16'} w-auto object-contain pointer-events-none select-none transition-all duration-300`}
-                style={getLogoStyle(isHovered)}
-                loading="lazy"
-                decoding="async"
-            />
+            {logo.href ? (
+                <a href={logo.href} target="_blank" rel="noopener noreferrer" tabIndex={isDuplicate ? -1 : undefined} className="flex items-center">
+                    {image}
+                </a>
+            ) : image}
         </div>
     );
 }

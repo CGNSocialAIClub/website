@@ -3,7 +3,7 @@ import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
 import ProjectsSection from './components/sections/ProjectsSection';
 import SponsorsSectionFull from './components/sections/SponsorsSectionFull';
-// import PartnerMarquee from './components/ui/PartnerMarquee'; // Deaktiviert bis Partner vorhanden
+import PartnerMarquee from './components/ui/PartnerMarquee';
 import ContactSection from './components/sections/ContactSection';
 import NetworkSection from './components/sections/NetworkSection';
 import SocialsSection from './components/sections/SocialsSection';
@@ -87,11 +87,9 @@ function App() {
                     <HeroSection />
                 </div>
             </div>
-            {/* Partner-Marquee — wieder aktivieren wenn Partner vorhanden:
             <div className="w-full mb-2" id="partners">
                 <PartnerMarquee />
             </div>
-            */}
             {/* Founding-Foto — wieder aktivieren wenn wir ein gutes Foto haben:
             <div className="w-full h-[180px] md:h-[206px]" aria-hidden="true" />
             <TeamPhotoSection />
