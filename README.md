@@ -153,6 +153,7 @@ The order of the board is set by the `roleOrder` list in [`src/pages/CommunityPa
 
 | Switch | What it is | Before switching on |
 |---|---|---|
+| `introAnimation` (on) | Logo intro on the homepage: two figures merge into the icon, which flies into the hero logo. Plays once per day per visitor (`localStorage`), never with reduced motion. Off = plain hero logo. In `npm run dev`, `/?intro` replays it | Nothing. Logo files: `public/assets/logos/hero-wordmark-*.svg` (text only) and `public/assets/intro/logo-motion.bin` |
 | `articles` (on) | Long-form project pages (`/projects/<slug>`) and the animated project dialog | Set `hasArticle: true` (and optionally `slug`) on a project in `projects.json`; credit people in `src/data/projectTeams.json` |
 | `events` | Events calendar and event articles | Fill `src/data/events.json` |
 | `newsletter` | Sign-up page | Needs a backend, see `api/` |

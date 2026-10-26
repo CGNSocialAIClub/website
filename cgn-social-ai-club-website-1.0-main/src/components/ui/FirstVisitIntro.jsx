@@ -1,13 +1,19 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLocale } from '../../i18n/LocaleContext';
 import './FirstVisitIntro.css';
 
-const KEY = 'social-ai-intro-seen-date-v1';
+// Proportions of the CGN single-line lockup (icon 181.84 of 2191.43 wide, both 181.84 high).
+export const ICON_FRACTION = 181.84 / 2191.43;
+
+const KEY = 'cgn-social-ai-intro-seen-date-v1';
 const localDay = () => {
     const now = new Date();
     return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 };
 export default function FirstVisitIntro() {
+    const { locale } = useLocale();
+    const replayLabel = locale === 'de' ? 'Intro erneut abspielen' : 'Replay intro';
     const [active, setActive] = useState(() => {
         if (typeof window === 'undefined') return false;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
@@ -20,7 +26,7 @@ export default function FirstVisitIntro() {
     const [heroTarget, setHeroTarget] = useState(null);
     const [hasScrolled, setHasScrolled] = useState(false);
     useLayoutEffect(() => {
-        setHeroTarget(document.querySelector('.photo-hero'));
+        setHeroTarget(document.querySelector('[data-intro-host]'));
         const updateVisibility = () => {
             if (window.scrollY > 8) setHasScrolled(true);
         };
@@ -144,7 +150,7 @@ export default function FirstVisitIntro() {
                     previousRevealStyle = target.getAttribute('style');
                     const startScale = sourceSize / destination.height;
                     const startTransform = `translate3d(${sourceTopLeft.x - destination.left}px, ${sourceTopLeft.y - destination.top}px, 0px) scale(${startScale})`;
-                    const iconInset = 500 / 6169 * 100;
+                    const iconInset = ICON_FRACTION * 100;
                     const startClip = `inset(-1px ${100 - iconInset}% -1px -1px)`;
                     retainedMark = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
                     retainedMark.setAttribute('viewBox', '0 0 500 500');
@@ -203,7 +209,8 @@ export default function FirstVisitIntro() {
                     const viewportHeight = viewport?.height || window.innerHeight;
                     const viewportWidth = heroTarget.clientWidth;
                     // Leave room below the centered figures for their complete reflection.
-                    svg.style.width = `${Math.min(1100, viewportWidth * 0.94, viewportHeight * 0.84 * 1.44)}px`;
+                    // The host here is only as tall as the hero copy, so size the stage to the host.
+                    svg.style.width = `${Math.min(1100, viewportWidth * 0.94, Math.min(viewportHeight, heroTarget.clientHeight) * 0.9 * 1.44)}px`;
                     svg.style.top = `${heroTarget.clientHeight / 2}px`;
                     svg.style.left = `${viewportWidth / 2}px`;
                     const elapsed = Math.max(0, now - start) / 1000 * 1.18;
@@ -240,7 +247,7 @@ export default function FirstVisitIntro() {
     return <>
         {active && heroTarget && createPortal(<svg ref={stage} className="first-visit-logo" aria-hidden="true" />, heroTarget)}
         {heroTarget && createPortal(<button type="button" className={`intro-replay ${!playing && hasScrolled ? '' : 'intro-control-hidden'}`}
-            aria-label="Intro erneut abspielen" title="Intro erneut abspielen" disabled={playing || !hasScrolled}
+            aria-label={replayLabel} title={replayLabel} disabled={playing || !hasScrolled}
             onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'instant' });
                 setPlaying(true); setActive(true); setReplay(value => value + 1);
